@@ -5,32 +5,43 @@ import "./Header.css";
 class Header extends React.Component {
   state = {};
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e, { name }) => 
+    this.setState({ activeItem: name });
 
   render() {
     const { activeItem } = this.state;
 
     return (
       <Menu stackable>
-        <Menu.Item>
+        <Menu.Item> 
           <img src="https://react.semantic-ui.com/logo.png" />
         </Menu.Item>
 
         <Menu.Item
-          name="features"
-          active={activeItem === 'features'}
+          name="about"
+          active={activeItem === "about"}
           onClick={this.handleItemClick}
         >
-          Features
+          About
         </Menu.Item>
 
-        <Menu.Item
-          name="Register"
-          active={activeItem === 'sign-in'}
-          onClick={this.handleItemClick}
-        >
-          Register
-        </Menu.Item>
+        <Menu.Menu position="right">
+          <Menu.Item
+            name="register"
+            active={activeItem === "register"}
+            onClick={this.handleItemClick}
+          >
+            Register
+          </Menu.Item>
+
+          <Menu.Item
+            name="log-in"
+            active={activeItem === "log-in"}
+            onClick={this.handleItemClick}
+          >
+            Log In
+          </Menu.Item>
+        </Menu.Menu>
       </Menu>
     );
   }
