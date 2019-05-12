@@ -5,8 +5,8 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons"; // add icons individually
 import { faThumbsUp as faThumbsUpSolid } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
-import Header from "./components/Header";
-import Post from "./components/Post";
+import Header from "./components/Header/Header";
+import Post from "./components/Post/Post";
 
 class App extends React.Component {
   render() {
@@ -14,7 +14,6 @@ class App extends React.Component {
       <div>
         <Header />
         <div>
-          <Post />
           <Post />
         </div>
       </div>
