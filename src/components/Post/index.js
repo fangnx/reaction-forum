@@ -49,7 +49,10 @@ class Post extends React.Component {
               ullamcorper ultricies nisi.
             </p>
           </Grid.Row>
+
         </Grid>
+
+        <Divider />
       </Container>
     );
   }

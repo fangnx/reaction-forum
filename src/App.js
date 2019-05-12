@@ -7,7 +7,6 @@ import { faThumbsUp as faThumbsUpSolid } from "@fortawesome/free-solid-svg-icons
 import "./App.css";
 import Header from "./components/Header";
 import Post from "./components/Post";
-import { Divider } from "semantic-ui-react";
 
 class App extends React.Component {
   render() {

@@ -5,15 +5,24 @@ p {
 }
 
 .post-container {
-  background-color: rgb(239, 248, 250);
+  background-color: #ffffff;
 }
 
 /* .post-grid {
   
 } */
 
+.post-image-wrapper {
+  border-style: solid;
+  border-width: 1px;
+}
+
 .post-image {
   width: auto;
   max-width: 400px;
   height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
