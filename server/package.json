@@ -4,13 +4,19 @@
   "description": "My project ",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@okta/oidc-middleware": "^2.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
     "express": "^4.14.0",
-    "supervisor": "^0.12.0"
+    "express-session": "^1.16.1",
+    "nodemon": "^1.19.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0"
