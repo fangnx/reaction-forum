@@ -1,8 +1,8 @@
-import React from "react";
-import { Container, Label, Image, Grid, Divider } from "semantic-ui-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { Container, Label, Image, Grid, Divider } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import styled from 'styled-components';
-import "./Post.css";
+import './Post.css';
 
 class Post extends React.Component {
   render() {
@@ -28,7 +28,7 @@ class Post extends React.Component {
           </Grid.Row>
 
           <Grid.Row>
-            <FontAwesomeIcon icon={["far", "thumbs-up"]} size="2x" />
+            <FontAwesomeIcon icon={['far', 'thumbs-up']} size="2x" />
           </Grid.Row>
 
           <Grid.Row>
@@ -49,7 +49,6 @@ class Post extends React.Component {
               ullamcorper ultricies nisi.
             </p>
           </Grid.Row>
-
         </Grid>
 
         <Divider />
