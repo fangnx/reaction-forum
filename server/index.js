@@ -3,17 +3,22 @@ const session = require('express-session');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { ExpressOIDC } = require('@okta/oidc-middleware');
+// Database
+const Sequelize = require('sequelize');
+const epilogue = require('epilogue');
+const ForbiddenError = epilogue.Errors.ForbiddenError;
+
 const app = express();
 const port = 3000;
 
-// loads .env file
+// Loads .env file
 require('dotenv').config();
 
 app.use(
   session({
     secret: process.env.SECRET_WORD,
-    resave: true, // forces updating session
-    saveUninitialized: false // initializes a session even if not logged in
+    resave: true, // Forces updating session
+    saveUninitialized: false // Initializes a session even if not logged in
   })
 );
 
@@ -32,12 +37,33 @@ const oidc = new ExpressOIDC({
   }
 });
 
+const database = new Sequelize({
+  dialect: 'sqlite',
+  storage: './db.sqlite',
+  operatorAliases: false
+});
+
+const Post = database.define('posts', {
+  title: Sequelize.STRING,
+  content: Sequelize.TEXT,
+});
+
 app.use(oidc.router);
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/', function(req, res) {
+// Routing
+app.get('/', (req, res) => {
   res.send('<p><h1>Welcome to Express!<h1><p>');
+});
+
+app.get('/admin', oidc.ensureAuthenticated(), (req, res) => {
+  res.send('ADMIN Only!');
+});
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/home');
 });
 
 app.listen(port, () => console.log(`App is listening on port ${port}~~~`));
