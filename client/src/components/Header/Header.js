@@ -1,25 +1,24 @@
-import React from "react";
-import { Menu } from "semantic-ui-react";
-import "./Header.css";
+import React from 'react';
+import { Menu } from 'semantic-ui-react';
+import './Header.css';
 
 class Header extends React.Component {
   state = {};
 
-  handleItemClick = (e, { name }) => 
-    this.setState({ activeItem: name });
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
     const { activeItem } = this.state;
 
     return (
       <Menu stackable>
-        <Menu.Item> 
+        <Menu.Item>
           <img src="https://react.semantic-ui.com/logo.png" />
         </Menu.Item>
 
         <Menu.Item
           name="about"
-          active={activeItem === "about"}
+          active={activeItem === 'about'}
           onClick={this.handleItemClick}
         >
           About
@@ -28,7 +27,7 @@ class Header extends React.Component {
         <Menu.Menu position="right">
           <Menu.Item
             name="register"
-            active={activeItem === "register"}
+            active={activeItem === 'register'}
             onClick={this.handleItemClick}
           >
             Register
@@ -36,7 +35,7 @@ class Header extends React.Component {
 
           <Menu.Item
             name="log-in"
-            active={activeItem === "log-in"}
+            active={activeItem === 'log-in'}
             onClick={this.handleItemClick}
           >
             Log In
