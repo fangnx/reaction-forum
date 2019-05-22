@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Label, Image, Grid, Divider } from 'semantic-ui-react';
+import { Container, Label, Grid, Divider } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import styled from 'styled-components';
 import './Post.css';

@@ -1,21 +1,27 @@
 import React from 'react';
+import { HashRouter, Route } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'; // add icons individually
 import { faThumbsUp as faThumbsUpSolid } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
-import Header from './components/Header/Header.js';
-import Post from './components/Post/Post.js';
+import Header from './components/Header';
+import Post from './components/Post';
+import Registration from './components/Registration';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
         <Header />
-        <div>
-          <Post />
-        </div>
+        <HashRouter>
+          <div className="content">
+            <Route path="/" exact component={Post} />
+            <Route path="/registration" component={Registration} />
+            <Route path="/login" component={Header} />
+          </div>
+        </HashRouter>
       </div>
     );
   }
