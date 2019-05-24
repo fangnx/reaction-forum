@@ -13,7 +13,7 @@ class Post extends React.Component {
             <Label as="a" color="blue" size="large" image>
               <img src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg" />
               <span>
-                Claire He &nbsp;&nbsp;
+                YX S &nbsp;&nbsp;
                 <i class="france flag" />
               </span>
               <Label.Detail>User</Label.Detail>

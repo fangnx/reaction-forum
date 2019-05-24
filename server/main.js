@@ -2,6 +2,8 @@ import express from 'express';
 import session from 'express-session';
 import mongoose from 'mongoose';
 import connectMongo from 'connect-mongo';
+import bodyParser from 'body-parser';
+import passport from 'passport';
 import flash from 'connect-flash';
 
 import { users } from '../api/users';
@@ -9,6 +11,14 @@ import config from '../config/config';
 import path from 'path';
 
 const app = new express();
+
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
+app.use(bodyParser.json());
+
 const db = config.mongodb;
 const MongoStore = connectMongo(session);
 const port = config.port;
@@ -34,9 +44,11 @@ app.use(
     })
   })
 );
+
 app.use(flash());
 
-// routes(app);
+app.use(passport.initialize());
+// require('../config/passport')(passport);
 
 app.use('/api/users', users);
 

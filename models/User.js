@@ -7,15 +7,19 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  password: {
+  email: {
     type: String,
     required: true
   },
-  gender: {
+  password: {
     type: String,
-    enum: ['m', 'f', 'o'],
     required: true
   }
+  // gender: {
+  //   type: String,
+  //   enum: ['m', 'f', 'o'],
+  //   required: true
+  // }
 });
 
 export default mongoose.model('users', UserSchema);
