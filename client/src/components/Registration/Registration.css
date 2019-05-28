@@ -1,0 +1,20 @@
+.registration-wrapper {
+  width: 33.3%;
+  min-width: 500px;
+  margin: 20px auto;
+}
+
+.registration-form {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.registration-field-text {
+  text-align: center;
+}
+
+.registration-card-header {
+  text-align: center;
+  font-style: italic;
+  padding: 10px;
+}

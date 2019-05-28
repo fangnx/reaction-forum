@@ -1,28 +1,30 @@
-p {
-  font-family: "Avenir Next";
-  font-size: medium;
-  font-weight: 500;
+.post-wrapper {
+  width: 50%;
+  margin: 20px auto;
 }
 
-.post-container {
-  background-color: #ffffff;
+.post-card-header {
+  width: 95%;
+  margin: 20px auto !important;
 }
 
-/* .post-grid {
-  
-} */
-
-.post-image-wrapper {
-  border-style: solid;
-  border-width: 1px;
+.post-card-content {
+  width: 95%;
+  margin: 0 auto !important;
 }
 
 .post-image {
-  width: auto;
-  max-width: 400px;
-  height: 300px;
+  display: block;
+  width: 100%;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+p {
+  font-family: 'Avenir Next';
+  font-size: medium;
+  font-weight: 500;
 }

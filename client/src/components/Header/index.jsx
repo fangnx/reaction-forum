@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter, NavLink } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Image } from 'semantic-ui-react';
 import './Header.css';
 
 class Header extends React.Component {
@@ -8,10 +8,10 @@ class Header extends React.Component {
     return (
       <HashRouter>
         <Menu stackable>
-          <Menu.Item>
-            <img src="https://react.semantic-ui.com/logo.png" />
+          <Menu.Item as={NavLink} to="/" exact name="main">
+            <Image avatar src="https://react.semantic-ui.com/logo.png" />
           </Menu.Item>
-          <Menu.Item as={NavLink} to="/" exact name="about" />
+
           <Menu.Menu position="right">
             <Menu.Item as={NavLink} to="/registration" name="register" />
             <Menu.Item as={NavLink} to="/login" name="login" />
