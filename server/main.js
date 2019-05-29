@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import connectMongo from 'connect-mongo';
 import bodyParser from 'body-parser';
 import passport from 'passport';
+import cors from 'cors';
 import flash from 'connect-flash';
 
 import { users } from '../api/users';
@@ -42,6 +43,13 @@ app.use(
     store: new MongoStore({
       url: config.mongodb // stores session into mongodb
     })
+  })
+);
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true
   })
 );
 

@@ -9,6 +9,7 @@ import {
   TextArea
 } from 'semantic-ui-react';
 import './Registration.css';
+import { registerUser } from '../../services/registerService';
 
 const genderOptions = [
   { key: 'm', text: 'Male', value: 'male' },
@@ -22,17 +23,27 @@ class Registration extends React.Component {
     this.state = {
       name: '',
       email: '',
+      gender: '',
       password: '',
-      password2: '',
+      passwordRe: '',
       errors: {}
     };
   }
 
+  onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+
   onSubmit = e => {
     e.preventDefault();
     const newUser = {
-      name: this.state
+      name: this.state.name,
+      email: this.state.email,
+      gender: this.state.gender,
+      password: this.state.password,
+      passwordRe: this.state.passwordRe
     };
+    registerUser(newUser);
   };
 
   handleChange = (e, { value }) => this.setState({ value });
@@ -50,29 +61,62 @@ class Registration extends React.Component {
             <Form className="registration-form">
               <Form.Field required>
                 <label className="registration-field-text">Name</label>
-                <Input type="name" placeholder="Name" />
+                <Input
+                  id="name"
+                  value={this.state.name}
+                  onChange={this.onChange}
+                  placeholder="Name"
+                />
+              </Form.Field>
+
+              <Form.Field required>
+                <label className="registration-field-text">Email</label>
+                <Input
+                  id="email"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                  placeholder="Email"
+                />
               </Form.Field>
 
               <Form.Field required>
                 <label className="registration-field-text">Password</label>
-                <Input type="password" placeholder="Password" />
+                <Input
+                  id="password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Password"
+                />
               </Form.Field>
 
               <Form.Field required>
                 <label className="registration-field-text">
                   Confirm Password
                 </label>
-                <Input type="password" placeholder="Confirm Password" />
+                <Input
+                  id="passwordRe"
+                  value={this.state.passwordRe}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Confirm Password"
+                />
               </Form.Field>
 
               <Form.Field required>
                 <label className="registration-field-text">Gender</label>
-                <Select options={genderOptions} placeholder="Gender" />
+                <Select
+                  id="gender"
+                  value={this.state.gender}
+                  onChange={this.onChange}
+                  options={genderOptions}
+                  placeholder="Gender"
+                />
               </Form.Field>
 
               <Form.Field>
                 <label className="registration-field-text">Avatar</label>
-                <Input type="file" />
+                <Input id="avatar" type="file" />
               </Form.Field>
 
               <Form.Field
