@@ -17,7 +17,23 @@ const genderOptions = [
 ];
 
 class Registration extends React.Component {
-  state = {};
+  constructor() {
+    super();
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      password2: '',
+      errors: {}
+    };
+  }
+
+  onSubmit = e => {
+    e.preventDefault();
+    const newUser = {
+      name: this.state
+    };
+  };
 
   handleChange = (e, { value }) => this.setState({ value });
   render() {
@@ -30,14 +46,12 @@ class Registration extends React.Component {
               <h1>Register</h1>
             </span>
           </Card.Header>
-          <Card.Content>
+          <Card.Content className="registration-card-content">
             <Form className="registration-form">
-              <Form.Field
-                required
-                control={Input}
-                label="Name"
-                placeholder="Name"
-              />
+              <Form.Field required>
+                <label className="registration-field-text">Name</label>
+                <Input type="name" placeholder="Name" />
+              </Form.Field>
 
               <Form.Field required>
                 <label className="registration-field-text">Password</label>
@@ -45,29 +59,33 @@ class Registration extends React.Component {
               </Form.Field>
 
               <Form.Field required>
-                <label>Confirm Password</label>
+                <label className="registration-field-text">
+                  Confirm Password
+                </label>
                 <Input type="password" placeholder="Confirm Password" />
               </Form.Field>
 
+              <Form.Field required>
+                <label className="registration-field-text">Gender</label>
+                <Select options={genderOptions} placeholder="Gender" />
+              </Form.Field>
+
+              <Form.Field>
+                <label className="registration-field-text">Avatar</label>
+                <Input type="file" />
+              </Form.Field>
+
               <Form.Field
-                required
-                control={Select}
-                label="Gender"
-                options={genderOptions}
-                placeholder="Gender"
-              />
-              <Form.Field control={Input} type="file" label="Avatar" />
-              <Form.Field
-                control={TextArea}
-                label="About"
-                placeholder="......"
-              />
-              <Form.Field
-                required
                 control={Checkbox}
                 label="I agree to the Terms and Conditions"
               />
-              <Form.Field as={Button} primary>
+              <Form.Field
+                as={Button}
+                className="registration-button"
+                onClick={this.onSubmit}
+                size="large"
+                primary
+              >
                 Submit
               </Form.Field>
             </Form>

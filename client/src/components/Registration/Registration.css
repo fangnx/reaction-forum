@@ -9,12 +9,15 @@
   margin: 0 auto;
 }
 
-.registration-field-text {
-  text-align: center;
-}
-
 .registration-card-header {
+  width: 95%;
+  margin: 0 auto !important;
   text-align: center;
   font-style: italic;
   padding: 10px;
+}
+
+.registration-card-content {
+  width: 95%;
+  margin: 0 auto !important;
 }
