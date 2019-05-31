@@ -9,7 +9,7 @@ class Post extends React.Component {
       <div className="post-wrapper">
         <Card className="post-card" fluid>
           <Card.Header className="post-card-header">
-            <Label as="a" color="blue" size="big" image>
+            <Label as="a" color="blue" size="large" image>
               <Image src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg" />
               <span>
                 Yuxi Shi &nbsp;&nbsp;
