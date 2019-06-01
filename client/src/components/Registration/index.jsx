@@ -6,7 +6,7 @@ import {
   Form,
   Input,
   Select,
-  TextArea
+  Message
 } from 'semantic-ui-react';
 import './Registration.css';
 import { registerUser } from '../../services/registerService';
@@ -26,7 +26,9 @@ class Registration extends React.Component {
       gender: '',
       password: '',
       passwordRe: '',
-      errors: {}
+      errors: {},
+      success: false,
+      failure: false
     };
   }
 
@@ -34,7 +36,7 @@ class Registration extends React.Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
     const newUser = {
       name: this.state.name,
@@ -43,12 +45,20 @@ class Registration extends React.Component {
       password: this.state.password,
       passwordRe: this.state.passwordRe
     };
-    registerUser(newUser);
+    const regStatus = await registerUser(newUser);
+    if (regStatus === 200) {
+      this.setState({ success: true });
+    } else {
+      this.setState({ failure: true });
+    }
   };
 
   handleChange = (e, { value }) => this.setState({ value });
   render() {
-    const { value } = this.state;
+    const errors = this.state.errors;
+    const isSuccess = this.state.success;
+    const isError = this.state.failure;
+
     return (
       <div className="registration-wrapper">
         <Card className="registration-card" fluid>
@@ -58,7 +68,11 @@ class Registration extends React.Component {
             </span>
           </Card.Header>
           <Card.Content className="registration-card-content">
-            <Form className="registration-form">
+            <Form
+              success={isSuccess}
+              error={isError}
+              className="registration-form"
+            >
               <Form.Field required>
                 <label className="registration-field-text">Name</label>
                 <Input
@@ -66,6 +80,7 @@ class Registration extends React.Component {
                   value={this.state.name}
                   onChange={this.onChange}
                   placeholder="Name"
+                  error={errors.name}
                 />
               </Form.Field>
 
@@ -76,6 +91,7 @@ class Registration extends React.Component {
                   value={this.state.email}
                   onChange={this.onChange}
                   placeholder="Email"
+                  error={errors.email}
                 />
               </Form.Field>
 
@@ -87,6 +103,7 @@ class Registration extends React.Component {
                   onChange={this.onChange}
                   type="password"
                   placeholder="Password"
+                  error={errors.password}
                 />
               </Form.Field>
 
@@ -100,6 +117,7 @@ class Registration extends React.Component {
                   onChange={this.onChange}
                   type="password"
                   placeholder="Confirm Password"
+                  error={errors.passwordRe}
                 />
               </Form.Field>
 
@@ -111,6 +129,7 @@ class Registration extends React.Component {
                   onChange={this.onChange}
                   options={genderOptions}
                   placeholder="Gender"
+                  error={errors.gender}
                 />
               </Form.Field>
 
@@ -122,6 +141,11 @@ class Registration extends React.Component {
               <Form.Field
                 control={Checkbox}
                 label="I agree to the Terms and Conditions"
+              />
+              <Message
+                success
+                header="Registration Form Completed"
+                content="You have registered successfully~"
               />
               <Form.Field
                 as={Button}
@@ -139,5 +163,4 @@ class Registration extends React.Component {
     );
   }
 }
-
 export default Registration;
