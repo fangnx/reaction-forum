@@ -14,12 +14,12 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  gender: {
+    type: String,
+    enum: ['m', 'f', 'o'],
+    required: true
   }
-  // gender: {
-  //   type: String,
-  //   enum: ['m', 'f', 'o'],
-  //   required: true
-  // }
 });
 
 export default mongoose.model('users', UserSchema);

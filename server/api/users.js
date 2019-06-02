@@ -1,8 +1,8 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import keys from '../config/passport';
-import User from '../models/User';
+import keys from '../../config/passport';
+import User from '../../models/User';
 import { validateRegisterInputs } from '../validators/register';
 import { validateLoginInputs } from '../validators/login';
 

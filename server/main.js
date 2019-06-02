@@ -7,7 +7,7 @@ import passport from 'passport';
 import cors from 'cors';
 import flash from 'connect-flash';
 
-import { users } from '../api/users';
+import { users } from './api/users';
 import config from '../config/config';
 import path from 'path';
 

@@ -1,20 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Button,
   Checkbox,
   Card,
   Form,
   Input,
-  Select,
+  Dropdown,
   Message
 } from 'semantic-ui-react';
 import './Registration.css';
 import { registerUser } from '../../services/registerService';
 
 const genderOptions = [
-  { key: 'm', text: 'Male', value: 'male' },
-  { key: 'f', text: 'Female', value: 'female' },
-  { key: 'o', text: 'Other', value: 'other' }
+  { key: 'm', text: 'Male', value: 'm' },
+  { key: 'f', text: 'Female', value: 'f' },
+  { key: 'o', text: 'Other', value: 'o' }
 ];
 
 class Registration extends React.Component {
@@ -32,11 +34,20 @@ class Registration extends React.Component {
     };
   }
 
-  onChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }
+
+  onChange = (e, data) => {
+    // console.log(data.id + ' ' + data.value);
+    this.setState({ [data.id]: data.value });
   };
 
-  onSubmit = async e => {
+  onSubmit = e => {
     e.preventDefault();
     const newUser = {
       name: this.state.name,
@@ -45,15 +56,16 @@ class Registration extends React.Component {
       password: this.state.password,
       passwordRe: this.state.passwordRe
     };
-    const regStatus = await registerUser(newUser);
-    if (regStatus === 200) {
-      this.setState({ success: true });
-    } else {
-      this.setState({ failure: true });
-    }
+
+    console.log(newUser);
+    this.props.registerUser(newUser);
+    // if (regStatus === 200) {
+    //   this.setState({ success: true });
+    // } else {
+    //   this.setState({ failure: true });
+    // }
   };
 
-  handleChange = (e, { value }) => this.setState({ value });
   render() {
     const errors = this.state.errors;
     const isSuccess = this.state.success;
@@ -82,6 +94,7 @@ class Registration extends React.Component {
                   placeholder="Name"
                   error={errors.name}
                 />
+                <span>{errors.name}</span>
               </Form.Field>
 
               <Form.Field required>
@@ -93,6 +106,7 @@ class Registration extends React.Component {
                   placeholder="Email"
                   error={errors.email}
                 />
+                <span>{errors.email}</span>
               </Form.Field>
 
               <Form.Field required>
@@ -105,6 +119,7 @@ class Registration extends React.Component {
                   placeholder="Password"
                   error={errors.password}
                 />
+                <span>{errors.password}</span>
               </Form.Field>
 
               <Form.Field required>
@@ -119,11 +134,14 @@ class Registration extends React.Component {
                   placeholder="Confirm Password"
                   error={errors.passwordRe}
                 />
+                <span>{errors.passwordRe}</span>
               </Form.Field>
 
               <Form.Field required>
                 <label className="registration-field-text">Gender</label>
-                <Select
+                <Dropdown
+                  selection
+                  search
                   id="gender"
                   value={this.state.gender}
                   onChange={this.onChange}
@@ -131,6 +149,7 @@ class Registration extends React.Component {
                   placeholder="Gender"
                   error={errors.gender}
                 />
+                <span>{errors.gender}</span>
               </Form.Field>
 
               <Form.Field>
@@ -163,4 +182,19 @@ class Registration extends React.Component {
     );
   }
 }
-export default Registration;
+
+Registration.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser } // mapDispatchToProps
+)(Registration);
