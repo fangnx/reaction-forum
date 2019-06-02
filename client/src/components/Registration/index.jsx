@@ -10,6 +10,7 @@ import {
   Dropdown,
   Message
 } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Registration.css';
 import { registerUser } from '../../services/registerService';
 
@@ -28,6 +29,7 @@ class Registration extends React.Component {
       gender: '',
       password: '',
       passwordRe: '',
+      checked: false,
       errors: {},
       success: false,
       failure: false
@@ -43,8 +45,11 @@ class Registration extends React.Component {
   }
 
   onChange = (e, data) => {
-    // console.log(data.id + ' ' + data.value);
     this.setState({ [data.id]: data.value });
+  };
+
+  onCheck = () => {
+    this.setState({ checked: !this.state.checked });
   };
 
   onSubmit = e => {
@@ -59,11 +64,12 @@ class Registration extends React.Component {
 
     console.log(newUser);
     this.props.registerUser(newUser);
-    // if (regStatus === 200) {
-    //   this.setState({ success: true });
-    // } else {
-    //   this.setState({ failure: true });
-    // }
+    const errors = this.state.errors;
+    if (!errors) {
+      this.setState({ success: true });
+    } else {
+      this.setState({ failure: true });
+    }
   };
 
   render() {
@@ -85,45 +91,50 @@ class Registration extends React.Component {
               error={isError}
               className="registration-form"
             >
-              <Form.Field required>
-                <label className="registration-field-text">Name</label>
+              <Form.Field error={!!errors.name} required>
+                <label for="name" className="registration-field-text">
+                  Name
+                </label>
                 <Input
                   id="name"
                   value={this.state.name}
                   onChange={this.onChange}
                   placeholder="Name"
-                  error={errors.name}
                 />
-                <span>{errors.name}</span>
+                <span className="registration-field-msg">{errors.name}</span>
               </Form.Field>
 
-              <Form.Field required>
-                <label className="registration-field-text">Email</label>
+              <Form.Field error={!!errors.email} required>
+                <label for="email" className="registration-field-text">
+                  Email
+                </label>
                 <Input
                   id="email"
                   value={this.state.email}
                   onChange={this.onChange}
                   placeholder="Email"
-                  error={errors.email}
                 />
-                <span>{errors.email}</span>
+                <span className="registration-field-msg">{errors.email}</span>
               </Form.Field>
 
-              <Form.Field required>
-                <label className="registration-field-text">Password</label>
+              <Form.Field error={!!errors.password} required>
+                <label for="password" className="registration-field-text">
+                  Password
+                </label>
                 <Input
                   id="password"
                   value={this.state.password}
                   onChange={this.onChange}
                   type="password"
                   placeholder="Password"
-                  error={errors.password}
                 />
-                <span>{errors.password}</span>
+                <span className="registration-field-msg">
+                  {errors.password}
+                </span>
               </Form.Field>
 
-              <Form.Field required>
-                <label className="registration-field-text">
+              <Form.Field error={!!errors.passwordRe} required>
+                <label for="passwordRe" className="registration-field-text">
                   Confirm Password
                 </label>
                 <Input
@@ -132,13 +143,16 @@ class Registration extends React.Component {
                   onChange={this.onChange}
                   type="password"
                   placeholder="Confirm Password"
-                  error={errors.passwordRe}
                 />
-                <span>{errors.passwordRe}</span>
+                <span className="registration-field-msg">
+                  {errors.passwordRe}
+                </span>
               </Form.Field>
 
-              <Form.Field required>
-                <label className="registration-field-text">Gender</label>
+              <Form.Field error={!!errors.gender} required>
+                <label for="gender" className="registration-field-text">
+                  Gender
+                </label>
                 <Dropdown
                   selection
                   search
@@ -147,33 +161,43 @@ class Registration extends React.Component {
                   onChange={this.onChange}
                   options={genderOptions}
                   placeholder="Gender"
-                  error={errors.gender}
                 />
-                <span>{errors.gender}</span>
+                <span className="registration-field-msg">{errors.gender}</span>
               </Form.Field>
 
               <Form.Field>
-                <label className="registration-field-text">Avatar</label>
+                <label for="avatar" className="registration-field-text">
+                  Avatar
+                </label>
                 <Input id="avatar" type="file" />
               </Form.Field>
 
               <Form.Field
                 control={Checkbox}
+                checked={this.state.checked}
+                onClick={this.onCheck}
                 label="I agree to the Terms and Conditions"
               />
               <Message
                 success
-                header="Registration Form Completed"
+                header="Success"
                 content="You have registered successfully~"
               />
+              <Message error header="Error" content="Registration error :(" />
               <Form.Field
                 as={Button}
                 className="registration-button"
+                disabled={!this.state.checked}
                 onClick={this.onSubmit}
+                animated="vertical"
                 size="large"
                 primary
               >
-                Submit
+                <Button.Content visible>Submit</Button.Content>
+                <Button.Content hidden>
+                  {' '}
+                  <FontAwesomeIcon icon={['fas', 'check']} size="1x" />
+                </Button.Content>
               </Form.Field>
             </Form>
           </Card.Content>

@@ -21,3 +21,22 @@
   width: 95%;
   margin: 0 auto !important;
 }
+
+.registration-field-text {
+  font-size: medium !important;
+  font-weight: 600 !important;
+}
+
+.registration-field-text:hover {
+  font-size: large !important;
+}
+
+.registration-field-msg {
+  display: block;
+  margin-top: 2%;
+  /* margin-left: 3.75%; */
+  font-family: monospace;
+  font-size: medium;
+  font-style: normal;
+  color: red;
+}

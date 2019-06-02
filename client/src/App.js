@@ -6,7 +6,8 @@ import store from './store';
 import { library } from '@fortawesome/fontawesome-svg-core';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'; // add icons individually
+import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import Header from './components/Header';
 import Post from './components/Post';
@@ -32,7 +33,7 @@ class App extends React.Component {
 }
 
 // Font Awesome 5
-library.add(fab, faThumbsUp);
+library.add(fab, faThumbsUp, faCheck);
 
 // Semantic UI
 const styleLink = document.createElement('link');

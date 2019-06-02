@@ -11,25 +11,29 @@ export const validateRegisterInputs = data => {
   // data.gender = !isEmpty(data.gender) ? data.gender : ''; // may not be necessary
 
   if (Validator.isEmpty(data.name)) {
-    errors.name = 'Name field is required';
+    errors.name = 'Please enter your name';
   }
 
   if (Validator.isEmpty(data.email)) {
-    errors.email = 'Email field is required';
+    errors.email = 'Please enter your email';
   } else if (!Validator.isEmail(data.email)) {
-    errors.email = 'Email is invalid';
+    errors.email = 'Invalid email format (Valid: xxx@yyy.com)';
   }
 
   if (Validator.isEmpty(data.password)) {
-    errors.password = 'Password field is required';
+    errors.password = 'Please enter a password';
   }
 
   if (Validator.isEmpty(data.passwordRe)) {
-    errors.passwordRe = 'Confirm password field is required';
+    errors.passwordRe = 'Please confirm the password';
   }
 
   if (!Validator.equals(data.password, data.passwordRe)) {
-    errors.passwordRe = 'Passwords must match';
+    errors.passwordRe = 'Passwords do not match :(';
+  }
+
+  if (Validator.isEmpty(data.gender)) {
+    errors.gender = 'Please select the gender';
   }
 
   return {
