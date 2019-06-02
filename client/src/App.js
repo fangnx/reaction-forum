@@ -12,6 +12,7 @@ import './App.css';
 import Header from './components/Header';
 import Post from './components/Post';
 import Registration from './components/Registration';
+import Login from './components/Login';
 
 class App extends React.Component {
   render() {
@@ -23,7 +24,7 @@ class App extends React.Component {
             <div className="content">
               <Route path="/" exact component={Post} />
               <Route path="/registration" component={Registration} />
-              <Route path="/login" component={Header} />
+              <Route path="/login" component={Login} />
             </div>
           </HashRouter>
         </Provider>

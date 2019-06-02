@@ -1,15 +1,15 @@
-.registration-wrapper {
+.login-wrapper {
   width: 33.3%;
   min-width: 500px;
   margin: 20px auto;
 }
 
-.registration-form {
+.login-form {
   /* width: 90%;
   margin: 0 auto; */
 }
 
-.registration-card-header {
+.login-card-header {
   width: 95%;
   margin: 0 auto !important;
   text-align: left;
@@ -17,26 +17,16 @@
   padding: 10px;
 }
 
-.registration-card-content {
+.login-card-content {
   width: 95%;
   margin: 0 auto !important;
 }
 
-.registration-field-text {
+.login-field-text {
   font-size: medium !important;
   font-weight: 600 !important;
 }
 
-.registration-field-text:hover {
+.login-field-text:hover {
   font-size: large !important;
-}
-
-.registration-field-msg {
-  display: block;
-  margin-top: 2%;
-  /* margin-left: 3.75%; */
-  font-family: monospace;
-  font-size: medium;
-  font-style: normal;
-  color: red;
 }

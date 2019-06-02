@@ -62,7 +62,6 @@ class Registration extends React.Component {
       passwordRe: this.state.passwordRe
     };
 
-    console.log(newUser);
     this.props.registerUser(newUser);
     const errors = this.state.errors;
     if (!errors) {
