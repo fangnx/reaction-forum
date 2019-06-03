@@ -11,6 +11,10 @@ node_modules/
 # production
 /build
 
+# theming
+**/semantic/dist/
+**/semantic/tasks/
+
 # misc
 .DS_Store
 .env.local

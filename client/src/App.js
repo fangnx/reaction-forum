@@ -3,6 +3,7 @@ import { HashRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 
+import './semantic/dist/semantic.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab } from '@fortawesome/free-brands-svg-icons';
@@ -37,10 +38,10 @@ class App extends React.Component {
 library.add(fab, faThumbsUp, faCheck);
 
 // Semantic UI
-const styleLink = document.createElement('link');
-styleLink.rel = 'stylesheet';
-styleLink.href =
-  'https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css';
-document.head.appendChild(styleLink);
+// const styleLink = document.createElement('link');
+// styleLink.rel = 'stylesheet';
+// styleLink.href =
+//   'https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css';
+// document.head.appendChild(styleLink);
 
 export default App;
