@@ -10,6 +10,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
+
 import Header from './components/Header';
 import Post from './components/Post';
 import Registration from './components/Registration';
@@ -36,12 +37,5 @@ class App extends React.Component {
 
 // Font Awesome 5
 library.add(fab, faThumbsUp, faCheck);
-
-// Semantic UI
-// const styleLink = document.createElement('link');
-// styleLink.rel = 'stylesheet';
-// styleLink.href =
-//   'https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css';
-// document.head.appendChild(styleLink);
 
 export default App;

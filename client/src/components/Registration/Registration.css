@@ -11,7 +11,7 @@
 
 .registration-card-header {
   width: 95%;
-  margin: 0 auto !important;
+  margin: 0 auto;
   text-align: left;
   padding: 10px;
 }
@@ -22,12 +22,12 @@
 }
 
 .registration-field-text {
-  font-size: medium !important;
-  font-weight: 600 !important;
+  font-size: medium;
+  font-weight: 600;
 }
 
 .registration-field-text:hover {
-  font-size: large !important;
+  font-size: large;
 }
 
 .registration-field-msg {

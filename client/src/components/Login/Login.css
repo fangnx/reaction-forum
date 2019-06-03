@@ -11,7 +11,7 @@
 
 .login-card-header {
   width: 95%;
-  margin: 0 auto !important;
+  margin: 0 auto;
   text-align: left;
   padding: 10px;
 }
@@ -22,10 +22,9 @@
 }
 
 .login-field-text {
-  font-size: medium !important;
-  font-weight: 600 !important;
+  font-size: medium;
 }
 
 .login-field-text:hover {
-  font-size: large !important;
+  font-size: large;
 }
