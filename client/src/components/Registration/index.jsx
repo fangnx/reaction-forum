@@ -31,8 +31,7 @@ class Registration extends React.Component {
       passwordRe: '',
       checked: false,
       errors: {},
-      success: false,
-      failure: false
+      success: false
     };
   }
 
@@ -66,15 +65,12 @@ class Registration extends React.Component {
     const errors = this.state.errors;
     if (!errors) {
       this.setState({ success: true });
-    } else {
-      this.setState({ failure: true });
     }
   };
 
   render() {
     const errors = this.state.errors;
     const isSuccess = this.state.success;
-    const isError = this.state.failure;
 
     return (
       <div className="registration-wrapper">
@@ -85,11 +81,7 @@ class Registration extends React.Component {
             </span>
           </Card.Header>
           <Card.Content className="registration-card-content">
-            <Form
-              success={isSuccess}
-              error={isError}
-              className="registration-form"
-            >
+            <Form success={isSuccess} className="registration-form">
               <Form.Field error={!!errors.name} required>
                 <label for="name" className="registration-field-text">
                   Name
@@ -182,7 +174,6 @@ class Registration extends React.Component {
                 header="Success"
                 content="You have registered successfully~"
               />
-              <Message error header="Error" content="Registration error :(" />
               <Form.Field
                 as={Button}
                 className="registration-button"
