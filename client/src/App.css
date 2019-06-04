@@ -2,15 +2,22 @@
   height: 100%;
   background-image: linear-gradient(
     to top,
-    #765e82,
-    #6b5c81,
-    #615b7e,
-    #575b7f,
-    #4d5c7f,
-    #415c7f
+    #7564a5,
+    #6f61a3,
+    #695da1,
+    #635a9f,
+    #5c579d,
+    #57549b,
+    #51529a,
+    #4b4f98,
+    #454c96,
+    #3f4894,
+    #384592,
+    #314290
   );
+  background-size: cover;
 }
 
-.content {
-  padding-top: 2%;
+.app-content {
+  padding-top: 5vh;
 }

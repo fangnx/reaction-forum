@@ -2,8 +2,8 @@
      User Global Variables
 *******************************/
 
-@primaryColor   : @mondrian-blue;
-@secondaryColor : @mondrian-red;
+@primaryColor   : @monet-navy;
+@secondaryColor : @monet-red;
 
 /*******************************
      http://www.colorlisa.com/ 

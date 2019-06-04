@@ -23,7 +23,7 @@ class App extends React.Component {
         <Provider store={store}>
           <Header />
           <HashRouter>
-            <div className="content">
+            <div className="app-content">
               <Route path="/" exact component={Post} />
               <Route path="/registration" component={Registration} />
               <Route path="/login" component={Login} />
