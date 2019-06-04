@@ -1,6 +1,7 @@
 .post-wrapper {
   width: 50%;
-  margin: 20px auto;
+  min-width: 500px;
+  margin: 0 auto;
 }
 
 .post-card-header {

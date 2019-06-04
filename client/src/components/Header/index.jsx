@@ -7,9 +7,9 @@ class Header extends React.Component {
   render() {
     return (
       <HashRouter>
-        <Menu stackable>
+        <Menu stackable className="header-menu">
           <Menu.Item as={NavLink} to="/" exact name="main">
-            <Image avatar src="https://react.semantic-ui.com/logo.png" />
+            {/* <Image avatar src="https://react.semantic-ui.com/logo.png" /> */}
           </Menu.Item>
 
           <Menu.Menu position="right">

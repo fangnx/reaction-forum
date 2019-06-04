@@ -2,30 +2,37 @@
      User Global Variables
 *******************************/
 
-@primaryColor   : @mondrian-navy;
+@primaryColor   : @mondrian-blue;
 @secondaryColor : @mondrian-red;
 
-@mondrian-navy: #314290;
+/*******************************
+     http://www.colorlisa.com/ 
+*******************************/
+
+@mondrian-navy : #314290;
 @mondrian-blue: #4A71C0;
 @mondrian-yellow: #F0D32D;
 @mondrian-red: #AB3A2C;
 
-@red            : #B03060;
-@orange         : #FE9A76;
-@yellow         : #FFD700;
-@olive          : #32CD32;
-@green          : #016936;
-@teal           : #008080;
-@blue           : #0E6EB8;
-@violet         : #EE82EE;
-@purple         : #B413EC;
-@pink           : #FF1493;   
-@brown          : #A52A2A;
-@grey           : #A0A0A0;
-@black          : #000000;
+@monet-navy: #395A92;
+@monet-blue: #4885A4;
+@monet-red: #9F4640;
+@monet-green: #7EA860;
+@monet-purple: #B985BA;
+
+@renoir-orange: #D16647;
+@renoir-cream: #FFFBDD;
+@renoir-yellow: #F1D395;
+@renoir-green: #A69F55;
 
 @fontName: 'Avenir Next';
 @fontSize: 14px;
 @fontWeight: 500px;
-@fontWeightHeavier: 700px;
+
+@headerFont: 'monospace';
+@pageFont: 'Avenir Next';
+@contentFont: 'Avenir Next';
+@inputFont: 'Avenir Next';
+@labelFont: 'Avenir Next';
+
 

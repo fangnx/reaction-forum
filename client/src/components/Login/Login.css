@@ -1,30 +1,39 @@
 .login-wrapper {
-  width: 33.3%;
+  width: 50%;
   min-width: 500px;
-  margin: 20px auto;
+  margin: 0 auto;
 }
 
 .login-form {
-  /* width: 90%;
-  margin: 0 auto; */
+  width: 95%;
+  margin: 0 auto;
 }
 
 .login-card-header {
   width: 95%;
   margin: 0 auto;
   text-align: left;
-  padding: 10px;
-}
-
-.login-card-content {
-  width: 95%;
-  margin: 0 auto !important;
+  padding: 20px 0;
 }
 
 .login-field-text {
-  font-size: medium;
+  font-size: 10pt !important;
 }
 
-.login-field-text:hover {
-  font-size: large;
+.login-card-content .field:hover > .login-field-text {
+  font-style: oblique;
+}
+
+.login-button {
+  margin: 2% 0 !important;
+}
+
+.login-field-msg {
+  display: block;
+  margin-top: 2%;
+  /* margin-left: 3.75%; */
+  font-family: monospace;
+  font-size: medium;
+  font-style: normal;
+  color: red;
 }
