@@ -20,20 +20,20 @@ import Login from './components/Login';
 import { setCurrentUser } from '../src/actions/loginService';
 
 // check user login status
-if (localStorage.jwtToken) {
-  const token = localStorage.jwtToken;
-  setAuthToken(token);
-  const decoded = jwt_decode(token);
-  // set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded));
-  // Check if token has expired
-  // const currentTime = Date.now() / 1000; // to get in milliseconds
-  // if (decoded.exp < currentTime) {
-  //   store.dispatch(logoutUser());
-  //   // Redirect to login
-  //   window.location.href = './login';
-  // }
-}
+// if (localStorage.jwtToken) {
+//   const token = localStorage.jwtToken;
+//   setAuthToken(token);
+//   const decoded = jwt_decode(token);
+//   // set user and isAuthenticated
+//   store.dispatch(setCurrentUser(decoded));
+// Check if token has expired
+// const currentTime = Date.now() / 1000; // to get in milliseconds
+// if (decoded.exp < currentTime) {
+//   store.dispatch(logoutUser());
+//   // Redirect to login
+//   window.location.href = './login';
+// }
+// }
 class App extends React.Component {
   render() {
     return (

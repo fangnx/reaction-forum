@@ -18,13 +18,16 @@ class Login extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push('/');
+    }
+
     if (nextProps.errors && Object.keys(nextProps.errors).length > 0) {
       this.setState({
         errors: nextProps.errors,
         success: false
       });
     } else {
-      console.log('!');
       this.setState({ errors: {}, success: true });
     }
   }

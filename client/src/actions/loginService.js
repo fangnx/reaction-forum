@@ -18,12 +18,10 @@ export const loginUser = data => dispatch => {
     })
     .catch(err => {
       console.log('Login Error!');
-      if (err.response) {
-        dispatch({
-          type: GET_ERRORS,
-          payload: err.response.data
-        });
-      }
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
     });
 };
 
