@@ -1,10 +1,11 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import keys from '../../config/passport';
+import keys from '../../config/config';
 import User from '../../models/User';
 import { validateRegisterInputs } from '../validators/register';
 import { validateLoginInputs } from '../validators/login';
+import passport from 'passport';
 
 const router = express.Router();
 
@@ -70,7 +71,7 @@ router.post('/login', (req, res) => {
           payload,
           keys.secretOrKey,
           {
-            expiresIn: 63246324
+            expiresIn: 31556926
           },
           (err, token) => {
             res.json({

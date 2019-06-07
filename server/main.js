@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import passport from 'passport';
 import cors from 'cors';
 import flash from 'connect-flash';
+// import '../config/passport';
 
 import { users } from './api/users';
 import config from '../config/config';
@@ -15,7 +16,7 @@ const app = new express();
 
 app.use(
   bodyParser.urlencoded({
-    extended: false
+    extended: true
   })
 );
 app.use(bodyParser.json());
@@ -55,8 +56,37 @@ app.use(
 
 app.use(flash());
 
+// Passport.js
 app.use(passport.initialize());
-// require('../config/passport')(passport);
+app.use(passport.session());
+
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+
+require('../models/User');
+const User = mongoose.model('users');
+const opts = {};
+
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+opts.secretOrKey = config.secretOrKey;
+
+console.log(opts);
+
+const strategy = new JwtStrategy(opts, (jwt_payload, done) => {
+  console.log('!!!' + jwt_payload);
+  User.findById(jwt_payload.id)
+    .then(user => {
+      if (user) {
+        console.log('passport user found');
+        return done(null, user);
+      }
+      console.log('passport user found');
+      return done(null, false);
+    })
+    .catch(err => console.log(err + '1'));
+});
+
+passport.use(strategy);
 
 app.use('/api/users', users);
 

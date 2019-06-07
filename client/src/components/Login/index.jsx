@@ -28,13 +28,14 @@ class Login extends React.Component {
     this.setState({ [data.id]: data.value });
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
     const user = {
       email: this.state.email,
       password: this.state.password
     };
 
+    console.log(user);
     this.props.loginUser(user);
   };
 

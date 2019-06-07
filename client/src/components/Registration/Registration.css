@@ -9,6 +9,10 @@
   margin: 0 auto;
 }
 
+.registration-card {
+  background: rgba(255, 255, 255, 90%) !important;
+}
+
 .registration-card-header {
   width: 95%;
   margin: 0 auto;

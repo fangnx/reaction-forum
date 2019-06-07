@@ -5,17 +5,16 @@ import { GET_ERRORS, SET_CURRENT_USER } from '../actions/types';
 
 export const loginUser = data => dispatch => {
   axios
-    .post('http://localhost:5000/api/users/register', data)
+    .post('http://localhost:5000/api/users/login', data)
     .then(res => {
       // set token to localStorage
-      const { token } = res.data;
+      let { token } = res.data;
       localStorage.setItem('jwtToken', token);
-      // set token to the auth header
       setAuthToken(token);
-      // decode token to get user data
       const decoded = jwtDecode(token);
       // set current user
       dispatch(setCurrentUser(decoded));
+      console.log('!~');
     })
     .catch(err => {
       console.log('Login Error!');

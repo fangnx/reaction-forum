@@ -36,10 +36,13 @@ class Registration extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
+    if (nextProps.errors && Object.keys(nextProps.errors).length > 0) {
       this.setState({
-        errors: nextProps.errors
+        errors: nextProps.errors,
+        success: false
       });
+    } else {
+      this.setState({ errors: {}, success: true });
     }
   }
 
@@ -62,10 +65,6 @@ class Registration extends React.Component {
     };
 
     this.props.registerUser(newUser);
-    const errors = this.state.errors;
-    if (!errors) {
-      this.setState({ success: true });
-    }
   };
 
   render() {
