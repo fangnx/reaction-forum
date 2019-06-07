@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 import passport from 'passport';
 import cors from 'cors';
 import flash from 'connect-flash';
-// import '../config/passport';
+import proxy from 'http-proxy-middleware';
 
 import { users } from './api/users';
 import config from '../config/config';
@@ -25,7 +25,7 @@ const db = config.mongodb;
 const MongoStore = connectMongo(session);
 const port = config.port;
 
-// Connect to MongoDB
+// Connect to Mongoose
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log('Successfully connected to MongoDB ;)'))
@@ -56,7 +56,7 @@ app.use(
 
 app.use(flash());
 
-// Passport.js
+// Passport.js auth setup
 app.use(passport.initialize());
 app.use(passport.session());
 

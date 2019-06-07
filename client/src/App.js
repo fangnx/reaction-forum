@@ -19,23 +19,21 @@ import Post from './components/Post';
 import Registration from './components/Registration';
 import Login from './components/Login';
 
-// if (localStorage.jwtToken) {
-//   // Set auth token header auth
-//   const token = localStorage.jwtToken;
-//   setAuthToken(token);
-//   // Decode token and get user info and exp
-//   const decoded = jwt_decode(token, { header: true });
-//   // Set user and isAuthenticated
-//   store.dispatch(setCurrentUser(decoded));
-//   // Check for expired token
-//   // const currentTime = Date.now() / 1000; // to get in milliseconds
-//   // if (decoded.exp < currentTime) {
-//   //   // Logout user
-//   //   store.dispatch(logoutUser());
-//   //   // Redirect to login
-//   //   window.location.href = './login';
-//   // }
-// }
+// check user login status
+if (localStorage.jwtToken) {
+  const token = localStorage.jwtToken;
+  setAuthToken(token);
+  const decoded = jwt_decode(token);
+  // set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+  // Check if token has expired
+  // const currentTime = Date.now() / 1000; // to get in milliseconds
+  // if (decoded.exp < currentTime) {
+  //   store.dispatch(logoutUser());
+  //   // Redirect to login
+  //   window.location.href = './login';
+  // }
+}
 class App extends React.Component {
   render() {
     return (

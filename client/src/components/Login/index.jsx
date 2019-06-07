@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Button, Card, Form, Input } from 'semantic-ui-react';
+import { Button, Card, Form, Input, Message } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Login.css';
 import { loginUser } from '../../services/loginService';
@@ -12,15 +12,20 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      errors: {}
+      errors: {},
+      success: false
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
+    if (nextProps.errors && Object.keys(nextProps.errors).length > 0) {
       this.setState({
-        errors: nextProps.errors
+        errors: nextProps.errors,
+        success: false
       });
+    } else {
+      console.log('!');
+      this.setState({ errors: {}, success: true });
     }
   }
 
@@ -35,12 +40,12 @@ class Login extends React.Component {
       password: this.state.password
     };
 
-    console.log(user);
     this.props.loginUser(user);
   };
 
   render() {
     const errors = this.state.errors;
+    const isSuccess = this.state.success;
 
     return (
       <div className="login-wrapper">
@@ -51,7 +56,7 @@ class Login extends React.Component {
             </span>
           </Card.Header>
           <Card.Content className="login-card-content">
-            <Form className="login-form">
+            <Form success={isSuccess} className="login-form">
               <Form.Field error={!!errors.email} required>
                 <label for="email" className="login-field-text">
                   Email
@@ -78,6 +83,12 @@ class Login extends React.Component {
                 />
                 <span className="login-field-msg">{errors.password}</span>
               </Form.Field>
+
+              <Message
+                success
+                header="Success"
+                content="You have registered successfully~"
+              />
 
               <Form.Field
                 as={Button}

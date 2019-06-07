@@ -45,7 +45,6 @@ router.post('/register', (req, res) => {
 
 // Login endpoint
 router.post('/login', (req, res) => {
-  // Form validation
   const { errors, isValid } = validateLoginInputs(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
@@ -66,7 +65,7 @@ router.post('/login', (req, res) => {
           id: user.id,
           name: user.name
         };
-        // Sign token
+        // sign token
         jwt.sign(
           payload,
           keys.secretOrKey,
