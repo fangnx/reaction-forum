@@ -6,7 +6,6 @@ import bodyParser from 'body-parser';
 import passport from 'passport';
 import cors from 'cors';
 import flash from 'connect-flash';
-import proxy from 'http-proxy-middleware';
 
 import { users } from './api/users';
 import config from '../config/config';
@@ -70,17 +69,12 @@ const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = config.secretOrKey;
 
-console.log(opts);
-
 const strategy = new JwtStrategy(opts, (jwt_payload, done) => {
-  console.log('!!!' + jwt_payload);
   User.findById(jwt_payload.id)
     .then(user => {
       if (user) {
-        console.log('passport user found');
         return done(null, user);
       }
-      console.log('passport user found');
       return done(null, false);
     })
     .catch(err => console.log(err + '1'));

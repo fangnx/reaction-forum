@@ -5,7 +5,6 @@ import keys from '../../config/config';
 import User from '../../models/User';
 import { validateRegisterInputs } from '../validators/register';
 import { validateLoginInputs } from '../validators/login';
-import passport from 'passport';
 
 const router = express.Router();
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button, Card, Form, Input, Message } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Login.css';
-import { loginUser } from '../../services/loginService';
+import { loginUser } from '../../actions/loginService';
 
 class Login extends React.Component {
   constructor() {

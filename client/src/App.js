@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import store from './store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
-import { setCurrentUser } from './services/loginService';
 
 import './semantic/dist/semantic.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -18,6 +17,7 @@ import Header from './components/Header';
 import Post from './components/Post';
 import Registration from './components/Registration';
 import Login from './components/Login';
+import { setCurrentUser } from '../src/actions/loginService';
 
 // check user login status
 if (localStorage.jwtToken) {

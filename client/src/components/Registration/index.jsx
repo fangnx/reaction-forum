@@ -12,7 +12,7 @@ import {
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Registration.css';
-import { registerUser } from '../../services/registerService';
+import { registerUser } from '../../actions/registerService';
 
 const genderOptions = [
   { key: 'm', text: 'Male', value: 'm' },

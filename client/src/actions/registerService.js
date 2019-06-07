@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ERRORS } from '../actions/types';
+import { GET_ERRORS } from './types';
 
 export const registerUser = data => dispatch => {
   axios
