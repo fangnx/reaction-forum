@@ -2,62 +2,86 @@ import React from 'react';
 import { HashRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Menu, Label, Image } from 'semantic-ui-react';
+import { Menu, Label, Image, Dropdown } from 'semantic-ui-react';
 import './Header.css';
 import { logoutUser } from '../../actions/loginSignoutService';
+import store from '../../store';
 
 class Header extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoggedIn: false,
+      userName: ''
+    };
+  }
+
   handleLogout = e => {
     e.preventDefault();
     this.props.logoutUser();
   };
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.auth);
+    if (nextProps.auth.isAuthenticated) {
+      this.setState({
+        isLoggedIn: true,
+        userName: nextProps.auth.user['name']
+      });
+    } else {
+      this.setState({
+        isLoggedIn: false,
+        userName: ''
+      });
+    }
+  }
+
   render() {
+    const { isLoggedIn } = this.state;
+    const { userName } = this.state;
+
     return (
       <HashRouter>
-        <Menu inverted className="header-menu">
-          <Menu.Item as={NavLink} to="/" exact name="main">
-            <span>——</span>
-          </Menu.Item>
+        <Menu inverted borderless className="header-menu">
+          <Menu.Menu>
+            <Menu.Item as={NavLink} to="/" exact name="main">
+              <span>——</span>
+            </Menu.Item>
+          </Menu.Menu>
 
           <Menu.Menu position="right">
-            <Menu.Item
-              as={NavLink}
-              to="/registration"
-              name="register"
-              color="teal"
-            >
-              <span>Register</span>
-            </Menu.Item>
-            {/* <Menu.Item>
-              <Button as={NavLink} primary to="/registration" name="register">
-                <span>Register</span>
-              </Button>
-            </Menu.Item> */}
+            {isLoggedIn ? (
+              <Menu.Item>
+                <Label as="a" color="teal" size="big" image>
+                  <span>{userName}</span>
 
-            <Menu.Item as={NavLink} to="/login" name="login" color="teal">
-              <span>Log In</span>
-            </Menu.Item>
-            {/* <Menu.Item>
-              <Button as={NavLink} primary to="/login" name="login">
-                <span>Login</span>
-              </Button>
-            </Menu.Item> */}
+                  <Dropdown>
+                    <Dropdown.Menu floating>
+                      <Dropdown.Item text="View User Info" />
 
-            <Menu.Item onClick={this.handleLogout} name="logout" color="teal">
-              <span>Log out</span>
-            </Menu.Item>
+                      <Dropdown.Item onClick={this.handleLogout} name="logout">
+                        <span>Log Out</span>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Label>
+              </Menu.Item>
+            ) : (
+              <React.Fragment>
+                <Menu.Item
+                  as={NavLink}
+                  to="/registration"
+                  name="register"
+                  color="teal"
+                >
+                  <span>Register</span>
+                </Menu.Item>
 
-            <Menu.Item>
-              <Label as="a" color="teal" size="big" image>
-                {/* <Image src="https://react.semantic-ui.com/images/avatar/small/joe.jpg" /> */}
-                <span>
-                  Joe &nbsp;&nbsp;
-                  <i class="mongolia flag" />
-                </span>
-                <Label.Detail>User</Label.Detail>
-              </Label>
-            </Menu.Item>
+                <Menu.Item as={NavLink} to="/login" name="login" color="teal">
+                  <span>Log In</span>
+                </Menu.Item>
+              </React.Fragment>
+            )}
           </Menu.Menu>
         </Menu>
       </HashRouter>

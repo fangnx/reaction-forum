@@ -8,3 +8,8 @@
 .header-menu .item:hover {
   font-style: oblique;
 }
+
+.dropdown .menu {
+  font-size: 14px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+}
