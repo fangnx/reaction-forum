@@ -6,7 +6,12 @@ export const registerUser = data => dispatch => {
     .post('http://localhost:5000/api/users/register', data)
     .then(res => {
       console.log('Registration Successful!');
-      dispatch({ type: GET_ERRORS, payload: {} });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {
+          success: 1
+        }
+      });
     })
     .catch(err => {
       console.log('Registration Error!');

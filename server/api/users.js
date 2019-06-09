@@ -15,7 +15,7 @@ router.post('/register', (req, res) => {
     return res.status(400).json(errors);
   }
 
-  // check if email already registered
+  // Check if email already registered
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       return res.status(400).json({ email: 'Email already registered.' });
@@ -29,7 +29,7 @@ router.post('/register', (req, res) => {
     password: req.body.password
   });
 
-  // encrpyt password
+  // Encrpyt password
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(newUser.password, salt, (err, hash) => {
       if (err) throw err;
@@ -52,7 +52,7 @@ router.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  // check if user exists
+  // Check if user exists
   User.findOne({ email }).then(user => {
     if (!user) {
       return res.status(404).json({ emailnotfound: 'Email not found' });
@@ -64,7 +64,7 @@ router.post('/login', (req, res) => {
           id: user.id,
           name: user.name
         };
-        // sign token
+        // Sign token
         jwt.sign(
           payload,
           keys.secretOrKey,

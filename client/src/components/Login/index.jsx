@@ -11,7 +11,7 @@ import {
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Login.css';
-import { loginUser } from '../../actions/loginService';
+import { loginUser } from '../../actions/loginSignoutService';
 
 class Login extends React.Component {
   constructor() {
@@ -39,7 +39,7 @@ class Login extends React.Component {
         errors: nextProps.errors,
         success: false
       });
-    } else {
+    } else if ('success' in nextProps.errors) {
       this.setState({ errors: {}, success: true });
     }
   }
