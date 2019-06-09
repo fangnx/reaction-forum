@@ -9,7 +9,7 @@ export const registerUser = data => dispatch => {
       dispatch({
         type: GET_ERRORS,
         payload: {
-          success: 1
+          registerSuccess: 1
         }
       });
     })

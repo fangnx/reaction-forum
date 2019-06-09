@@ -22,7 +22,7 @@ export const loginUser = data => dispatch => {
       const decoded = jwtDecode(token);
       // Set current user
       dispatch(setCurrentUser(decoded));
-      dispatch({ type: GET_ERRORS, payload: { success: 1 } });
+      dispatch({ type: GET_ERRORS, payload: { loginSuccess: 1 } });
     })
     .catch(err => {
       console.log('Login Error!');
@@ -38,4 +38,8 @@ export const logoutUser = () => dispatch => {
   localStorage.removeItem('jwtToken');
   setAuthToken(false);
   dispatch(setCurrentUser({}));
+  dispatch({
+    type: GET_ERRORS,
+    payload: {}
+  });
 };

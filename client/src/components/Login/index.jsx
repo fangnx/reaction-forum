@@ -34,12 +34,16 @@ class Login extends React.Component {
       this.props.history.push('/');
     }
 
-    if (nextProps.errors && Object.keys(nextProps.errors).length > 0) {
+    if (
+      nextProps.errors &&
+      Object.keys(nextProps.errors).length > 0 &&
+      !('loginSuccess' in nextProps.errors)
+    ) {
       this.setState({
         errors: nextProps.errors,
         success: false
       });
-    } else if ('success' in nextProps.errors) {
+    } else if ('loginSuccess' in nextProps.errors) {
       this.setState({ errors: {}, success: true });
     }
   }

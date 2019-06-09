@@ -42,13 +42,17 @@ class Registration extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.errors && Object.keys(nextProps.errors).length > 0) {
+    if (
+      nextProps.errors &&
+      Object.keys(nextProps.errors).length > 0 &&
+      !('registerSuccess' in nextProps.errors)
+    ) {
       console.log(nextProps.errors);
       this.setState({
         errors: nextProps.errors,
         success: false
       });
-    } else if ('success' in nextProps.errors) {
+    } else if ('registerSuccess' in nextProps.errors) {
       this.setState({ errors: {}, success: true });
     }
   }
