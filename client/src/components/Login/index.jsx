@@ -1,7 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Button, Card, Form, Input, Message } from 'semantic-ui-react';
+import {
+  Button,
+  Card,
+  Form,
+  Input,
+  Message,
+  Transition
+} from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Login.css';
 import { loginUser } from '../../actions/loginService';
@@ -13,8 +20,13 @@ class Login extends React.Component {
       email: '',
       password: '',
       errors: {},
-      success: false
+      success: false,
+      visible: false
     };
+  }
+
+  componentDidMount() {
+    this.setState({ visible: true });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,66 +61,69 @@ class Login extends React.Component {
   render() {
     const errors = this.state.errors;
     const isSuccess = this.state.success;
+    const { visible } = this.state;
 
     return (
       <div className="login-wrapper">
-        <Card className="login-card" fluid>
-          <Card.Header className="login-card-header">
-            <span>
-              <h1>Login</h1>
-            </span>
-          </Card.Header>
-          <Card.Content className="login-card-content">
-            <Form success={isSuccess} className="login-form">
-              <Form.Field error={!!errors.email} required>
-                <label for="email" className="login-field-text">
-                  Email
-                </label>
-                <Input
-                  id="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  placeholder="Email"
+        <Transition visible={visible} duration={400} animation="scale">
+          <Card className="login-card" fluid>
+            <Card.Header className="login-card-header">
+              <span>
+                <h1>Login</h1>
+              </span>
+            </Card.Header>
+            <Card.Content className="login-card-content">
+              <Form success={isSuccess} className="login-form">
+                <Form.Field error={!!errors.email} required>
+                  <label for="email" className="login-field-text">
+                    Email
+                  </label>
+                  <Input
+                    id="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    placeholder="Email"
+                  />
+                  <span className="login-field-msg">{errors.email}</span>
+                </Form.Field>
+
+                <Form.Field error={!!errors.password} required>
+                  <label for="password" className="login-field-text">
+                    Password
+                  </label>
+                  <Input
+                    id="password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                    type="password"
+                    placeholder="Password"
+                  />
+                  <span className="login-field-msg">{errors.password}</span>
+                </Form.Field>
+
+                <Message
+                  success
+                  header="Success"
+                  content="You have registered successfully~"
                 />
-                <span className="login-field-msg">{errors.email}</span>
-              </Form.Field>
 
-              <Form.Field error={!!errors.password} required>
-                <label for="password" className="login-field-text">
-                  Password
-                </label>
-                <Input
-                  id="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  type="password"
-                  placeholder="Password"
-                />
-                <span className="login-field-msg">{errors.password}</span>
-              </Form.Field>
-
-              <Message
-                success
-                header="Success"
-                content="You have registered successfully~"
-              />
-
-              <Form.Field
-                as={Button}
-                className="login-button"
-                onClick={this.onSubmit}
-                animated="vertical"
-                size="large"
-                primary
-              >
-                <Button.Content visible>Submit</Button.Content>
-                <Button.Content hidden>
-                  <FontAwesomeIcon icon={['fas', 'check']} size="1x" />
-                </Button.Content>
-              </Form.Field>
-            </Form>
-          </Card.Content>
-        </Card>
+                <Form.Field
+                  as={Button}
+                  className="login-button"
+                  onClick={this.onSubmit}
+                  animated="vertical"
+                  size="large"
+                  primary
+                >
+                  <Button.Content visible>Submit</Button.Content>
+                  <Button.Content hidden>
+                    <FontAwesomeIcon icon={['fas', 'check']} size="1x" />
+                  </Button.Content>
+                </Form.Field>
+              </Form>
+            </Card.Content>
+          </Card>
+        </Transition>
       </div>
     );
   }
