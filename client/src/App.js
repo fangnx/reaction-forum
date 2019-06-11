@@ -10,7 +10,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faWater, faPlus } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
 import Header from './components/Header';
@@ -27,11 +27,11 @@ if (localStorage.jwtToken) {
   store.dispatch(setCurrentUser(decoded));
 
   // Check if token has expired
-  // const currentTime = Date.now() / 1000; // to get in milliseconds
-  // if (decoded.exp < currentTime) {
-  //   store.dispatch(logoutUser());
-  //   window.location.href = './login';
-  // }
+  const currentTime = Date.now() / 1000; // to get in milliseconds
+  if (decoded.exp < currentTime) {
+    store.dispatch(logoutUser());
+    window.location.href = './login';
+  }
 }
 class App extends React.Component {
   render() {
@@ -55,6 +55,6 @@ class App extends React.Component {
 }
 
 // Font Awesome 5
-library.add(fab, faThumbsUp, faCheck);
+library.add(fab, faThumbsUp, faCheck, faWater, faPlus);
 
 export default App;

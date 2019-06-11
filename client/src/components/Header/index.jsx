@@ -3,6 +3,7 @@ import { HashRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Menu, Label, Image, Dropdown } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
 import { logoutUser } from '../../actions/loginSignoutService';
 import store from '../../store';
@@ -45,11 +46,15 @@ class Header extends React.Component {
         <Menu inverted borderless className="header-menu">
           <Menu.Menu>
             <Menu.Item as={NavLink} to="/" exact name="main">
-              <span>——</span>
+              <FontAwesomeIcon icon={['fas', 'water']} size="2x" />
+            </Menu.Item>
+
+            <Menu.Item>
+              <FontAwesomeIcon icon={['fas', 'plus']} size="2x" />
             </Menu.Item>
           </Menu.Menu>
 
-          <Menu.Menu position="right">
+          <Menu.Menu position="right" className="header-menu-rightmenu">
             {isLoggedIn ? (
               <Menu.Item>
                 <Label as="a" color="teal" size="big" image>
