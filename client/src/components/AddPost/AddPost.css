@@ -1,0 +1,19 @@
+.addPost-wrapper {
+  width: 75%;
+  min-width: 500px;
+  margin: 0 auto;
+}
+
+.addPost-card-header {
+  width: 95%;
+  margin: 20px auto !important;
+}
+
+.addPost-card-content {
+  width: 95%;
+  margin: 0 auto !important;
+}
+
+.addPost-form .field {
+  margin-bottom: 30px !important;
+}

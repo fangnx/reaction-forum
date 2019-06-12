@@ -22,3 +22,5 @@ router.post('/add', (req, res) => {
     .then(post => res.json(post))
     .catch(err => console.log(err));
 });
+
+export { router as posts };

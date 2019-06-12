@@ -7,9 +7,11 @@ import passport from 'passport';
 import cors from 'cors';
 import flash from 'connect-flash';
 
-import { users } from './api/userApi';
 import config from '../config/config';
 import path from 'path';
+
+import { users } from './api/userApi';
+import { posts } from './api/postApi';
 
 const app = new express();
 
@@ -83,5 +85,6 @@ const strategy = new JwtStrategy(opts, (jwt_payload, done) => {
 passport.use(strategy);
 
 app.use('/api/users', users);
+app.use('/api/posts', posts);
 
 app.listen(port, () => console.log(`App listening on port ${port} !`));

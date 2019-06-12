@@ -49,7 +49,7 @@ class Header extends React.Component {
               <FontAwesomeIcon icon={['fas', 'water']} size="2x" />
             </Menu.Item>
 
-            <Menu.Item>
+            <Menu.Item as={NavLink} to="/post/add" name="addPost">
               <FontAwesomeIcon icon={['fas', 'plus']} size="2x" />
             </Menu.Item>
           </Menu.Menu>

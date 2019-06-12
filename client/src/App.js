@@ -7,7 +7,6 @@ import setAuthToken from './utils/setAuthToken';
 
 import './semantic/dist/semantic.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { faCheck, faWater, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +14,7 @@ import './App.css';
 
 import Header from './components/Header';
 import Post from './components/Post';
+import AddPost from './components/AddPost';
 import Registration from './components/Registration';
 import Login from './components/Login';
 import { setCurrentUser, logoutUser } from './actions/loginSignoutService';
@@ -45,6 +45,7 @@ class App extends React.Component {
                 <Route path="/" exact component={Post} />
                 <Route path="/registration" component={Registration} />
                 <Route path="/login" component={Login} />
+                <Route path="/post/add" component={AddPost} />
               </div>
             </HashRouter>
           </Provider>
