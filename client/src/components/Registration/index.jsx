@@ -199,7 +199,6 @@ class Registration extends React.Component {
                 >
                   <Button.Content visible>Submit</Button.Content>
                   <Button.Content hidden>
-                    {' '}
                     <FontAwesomeIcon icon={['fas', 'check']} size="1x" />
                   </Button.Content>
                 </Form.Field>

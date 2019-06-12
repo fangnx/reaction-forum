@@ -79,7 +79,7 @@ const strategy = new JwtStrategy(opts, (jwt_payload, done) => {
       }
       return done(null, false);
     })
-    .catch(err => console.log(err + '1'));
+    .catch(err => console.log(err));
 });
 
 passport.use(strategy);
