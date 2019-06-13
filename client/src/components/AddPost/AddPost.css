@@ -17,3 +17,20 @@
 .addPost-form .field {
   margin-bottom: 30px !important;
 }
+
+.addPost-tags-label-wrapper {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.addPost-tagInput {
+  display: inline !important;
+}
+
+.addPost-tagList {
+  display: inline;
+}
+
+.addPost-tag {
+  margin-right: 10px !important;
+}

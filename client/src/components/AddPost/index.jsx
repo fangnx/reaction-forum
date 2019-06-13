@@ -4,19 +4,33 @@ import {
   Label,
   Card,
   Form,
-  Segment,
   TextArea,
   Input,
-  Button
+  Button,
+  List,
+  Segment
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './AddPost.css';
 import dateFormat from 'dateformat';
 import { addPost } from '../../actions/postService';
 
-export const SPACE_KEY = 32;
-export const COMMA_KEY = 188;
-export const BACKSPACE_KEY = 8;
+const SPACE_KEY = 32;
+const COMMA_KEY = 188;
+const BACKSPACE_KEY = 8;
+
+const tagColors = [
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'teal',
+  'blue',
+  'purple',
+  'brown',
+  'grey'
+];
+
 class AddPost extends React.Component {
   constructor() {
     super();
@@ -25,15 +39,19 @@ class AddPost extends React.Component {
       content: '',
       author: 'f',
       timeStamp: '',
-      tags: ['t', 'a'],
+      tags: ['aaa', 'a'],
       currentTag: ''
     };
+
+    this.onKeyUp = this.onKeyUp.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
+    this.appendTag = this.appendTag.bind(this);
   }
 
   onKeyUp(e) {
     const key = e.keyCode;
     if (key === SPACE_KEY || key === COMMA_KEY) {
-      this.addTag();
+      this.appendTag();
     }
   }
 
@@ -47,7 +65,7 @@ class AddPost extends React.Component {
   appendTag() {
     const { tags, currentTag } = this.state;
     let rawTag = currentTag.trim();
-    // rawTag = rawTag.replace(/,/g, '');
+    rawTag = rawTag.replace(/,/g, '');
 
     if (rawTag) {
       this.setState({
@@ -85,7 +103,9 @@ class AddPost extends React.Component {
 
   render() {
     const { tags } = this.state;
+    const { currentTag } = this.state;
     console.log(tags);
+    console.log(currentTag);
     return (
       <div className="addPost-wrapper">
         <Card className="addPost-card" fluid>
@@ -126,23 +146,32 @@ class AddPost extends React.Component {
               </Form.Field>
 
               <Form.Field>
-                <Label size="large">Tags</Label>
-                <ul>
-                  {tags.map((tag, index) => (
-                    <Label
-                      key={tag + index}
-                      className="addPost-tag"
-                      color="blue"
-                    >
-                      {tag}
-                    </Label>
-                  ))}
-                </ul>
-                <Input
-                  id="currentTag"
-                  value={this.state.currentTag}
-                  onChange={this.onChange}
-                />
+                <div className="addPost-tags-label-wrapper">
+                  <Label size="large">Tags</Label>
+                </div>
+
+                <Segment>
+                  <Label.Group size="large" className="addPost-tagList">
+                    {tags.map((tag, index) => (
+                      <Label
+                        className="addPost-tag"
+                        color={tagColors[index % tagColors.length]}
+                      >
+                        {tag}
+                      </Label>
+                    ))}
+                  </Label.Group>
+                  <Input
+                    transparent
+                    id="currentTag"
+                    className="addPost-tagInput"
+                    placeholder="Add"
+                    value={this.state.currentTag}
+                    onChange={this.onChange}
+                    onKeyUp={this.onKeyUp}
+                    onKeyDown={this.onKeyDown}
+                  />
+                </Segment>
               </Form.Field>
 
               <Form.Field
