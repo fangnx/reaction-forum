@@ -25,6 +25,7 @@ if (localStorage.jwtToken) {
   setAuthToken(token);
   const decoded = jwt_decode(token);
   store.dispatch(setCurrentUser(decoded));
+  console.log('is logged in');
 
   // Check if token has expired
   const currentTime = Date.now() / 1000; // to get in milliseconds
@@ -33,6 +34,7 @@ if (localStorage.jwtToken) {
     window.location.href = './login';
   }
 }
+console.log(store.getState());
 class App extends React.Component {
   render() {
     return (

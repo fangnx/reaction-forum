@@ -14,6 +14,9 @@ import './AddPost.css';
 import dateFormat from 'dateformat';
 import { addPost } from '../../actions/postService';
 
+export const SPACE_KEY = 32;
+export const COMMA_KEY = 188;
+export const BACKSPACE_KEY = 8;
 class AddPost extends React.Component {
   constructor() {
     super();
@@ -22,8 +25,42 @@ class AddPost extends React.Component {
       content: '',
       author: 'f',
       timeStamp: '',
-      tags: []
+      tags: ['t', 'a'],
+      currentTag: ''
     };
+  }
+
+  onKeyUp(e) {
+    const key = e.keyCode;
+    if (key === SPACE_KEY || key === COMMA_KEY) {
+      this.addTag();
+    }
+  }
+
+  onKeyDown(e) {
+    const key = e.keyCode;
+    if (key === BACKSPACE_KEY && !this.state.value) {
+      this.editTag();
+    }
+  }
+
+  appendTag() {
+    const { tags, currentTag } = this.state;
+    let rawTag = currentTag.trim();
+    // rawTag = rawTag.replace(/,/g, '');
+
+    if (rawTag) {
+      this.setState({
+        tags: [...tags, rawTag],
+        currentTag: '' // Empty the tag currently selected
+      });
+    }
+  }
+
+  editTag() {
+    const { tags } = this.state;
+    const lastTag = tags.pop();
+    this.setState({ currentTag: lastTag });
   }
 
   onChange = (e, data) => {
@@ -47,6 +84,8 @@ class AddPost extends React.Component {
   };
 
   render() {
+    const { tags } = this.state;
+    console.log(tags);
     return (
       <div className="addPost-wrapper">
         <Card className="addPost-card" fluid>
@@ -69,7 +108,7 @@ class AddPost extends React.Component {
                   id="title"
                   value={this.state.title}
                   onChange={this.onChange}
-                  placeholder="Title"
+                  placeholder=""
                 />
               </Form.Field>
 
@@ -88,9 +127,20 @@ class AddPost extends React.Component {
 
               <Form.Field>
                 <Label size="large">Tags</Label>
+                <ul>
+                  {tags.map((tag, index) => (
+                    <Label
+                      key={tag + index}
+                      className="addPost-tag"
+                      color="blue"
+                    >
+                      {tag}
+                    </Label>
+                  ))}
+                </ul>
                 <Input
-                  id="tags"
-                  value={this.state.tags}
+                  id="currentTag"
+                  value={this.state.currentTag}
                   onChange={this.onChange}
                 />
               </Form.Field>

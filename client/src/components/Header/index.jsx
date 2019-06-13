@@ -22,6 +22,15 @@ class Header extends React.Component {
     this.props.logoutUser();
   };
 
+  componentDidMount() {
+    if (store.getState().auth) {
+      this.setState({
+        isLoggedIn: true,
+        userName: store.getState().auth.user['name']
+      });
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     console.log(nextProps.auth);
     if (nextProps.auth.isAuthenticated) {
