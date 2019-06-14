@@ -8,7 +8,8 @@ import {
   Input,
   Button,
   Segment,
-  Icon
+  Icon,
+  Message
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './AddPost.css';
@@ -40,7 +41,8 @@ class AddPost extends React.Component {
       author: 'f',
       timeStamp: '',
       tags: [],
-      currentTag: ''
+      currentTag: '',
+      success: false
     };
 
     this.onKeyUp = this.onKeyUp.bind(this);
@@ -89,7 +91,7 @@ class AddPost extends React.Component {
     this.setState({ [data.id]: data.value });
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
     const newPost = {
       title: this.state.title,
@@ -101,13 +103,16 @@ class AddPost extends React.Component {
       likeCount: 0
     };
 
-    addPost(newPost);
-    console.log('!');
+    addPost(newPost).then(res => {
+      console.log(res);
+      if (res.status === 200) {
+        this.setState({ success: true });
+      }
+    });
   };
 
   render() {
-    const { tags } = this.state;
-    const { currentTag } = this.state;
+    const { tags, currentTag, success } = this.state;
     console.log(tags);
     console.log(currentTag);
     return (
@@ -125,7 +130,7 @@ class AddPost extends React.Component {
           </Card.Header>
 
           <Card.Content className="addPost-card-content">
-            <Form className="addPost-form">
+            <Form success={!!success} className="addPost-form">
               <Form.Field className="addPost-title-field">
                 <Label
                   color="grey"
@@ -188,6 +193,10 @@ class AddPost extends React.Component {
                     onKeyDown={this.onKeyDown}
                   />
                 </Segment>
+              </Form.Field>
+
+              <Form.Field>
+                <Message success header="Success" content="Posted!" />
               </Form.Field>
 
               <Form.Field
