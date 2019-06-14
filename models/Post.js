@@ -18,19 +18,19 @@ const PostSchema = new Schema({
   timeStamp: {
     type: String,
     required: true
+  },
+  tags: {
+    type: Array,
+    required: false
+  },
+  viewCount: {
+    type: Number,
+    required: true
+  },
+  likeCount: {
+    type: Number,
+    required: true
   }
-  // tags: {
-  //   type: Array,
-  //   required: false
-  // },
-  // viewCount: {
-  //   type: Number,
-  //   required: true
-  // },
-  // likeCount: {
-  //   type: Number,
-  //   required: true
-  // }
 });
 
 export default mongoose.model('posts', PostSchema);

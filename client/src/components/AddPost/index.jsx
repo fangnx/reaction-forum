@@ -7,8 +7,8 @@ import {
   TextArea,
   Input,
   Button,
-  List,
-  Segment
+  Segment,
+  Icon
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './AddPost.css';
@@ -39,13 +39,17 @@ class AddPost extends React.Component {
       content: '',
       author: 'f',
       timeStamp: '',
-      tags: ['aaa', 'a'],
+      tags: [],
       currentTag: ''
     };
 
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.appendTag = this.appendTag.bind(this);
+  }
+
+  capitalizeTag(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
   }
 
   onKeyUp(e) {
@@ -122,8 +126,14 @@ class AddPost extends React.Component {
 
           <Card.Content className="addPost-card-content">
             <Form className="addPost-form">
-              <Form.Field>
-                <Label size="large">Title</Label>
+              <Form.Field className="addPost-title-field">
+                <Label
+                  color="grey"
+                  size="large"
+                  // style={{ marginBottom: '20px' }}
+                >
+                  Title
+                </Label>
                 <Input
                   id="title"
                   value={this.state.title}
@@ -132,8 +142,12 @@ class AddPost extends React.Component {
                 />
               </Form.Field>
 
-              <Form.Field>
-                <Label size="large" style={{ marginBottom: '20px' }}>
+              <Form.Field className="addPost-content-field">
+                <Label
+                  color="grey"
+                  size="large"
+                  style={{ marginBottom: '15px' }}
+                >
                   Content
                 </Label>
                 <TextArea
@@ -145,9 +159,11 @@ class AddPost extends React.Component {
                 />
               </Form.Field>
 
-              <Form.Field>
+              <Form.Field className="addPost-tags-field">
                 <div className="addPost-tags-label-wrapper">
-                  <Label size="large">Tags</Label>
+                  <Label color="grey" size="large">
+                    Tags
+                  </Label>
                 </div>
 
                 <Segment>
@@ -157,15 +173,15 @@ class AddPost extends React.Component {
                         className="addPost-tag"
                         color={tagColors[index % tagColors.length]}
                       >
-                        {tag}
+                        {this.capitalizeTag(tag)}
+                        <Icon name="delete" />
                       </Label>
                     ))}
                   </Label.Group>
                   <Input
-                    transparent
                     id="currentTag"
                     className="addPost-tagInput"
-                    placeholder="Add"
+                    placeholder="Add tags here"
                     value={this.state.currentTag}
                     onChange={this.onChange}
                     onKeyUp={this.onKeyUp}

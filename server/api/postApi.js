@@ -4,7 +4,7 @@ import Post from '../../models/Post';
 
 const router = express.Router();
 
-// Add a Post endpoint
+// Add Post
 router.post('/add', (req, res) => {
   // TODO: validation
 
@@ -22,6 +22,18 @@ router.post('/add', (req, res) => {
     .save()
     .then(post => res.json(post))
     .catch(err => console.log(err));
+});
+
+// Delete Post
+router.post('/delete', (req, res) => {
+  Post.deleteOne({ _id: req.body.id })
+    .then(result => res.json(result))
+    .catch(err => console.log(err));
+});
+
+// Get all Posts
+router.post('/findAll', (req, res) => {
+  Post.find().then(v => res.json(v));
 });
 
 export { router as posts };
