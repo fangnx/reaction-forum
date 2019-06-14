@@ -13,7 +13,7 @@ import { faCheck, faWater, faPlus } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
 import Header from './components/Header';
-import Post from './components/Post';
+import PostBoard from './components/PostBoard';
 import AddPost from './components/AddPost';
 import Registration from './components/Registration';
 import Login from './components/Login';
@@ -44,7 +44,7 @@ class App extends React.Component {
             <Header />
             <HashRouter>
               <div className="app-content">
-                <Route path="/" exact component={Post} />
+                <Route path="/" exact component={PostBoard} />
                 <Route path="/registration" component={Registration} />
                 <Route path="/login" component={Login} />
                 <Route path="/post/add" component={AddPost} />
