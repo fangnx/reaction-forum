@@ -1,26 +1,42 @@
 .postView-wrapper {
-  width: 50%;
-  min-width: 500px;
-  margin: 0 auto;
+	width: 50%;
+	min-width: 500px;
+	margin: 0 auto;
 }
 
 .postView-card-header {
-  width: 95%;
-  margin: 20px auto !important;
-  font-family: slabo !important;
+	width: 90%;
+	margin: 20px auto !important;
 }
 
 .postView-card-content {
-  width: 95%;
-  margin: 0 auto !important;
+	width: 98%;
+	margin: 0 auto !important;
+}
+
+.postView-title-field {
+	font-family: 'Cairo';
+	font-size: 2.4em;
+}
+
+.postView-content-field {
+	font-size: 1em;
 }
 
 .postView-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
+	display: block;
+	width: 100%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.postView-viewCount-field,
+.postView-likeCount-field {
+	display: inline-block;
+	color: grey;
+	font-family: '';
+	font-size: 1.2em;
 }
