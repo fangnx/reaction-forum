@@ -13,10 +13,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './PostBoard.css';
 import { getAllPosts } from '../../actions/postService';
+import PostView from '../PostView';
 
 class PostBoard extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { posts: [] };
   }
 
@@ -24,7 +25,7 @@ class PostBoard extends React.Component {
     getAllPosts().then(res => {
       console.log(res.data);
       if (res.data) {
-        this.setState({ posts: [] });
+        this.setState({ posts: res.data.map(post => post) });
       }
     });
   }
@@ -34,7 +35,17 @@ class PostBoard extends React.Component {
 
     return (
       <div className="postView-wrapper">
-        <Card>{posts}</Card>
+        {posts.map(post => (
+          <PostView
+            title={post.title}
+            author={post.author}
+            content={post.content}
+            tags={post.tags}
+            timeStamp={post.timeStamp}
+            viewCount={post.viewCount}
+            likeCount={post.likeCount}
+          />
+        ))}
       </div>
     );
   }
