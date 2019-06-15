@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, Label, Card, Grid, Divider, Header } from 'semantic-ui-react';
+import {
+	Image,
+	Label,
+	Card,
+	Grid,
+	Divider,
+	Header,
+	DimmerDimmable
+} from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../App.css';
 import './PostView.css';
@@ -27,39 +35,44 @@ class PostView extends React.Component {
 		return (
 			<div className="postView-wrapper">
 				<Card className="postView-card" fluid>
-					<Card.Header className="postView-card-header">
-						<Label as="a" size="large" image>
-							<Image src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg" />
-							<span>
-								{this.props.author} &nbsp;&nbsp;
-								{/* <i class="france flag" /> */}
-							</span>
-						</Label>
-					</Card.Header>
+					{/* <Card.Header className="postView-card-header" /> */}
 
 					<Card.Content className="postView-card-content">
 						<Grid padded className="postView-card-grid">
+							<Grid.Row className="postView-author-field">
+								<Label as="a" size="large" image>
+									<Image src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg" />
+									<span>
+										{this.props.author} &nbsp;&nbsp;
+										{/* <i class="france flag" /> */}
+									</span>
+								</Label>
+							</Grid.Row>
+							<hr className="postView-card-divider" />
+
 							<Grid.Row className="postView-title-field">
 								{this.props.title}
 							</Grid.Row>
+							<hr className="postView-card-divider" />
+
 							<Grid.Row className="postView-content-field">
 								{this.props.content}}
 							</Grid.Row>
-						</Grid>
+							<hr className="postView-card-divider" />
 
-						<Grid.Row className="postView-tags-field">
-							<Label.Group size="medium" className="postView-tagList">
-								{this.props.tags.map((tag, index) => (
-									<Label
-										className="postView-tag"
-										color={tagColors[index % tagColors.length]}
-									>
-										{this.capitalizeTag(tag)}
-									</Label>
-								))}
-							</Label.Group>
-							<Divider hidden />
-						</Grid.Row>
+							<Grid.Row className="postView-tags-field">
+								<Label.Group size="medium" className="postView-tagList">
+									{this.props.tags.map((tag, index) => (
+										<Label
+											className="postView-tag"
+											color={tagColors[index % tagColors.length]}
+										>
+											{this.capitalizeTag(tag)}
+										</Label>
+									))}
+								</Label.Group>
+							</Grid.Row>
+						</Grid>
 
 						{/* <Grid.Row>
 							<span className="postView-viewCount-field">

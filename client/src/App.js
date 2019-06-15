@@ -21,40 +21,40 @@ import { setCurrentUser, logoutUser } from './actions/loginSignoutService';
 
 // Check if logged in
 if (localStorage.jwtToken) {
-  const token = localStorage.jwtToken;
-  setAuthToken(token);
-  const decoded = jwt_decode(token);
-  store.dispatch(setCurrentUser(decoded));
-  console.log('is logged in');
+	const token = localStorage.jwtToken;
+	setAuthToken(token);
+	const decoded = jwt_decode(token);
+	store.dispatch(setCurrentUser(decoded));
+	// console.log('is logged in');
 
-  // Check if token has expired
-  const currentTime = Date.now() / 1000; // to get in milliseconds
-  if (decoded.exp < currentTime) {
-    store.dispatch(logoutUser());
-    window.location.href = './login';
-  }
+	// Check if token has expired
+	const currentTime = Date.now() / 1000; // to get in milliseconds
+	if (decoded.exp < currentTime) {
+		store.dispatch(logoutUser());
+		window.location.href = './login';
+	}
 }
 console.log(store.getState());
 class App extends React.Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="app-background-wrapper">
-          <Provider store={store}>
-            <Header />
-            <HashRouter>
-              <div className="app-content">
-                <Route path="/" exact component={PostBoard} />
-                <Route path="/registration" component={Registration} />
-                <Route path="/login" component={Login} />
-                <Route path="/post/add" component={AddPost} />
-              </div>
-            </HashRouter>
-          </Provider>
-        </div>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className="App">
+				<div className="app-background-wrapper">
+					<Provider store={store}>
+						<Header />
+						<HashRouter>
+							<div className="app-content">
+								<Route path="/" exact component={PostBoard} />
+								<Route path="/registration" component={Registration} />
+								<Route path="/login" component={Login} />
+								<Route path="/post/add" component={AddPost} />
+							</div>
+						</HashRouter>
+					</Provider>
+				</div>
+			</div>
+		);
+	}
 }
 
 // Font Awesome 5
