@@ -1,19 +1,18 @@
 import React from 'react';
-import {
-	Image,
-	Label,
-	Card,
-	Form,
-	TextArea,
-	Input,
-	Button,
-	Segment,
-	Icon
-} from 'semantic-ui-react';
+import {} from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Radium, { StyleRoot } from 'radium';
+import { fadeIn } from 'react-animations';
 import './PostBoard.css';
 import { getAllPosts } from '../../actions/postService';
 import PostView from '../PostView';
+
+const styles = {
+	fadeIn: {
+		animation: '1 1s',
+		animationName: Radium.keyframes(fadeIn, 'fadeIn')
+	}
+};
 
 class PostBoard extends React.Component {
 	constructor(props) {
@@ -32,25 +31,26 @@ class PostBoard extends React.Component {
 
 	render() {
 		const { posts } = this.state;
-
 		return (
-			<div className="postBoard-wrapper">
-				{posts.map(post => (
-					<React.Fragment>
-						<PostView
-							className="postBoard-postView"
-							title={post.title}
-							author={post.author}
-							content={post.content}
-							tags={post.tags}
-							timeStamp={post.timeStamp}
-							viewCount={post.viewCount}
-							likeCount={post.likeCount}
-						/>
-						<div className="postBoard-separator" />
-					</React.Fragment>
-				))}
-			</div>
+			<StyleRoot>
+				<div style={styles.fadeIn} className="postBoard-wrapper">
+					{posts.map(post => (
+						<React.Fragment>
+							<PostView
+								className="postBoard-postView"
+								title={post.title}
+								author={post.author}
+								content={post.content}
+								tags={post.tags}
+								timeStamp={post.timeStamp}
+								viewCount={post.viewCount}
+								likeCount={post.likeCount}
+							/>
+							<div className="postBoard-separator" />
+						</React.Fragment>
+					))}
+				</div>
+			</StyleRoot>
 		);
 	}
 }
