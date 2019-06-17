@@ -39,19 +39,20 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<div className="app-background-wrapper">
-					<Provider store={store}>
+				<div className="app-background" />
+				<Provider store={store}>
+					<div className="app-fixed">
 						<Header />
-						<HashRouter>
-							<div className="app-content">
-								<Route path="/" exact component={PostBoard} />
-								<Route path="/registration" component={Registration} />
-								<Route path="/login" component={Login} />
-								<Route path="/post/add" component={AddPost} />
-							</div>
-						</HashRouter>
-					</Provider>
-				</div>
+					</div>
+					<HashRouter>
+						<div className="app-content">
+							<Route path="/" exact component={PostBoard} />
+							<Route path="/registration" component={Registration} />
+							<Route path="/login" component={Login} />
+							<Route path="/post/add" component={AddPost} />
+						</div>
+					</HashRouter>
+				</Provider>
 			</div>
 		);
 	}
