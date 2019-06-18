@@ -14,6 +14,7 @@ import './App.css';
 
 import Header from './components/Header';
 import PostBoard from './components/PostBoard';
+import UserPostBoard from './components/UserPostBoard';
 import AddPost from './components/AddPost';
 import Registration from './components/Registration';
 import Login from './components/Login';
@@ -50,6 +51,7 @@ class App extends React.Component {
 							<Route path="/registration" component={Registration} />
 							<Route path="/login" component={Login} />
 							<Route path="/post/add" component={AddPost} />
+							<Route path="/post/myposts" component={UserPostBoard} />
 						</div>
 					</HashRouter>
 				</Provider>

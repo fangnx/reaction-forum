@@ -38,5 +38,8 @@ router.post('/findAll', (req, res) => {
 });
 
 // Get all Posts of a User
+router.post('/userposts', (req, res) => {
+	Post.find({ authorId: req.body.userId }).then(v => res.json(v));
+});
 
 export { router as posts };

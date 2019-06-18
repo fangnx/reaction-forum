@@ -1,8 +1,10 @@
 import React from 'react';
+import mongoose from 'mongoose';
 import Radium, { StyleRoot } from 'radium';
 import {} from 'semantic-ui-react';
 import { fadeIn, headShake } from 'react-animations';
-import { getAllPosts } from '../../actions/postService';
+import store from '../../store';
+import { getAllPostsOfUser } from '../../actions/postService';
 import PostView from '../PostView';
 
 const styles = {
@@ -22,18 +24,23 @@ const styles = {
 	}
 };
 
-class PostBoard extends React.Component {
+class UserPostBoard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { posts: [], doAnimate: false, clickedIndex: -1 };
 	}
 
 	componentDidMount() {
-		getAllPosts().then(res => {
-			if (res.data) {
-				this.setState({ posts: res.data.map(post => post) });
-			}
-		});
+		const userIdString = store.getState().auth.user.id;
+		if (userIdString) {
+			getAllPostsOfUser({ userId: mongoose.Types.ObjectId(userIdString) }).then(
+				res => {
+					if (res.data) {
+						this.setState({ posts: res.data.map(post => post) });
+					}
+				}
+			);
+		}
 		console.log(this.state.posts);
 	}
 
@@ -81,4 +88,4 @@ class PostBoard extends React.Component {
 	}
 }
 
-export default PostBoard;
+export default UserPostBoard;
