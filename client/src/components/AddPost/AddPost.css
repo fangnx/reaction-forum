@@ -25,7 +25,6 @@
 .addPost-title-field input {
 	font-size: 1.5em !important;
 	font-weight: 600 !important;
-	/* background: rgba(255, 255, 255) !important; */
 }
 
 .addPost-content-field textarea {

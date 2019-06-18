@@ -1,4 +1,5 @@
 import React from 'react';
+import mongoose from 'mongoose';
 import {
 	Image,
 	Label,
@@ -20,7 +21,6 @@ import store from '../../store';
 const SPACE_KEY = 32;
 const COMMA_KEY = 188;
 const BACKSPACE_KEY = 8;
-
 const tagColors = [
 	'orange',
 	'yellow',
@@ -40,6 +40,7 @@ class AddPost extends React.Component {
 			title: '',
 			content: '',
 			author: '',
+			authorId: '',
 			timeStamp: '',
 			tags: [],
 			currentTag: '',
@@ -95,10 +96,9 @@ class AddPost extends React.Component {
 	async componentDidMount() {
 		if (!!store.getState().auth.isAuthenticated) {
 			this.setState({
-				author: await store.getState().auth.user.name
+				author: await store.getState().auth.user.name,
+				authorId: await store.getState().auth.user.id
 			});
-			console.log(this.state);
-			console.log(store.getState());
 		}
 	}
 
@@ -108,6 +108,7 @@ class AddPost extends React.Component {
 			title: this.state.title,
 			content: this.state.content,
 			author: this.state.author,
+			authorId: mongoose.Types.ObjectId(this.state.id),
 			timeStamp: dateFormat(new Date(), 'isoDateTime'),
 			tags: this.state.tags,
 			viewCount: 0,
@@ -115,7 +116,6 @@ class AddPost extends React.Component {
 		};
 
 		addPost(newPost).then(res => {
-			console.log(res);
 			if (res.status === 200) {
 				this.setState({ success: true });
 			}
@@ -131,22 +131,14 @@ class AddPost extends React.Component {
 					<Card.Header className="addPost-card-header">
 						<Label as="a" color="teal" size="large" image>
 							<Image src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg" />
-							<span>
-								Yuxi Shi &nbsp;&nbsp;
-								<i class="france flag" />
-							</span>
-							<Label.Detail>User</Label.Detail>
+							<span>{this.state.author}</span>
 						</Label>
 					</Card.Header>
 
 					<Card.Content className="addPost-card-content">
 						<Form success={!!success} className="addPost-form">
 							<Form.Field className="addPost-title-field">
-								<Label
-									color="grey"
-									size="large"
-									// style={{ marginBottom: '20px' }}
-								>
+								<Label color="grey" size="large">
 									Title
 								</Label>
 								<Input

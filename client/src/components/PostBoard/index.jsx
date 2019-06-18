@@ -1,8 +1,6 @@
 import React from 'react';
-import {} from 'semantic-ui-react';
-import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Radium, { StyleRoot } from 'radium';
+import {} from 'semantic-ui-react';
 import { fadeIn, headShake } from 'react-animations';
 import './PostBoard.css';
 import { getAllPosts } from '../../actions/postService';
@@ -10,25 +8,29 @@ import PostView from '../PostView';
 
 const styles = {
 	fadeIn: {
-		animation: '1 1s',
+		animation: '1 0.4s',
 		animationName: Radium.keyframes(fadeIn)
 	},
 
 	postViewAnimated: {
 		animation: '1 1s',
 		animationName: Radium.keyframes(headShake)
+	},
+
+	postBoardSeparator: {
+		visibility: 'hidden',
+		height: '60px'
 	}
 };
 
 class PostBoard extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { posts: [], doAnimate: false };
+		this.state = { posts: [], doAnimate: false, clickedIndex: -1 };
 	}
 
 	componentDidMount() {
 		getAllPosts().then(res => {
-			// console.log(res.data);
 			if (res.data) {
 				this.setState({ posts: res.data.map(post => post) });
 			}
@@ -36,17 +38,25 @@ class PostBoard extends React.Component {
 	}
 
 	render() {
-		const { posts, doAnimate } = this.state;
-		console.log(this.state.flip);
+		const { posts } = this.state;
+
 		return (
 			<StyleRoot>
-				<div style={styles.fadeIn} className="postBoard-wrapper">
+				<div style={styles.fadeIn}>
 					{posts.map((post, index) => (
 						<React.Fragment>
 							<div
-								onClick={() => this.setState({ doAnimate: true })}
-								onAnimationEnd={() => this.setState({ doAnimate: false })}
-								style={doAnimate ? styles.postViewAnimated : {}}
+								onClick={() =>
+									this.setState({ doAnimate: true, clickedIndex: index })
+								}
+								onAnimationEnd={() =>
+									this.setState({ doAnimate: false, clickedIndex: -1 })
+								}
+								style={
+									this.state.doAnimate && index === this.state.clickedIndex
+										? styles.postViewAnimated
+										: {}
+								}
 								key={'postBoard-postView-wrapper-' + index}
 							>
 								<PostView
@@ -62,7 +72,7 @@ class PostBoard extends React.Component {
 								/>
 							</div>
 
-							<div className="postBoard-separator" />
+							<div style={styles.postBoardSeparator} />
 						</React.Fragment>
 					))}
 				</div>

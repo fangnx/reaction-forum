@@ -6,34 +6,37 @@ const router = express.Router();
 
 // Add Post
 router.post('/add', (req, res) => {
-  // TODO: validation
+	// TODO: validation
 
-  const newPost = new Post({
-    title: req.body.title,
-    content: req.body.content,
-    author: req.body.author,
-    timeStamp: req.body.timeStamp,
-    tags: req.body.tags,
-    viewCount: req.body.viewCount,
-    likeCount: req.body.likeCount
-  });
+	const newPost = new Post({
+		title: req.body.title,
+		content: req.body.content,
+		author: req.body.author,
+		authorId: req.body.authorId,
+		timeStamp: req.body.timeStamp,
+		tags: req.body.tags,
+		viewCount: req.body.viewCount,
+		likeCount: req.body.likeCount
+	});
 
-  newPost
-    .save()
-    .then(post => res.json(post))
-    .catch(err => console.log(err));
+	newPost
+		.save()
+		.then(post => res.json(post))
+		.catch(err => console.log(err));
 });
 
 // Delete Post
 router.post('/delete', (req, res) => {
-  Post.deleteOne({ _id: req.body.id })
-    .then(result => res.json(result))
-    .catch(err => console.log(err));
+	Post.deleteOne({ _id: req.body.id })
+		.then(result => res.json(result))
+		.catch(err => console.log(err));
 });
 
 // Get all Posts
 router.post('/findAll', (req, res) => {
-  Post.find().then(v => res.json(v));
+	Post.find().then(v => res.json(v));
 });
+
+// Get all Posts of a User
 
 export { router as posts };
