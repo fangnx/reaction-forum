@@ -33,16 +33,14 @@ router.post('/delete', (req, res) => {
 
 // Edit Post
 router.post('/edit', (req, res) => {
-	const updatePost = {
+	const update = {
 		title: req.body.title,
 		content: req.body.content,
-		author: req.body.author,
-		authorEmail: req.body.authorEmail,
 		timeStamp: req.body.timeStamp,
-		tags: req.body.tags,
-		viewCount: req.body.viewCount,
-		likeCount: req.body.likeCount
+		tags: req.body.tags
 	};
+
+	Post.update({ _id: req.body.pid }, update).then(value => res.json(value));
 });
 
 // Get all Posts

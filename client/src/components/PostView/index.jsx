@@ -1,10 +1,10 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { Image, Label, Card, Grid, Button, Icon } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
+import { Label, Card, Grid, Icon } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../App.css';
 import './PostView.css';
+import EditPost from '../EditPost';
 
 const tagColors = [
 	'orange',
@@ -43,10 +43,17 @@ class PostView extends React.Component {
 	}
 
 	render() {
-		console.log(this.props);
-
 		if (this.state.shouldRedirect) {
-			return <Redirect to="/post/edit" />;
+			this.props.history.push({
+				pathname: '/post/edit',
+				state: {
+					pid: this.props.pid,
+					title: this.props.title,
+					content: this.props.content,
+					timeStamp: this.props.timeStamp,
+					tags: this.props.tags
+				}
+			});
 		}
 		return (
 			<div className="postView-wrapper">
@@ -70,6 +77,7 @@ class PostView extends React.Component {
 									<Label size="large" style={styles.editIconLabel}>
 										<Icon
 											{...this.props}
+											title="a"
 											onClick={this.directToEditPost}
 											name="edit"
 											style={styles.editIcon}
@@ -117,8 +125,4 @@ class PostView extends React.Component {
 		);
 	}
 }
-export default PostView;
-
-PostView.propTypes = {
-	title: PropTypes.string
-};
+export default withRouter(PostView);

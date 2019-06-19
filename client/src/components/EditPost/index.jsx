@@ -12,7 +12,6 @@ import {
 	Message
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './AddPost.css';
 import dateFormat from 'dateformat';
 import { editPost } from '../../actions/postService';
 import store from '../../store';
@@ -36,6 +35,7 @@ class EditPost extends React.Component {
 	constructor() {
 		super();
 		this.state = {
+			pid: '',
 			title: '',
 			content: '',
 			author: '',
@@ -93,6 +93,17 @@ class EditPost extends React.Component {
 	};
 
 	componentDidMount() {
+		const passedState = this.props.location.state;
+		if (passedState) {
+			this.setState({
+				pid: passedState.pid,
+				title: passedState.title,
+				content: passedState.content,
+				timeStamp: passedState.timeStamp,
+				tags: passedState.tags
+			});
+		}
+
 		if (!!store.getState().auth.isAuthenticated) {
 			this.setState({
 				author: store.getState().auth.user.name,
@@ -103,18 +114,16 @@ class EditPost extends React.Component {
 
 	onSubmit = async e => {
 		e.preventDefault();
-		const newPost = {
+		const update = {
+			pid: this.state.pid,
 			title: this.state.title,
 			content: this.state.content,
-			author: this.state.author,
-			authorEmail: this.state.authorEmail,
 			timeStamp: dateFormat(new Date(), 'isoDateTime'),
-			tags: this.state.tags,
-			viewCount: 0,
-			likeCount: 0
+			tags: this.state.tags
 		};
+		console.log(update);
 
-		addPost(newPost).then(res => {
+		editPost(update).then(res => {
 			if (res.status === 200) {
 				this.setState({ success: true });
 			}
