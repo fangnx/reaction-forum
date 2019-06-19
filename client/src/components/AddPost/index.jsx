@@ -64,7 +64,7 @@ class AddPost extends React.Component {
 
 	onKeyDown(e) {
 		const key = e.keyCode;
-		if (key === BACKSPACE_KEY && !this.state.value) {
+		if (key === BACKSPACE_KEY && !this.state.currentTag) {
 			this.editTag();
 		}
 	}
@@ -77,7 +77,7 @@ class AddPost extends React.Component {
 		if (rawTag) {
 			this.setState({
 				tags: [...tags, rawTag],
-				currentTag: '' // Empty the tag currently selected
+				currentTag: '' // Empties the tag currently selected
 			});
 		}
 	}
@@ -122,18 +122,11 @@ class AddPost extends React.Component {
 	};
 
 	render() {
-		const { tags, currentTag, success } = this.state;
+		const { tags, success } = this.state;
 
 		return (
 			<div className="addPost-wrapper">
 				<Card className="addPost-card" fluid>
-					<Card.Header className="addPost-card-header">
-						<Label as="a" color="teal" size="large" image>
-							<Image src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg" />
-							<span>{this.state.author}</span>
-						</Label>
-					</Card.Header>
-
 					<Card.Content className="addPost-card-content">
 						<Form success={!!success} className="addPost-form">
 							<Form.Field className="addPost-title-field">

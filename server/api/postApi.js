@@ -26,8 +26,8 @@ router.post('/add', (req, res) => {
 
 // Delete Post
 router.post('/delete', (req, res) => {
-	Post.deleteOne({ _id: req.body.id })
-		.then(result => res.json(result))
+	Post.deleteOne({ _id: req.body.pid })
+		.then(value => res.json(value))
 		.catch(err => console.log(err));
 });
 

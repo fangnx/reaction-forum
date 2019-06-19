@@ -7,6 +7,12 @@ export const addPost = async data => {
 		.catch(err => console.log(`Add Post Error: ${err}`));
 };
 
+export const deletePost = async data => {
+	return axios
+		.post('http://localhost:5000/api/posts/delete', data)
+		.then(res => res);
+};
+
 export const editPost = async data => {
 	return axios
 		.post('http://localhost:5000/api/posts/edit', data)

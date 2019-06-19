@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Menu, Label, Dropdown, Icon } from 'semantic-ui-react';
+import { Menu, Label, Dropdown } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
 import { logoutUser } from '../../actions/loginSignoutService';
@@ -23,7 +23,8 @@ class Header extends React.Component {
 	};
 
 	componentDidMount() {
-		if (store.getState().auth) {
+		console.log(store.getState());
+		if (store.getState().auth.isAuthenticated) {
 			this.setState({
 				isLoggedIn: true,
 				userName: store.getState().auth.user['name']

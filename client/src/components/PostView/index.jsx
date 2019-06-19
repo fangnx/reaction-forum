@@ -1,10 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Label, Card, Grid, Icon, Menu } from 'semantic-ui-react';
+import { Label, Card, Grid, Icon, Modal, Button } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../App.css';
 import './PostView.css';
 import EditPost from '../EditPost';
+import { deletePost } from '../../actions/postService';
 
 const tagColors = [
 	'orange',
@@ -39,11 +40,21 @@ class PostView extends React.Component {
 	}
 
 	directToEditPost() {
-		this.setState({ shouldRedirect: true });
+		this.setState({ shouldEdit: true });
 	}
 
+	deleteModalClose = () => {
+		this.setState({ deleteModalOpened: false });
+	};
+
+	onDelete = async e => {
+		e.preventDefault();
+		this.setState({ deleteModalOpened: true });
+		// deletePost({ pid: this.props.pid }).then();
+	};
+
 	render() {
-		if (this.state.shouldRedirect) {
+		if (this.state.shouldEdit) {
 			this.props.history.push({
 				pathname: '/post/edit',
 				state: {
@@ -51,7 +62,8 @@ class PostView extends React.Component {
 					title: this.props.title,
 					content: this.props.content,
 					timeStamp: this.props.timeStamp,
-					tags: this.props.tags
+					tags: this.props.tags,
+					deleteModalOpened: false
 				}
 			});
 		}
@@ -79,7 +91,7 @@ class PostView extends React.Component {
 											&nbsp;
 											<Icon
 												size="large"
-												onClick={this.directToEditPost}
+												onClick={this.onDelete}
 												name="close"
 												color="red"
 												style={styles.icon}
@@ -124,6 +136,30 @@ class PostView extends React.Component {
 								<label>Liked: {this.props.likeCount}</label>
 							</span>
 						</Grid.Row> */}
+						<Modal
+							open={this.state.deleteModalOpened}
+							onClose={this.deleteModalClose}
+						>
+							<Modal.Header>Deleting your post</Modal.Header>
+							<Modal.Content image>
+								<p>Are you sure you would like to have this post removed?</p>
+							</Modal.Content>
+							<Modal.Actions>
+								<Button
+									positive
+									content="Nope, I would keep it :)"
+									color="black"
+									onClick={this.deleteModalClose}
+								/>
+								<Button
+									negative
+									icon="checkmark"
+									labelPosition="right"
+									content="Yes, delete it"
+									onClick={this.deleteModalClose}
+								/>
+							</Modal.Actions>
+						</Modal>
 					</Card.Content>
 				</Card>
 			</div>
