@@ -38,7 +38,6 @@ class UserPostBoard extends React.Component {
 				}
 			});
 		}
-		console.log(this.state.posts);
 	}
 
 	render() {
@@ -66,6 +65,7 @@ class UserPostBoard extends React.Component {
 								<PostView
 									className="postBoard-postView"
 									key={'postBoard-postView-' + index}
+									canManage={true}
 									pid={post._id}
 									title={post.title}
 									author={post.author}

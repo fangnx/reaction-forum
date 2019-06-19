@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Label, Card, Grid, Icon } from 'semantic-ui-react';
+import { Label, Card, Grid, Icon, Menu } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../App.css';
 import './PostView.css';
@@ -23,8 +23,8 @@ const styles = {
 		paddingLeft: '0',
 		paddingRight: '0'
 	},
-	editIconLabel: { background: 'transparent', padding: 'none', float: 'right' },
-	editIcon: { margin: '0' }
+	iconGroup: { background: 'transparent', padding: 'none', float: 'right' },
+	icon: { margin: '0' }
 };
 
 class PostView extends React.Component {
@@ -60,29 +60,34 @@ class PostView extends React.Component {
 				<Card className="postView-card" fluid>
 					<Card.Content className="postView-card-content">
 						<Grid padded className="postView-card-grid">
-							<Grid.Row columns={2} className="postView-author-field">
+							<Grid.Row columns={2}>
 								<Grid.Column style={styles.column} width={14}>
-									<Label
-										as="a"
-										size="large"
-										color={
-											tagColors[Math.floor(Math.random() * tagColors.length)]
-										}
-									>
+									<Label as="a" size="large" color="grey">
 										{this.props.author}
 									</Label>
 								</Grid.Column>
 
 								<Grid.Column style={styles.column} width={2}>
-									<Label size="large" style={styles.editIconLabel}>
-										<Icon
-											{...this.props}
-											title="a"
-											onClick={this.directToEditPost}
-											name="edit"
-											style={styles.editIcon}
-										/>
-									</Label>
+									{this.props.canManage ? (
+										<div style={styles.iconGroup}>
+											<Icon
+												size="large"
+												onClick={this.directToEditPost}
+												name="pencil"
+												style={styles.icon}
+											/>
+											&nbsp;
+											<Icon
+												size="large"
+												onClick={this.directToEditPost}
+												name="close"
+												color="red"
+												style={styles.icon}
+											/>
+										</div>
+									) : (
+										''
+									)}
 								</Grid.Column>
 							</Grid.Row>
 							<hr className="postView-card-divider" />

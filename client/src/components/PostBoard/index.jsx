@@ -34,7 +34,6 @@ class PostBoard extends React.Component {
 				this.setState({ posts: res.data.map(post => post) });
 			}
 		});
-		console.log(this.state.posts);
 	}
 
 	render() {
@@ -62,6 +61,7 @@ class PostBoard extends React.Component {
 								<PostView
 									className="postBoard-postView"
 									key={'postBoard-postView-' + index}
+									canManage={false}
 									title={post.title}
 									author={post.author}
 									content={post.content}

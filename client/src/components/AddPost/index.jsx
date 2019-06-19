@@ -99,7 +99,6 @@ class AddPost extends React.Component {
 				authorEmail: store.getState().auth.user.email
 			});
 		}
-		console.log(store.getState().auth.user.id);
 	}
 
 	onSubmit = async e => {

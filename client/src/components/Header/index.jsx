@@ -64,7 +64,6 @@ class Header extends React.Component {
 
 						<Menu.Item as={NavLink} to="/post/add" name="addPost">
 							NEW POST
-							<Icon style={{ marginLeft: '0.5vw' }} name="plus" />
 						</Menu.Item>
 					</Menu.Menu>
 
