@@ -8,11 +8,6 @@
 	background: rgba(240, 240, 240, 96%) !important;
 }
 
-.postView-card-header {
-	width: 90%;
-	margin: 20px auto !important;
-}
-
 .postView-card-content {
 	width: 98%;
 	margin: 0 auto !important;
@@ -27,7 +22,7 @@
 	font-size: 1.2em;
 }
 
-.postView-image {
+/* .postView-image {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -35,7 +30,7 @@
 	margin-right: auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
-}
+} */
 
 .postView-viewCount-field,
 .postView-likeCount-field {

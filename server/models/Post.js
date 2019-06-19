@@ -15,8 +15,8 @@ const PostSchema = new Schema({
 		type: String,
 		required: true
 	},
-	authorId: {
-		type: mongoose.Schema.Types.ObjectId,
+	authorEmail: {
+		type: String,
 		required: true
 	},
 	timeStamp: {

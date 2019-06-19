@@ -14,7 +14,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './AddPost.css';
 import dateFormat from 'dateformat';
-import { addPost } from '../../actions/postService';
+import { editPost } from '../../actions/postService';
 import store from '../../store';
 
 const SPACE_KEY = 32;
@@ -32,7 +32,7 @@ const tagColors = [
 	'grey'
 ];
 
-class AddPost extends React.Component {
+class EditPost extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -99,7 +99,6 @@ class AddPost extends React.Component {
 				authorEmail: store.getState().auth.user.email
 			});
 		}
-		console.log(store.getState().auth.user.id);
 	}
 
 	onSubmit = async e => {
@@ -223,4 +222,4 @@ class AddPost extends React.Component {
 	}
 }
 
-export default AddPost;
+export default EditPost;

@@ -1,14 +1,7 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {
-	Image,
-	Label,
-	Card,
-	Grid,
-	Divider,
-	Header,
-	DimmerDimmable
-} from 'semantic-ui-react';
+import { Image, Label, Card, Grid, Button, Icon } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../App.css';
 import './PostView.css';
@@ -25,28 +18,64 @@ const tagColors = [
 	'grey'
 ];
 
+const styles = {
+	column: {
+		paddingLeft: '0',
+		paddingRight: '0'
+	},
+	editIconLabel: { background: 'transparent', padding: 'none', float: 'right' },
+	editIcon: { margin: '0' }
+};
+
 class PostView extends React.Component {
+	constructor() {
+		super();
+		this.state = { shouldRedirect: false };
+		this.directToEditPost = this.directToEditPost.bind(this);
+	}
+
 	capitalizeTag(word) {
 		return word.charAt(0).toUpperCase() + word.slice(1);
 	}
 
+	directToEditPost() {
+		this.setState({ shouldRedirect: true });
+	}
+
 	render() {
 		console.log(this.props);
+
+		if (this.state.shouldRedirect) {
+			return <Redirect to="/post/edit" />;
+		}
 		return (
 			<div className="postView-wrapper">
 				<Card className="postView-card" fluid>
-					{/* <Card.Header className="postView-card-header" /> */}
-
 					<Card.Content className="postView-card-content">
 						<Grid padded className="postView-card-grid">
-							<Grid.Row className="postView-author-field">
-								<Label as="a" size="large" image>
-									<Image src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg" />
-									<span>
-										{this.props.author} &nbsp;&nbsp;
-										{/* <i class="france flag" /> */}
-									</span>
-								</Label>
+							<Grid.Row columns={2} className="postView-author-field">
+								<Grid.Column style={styles.column} width={14}>
+									<Label
+										as="a"
+										size="large"
+										color={
+											tagColors[Math.floor(Math.random() * tagColors.length)]
+										}
+									>
+										{this.props.author}
+									</Label>
+								</Grid.Column>
+
+								<Grid.Column style={styles.column} width={2}>
+									<Label size="large" style={styles.editIconLabel}>
+										<Icon
+											{...this.props}
+											onClick={this.directToEditPost}
+											name="edit"
+											style={styles.editIcon}
+										/>
+									</Label>
+								</Grid.Column>
 							</Grid.Row>
 							<hr className="postView-card-divider" />
 

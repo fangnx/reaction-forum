@@ -2,117 +2,122 @@ import React from 'react';
 import { HashRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Menu, Label, Image, Dropdown } from 'semantic-ui-react';
+import { Menu, Label, Dropdown, Icon } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
 import { logoutUser } from '../../actions/loginSignoutService';
 import store from '../../store';
 
 class Header extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      isLoggedIn: false,
-      userName: ''
-    };
-  }
+	constructor() {
+		super();
+		this.state = {
+			isLoggedIn: false,
+			userName: ''
+		};
+	}
 
-  handleLogout = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-  };
+	handleLogout = e => {
+		e.preventDefault();
+		this.props.logoutUser();
+	};
 
-  componentDidMount() {
-    if (store.getState().auth) {
-      this.setState({
-        isLoggedIn: true,
-        userName: store.getState().auth.user['name']
-      });
-    }
-  }
+	componentDidMount() {
+		if (store.getState().auth) {
+			this.setState({
+				isLoggedIn: true,
+				userName: store.getState().auth.user['name']
+			});
+		}
+	}
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps.auth);
-    if (nextProps.auth.isAuthenticated) {
-      this.setState({
-        isLoggedIn: true,
-        userName: nextProps.auth.user['name']
-      });
-    } else {
-      this.setState({
-        isLoggedIn: false,
-        userName: ''
-      });
-    }
-  }
+	componentWillReceiveProps(nextProps) {
+		console.log(nextProps.auth);
+		if (nextProps.auth.isAuthenticated) {
+			this.setState({
+				isLoggedIn: true,
+				userName: nextProps.auth.user['name']
+			});
+		} else {
+			this.setState({
+				isLoggedIn: false,
+				userName: ''
+			});
+		}
+	}
 
-  render() {
-    const { isLoggedIn } = this.state;
-    const { userName } = this.state;
+	render() {
+		const { isLoggedIn } = this.state;
+		const { userName } = this.state;
 
-    return (
-      <HashRouter>
-        <Menu inverted borderless className="header-menu">
-          <Menu.Menu>
-            <Menu.Item as={NavLink} to="/" exact name="main">
-              <FontAwesomeIcon icon={['fas', 'water']} size="2x" />
-            </Menu.Item>
+		return (
+			<HashRouter>
+				<Menu inverted borderless className="header-menu">
+					<Menu.Menu>
+						<Menu.Item as={NavLink} to="/" exact name="main">
+							<FontAwesomeIcon icon={['fas', 'water']} size="2x" />
+						</Menu.Item>
 
-            <Menu.Item as={NavLink} to="/post/add" name="addPost">
-              <FontAwesomeIcon icon={['fas', 'plus']} size="2x" />
-            </Menu.Item>
-          </Menu.Menu>
+						<Menu.Item as={NavLink} to="/myposts" name="addPost">
+							MY POSTS
+						</Menu.Item>
 
-          <Menu.Menu position="right" className="header-menu-rightmenu">
-            {isLoggedIn ? (
-              <Menu.Item>
-                <Label as="a" color="teal" size="big" image>
-                  <span>{userName}</span>
+						<Menu.Item as={NavLink} to="/post/add" name="addPost">
+							NEW POST
+							<Icon style={{ marginLeft: '0.5vw' }} name="plus" />
+						</Menu.Item>
+					</Menu.Menu>
 
-                  <Dropdown>
-                    <Dropdown.Menu floating>
-                      <Dropdown.Item text="View User Info" />
+					<Menu.Menu position="right" className="header-menu-rightmenu">
+						{isLoggedIn ? (
+							<Menu.Item>
+								<Label as="a" color="teal" size="big" image>
+									<span>{userName}</span>
 
-                      <Dropdown.Item onClick={this.handleLogout} name="logout">
-                        <span>Log Out</span>
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Label>
-              </Menu.Item>
-            ) : (
-              <React.Fragment>
-                <Menu.Item
-                  as={NavLink}
-                  to="/registration"
-                  name="register"
-                  color="teal"
-                >
-                  <span>Register</span>
-                </Menu.Item>
+									<Dropdown>
+										<Dropdown.Menu floating>
+											<Dropdown.Item text="View User Info" />
 
-                <Menu.Item as={NavLink} to="/login" name="login" color="teal">
-                  <span>Log In</span>
-                </Menu.Item>
-              </React.Fragment>
-            )}
-          </Menu.Menu>
-        </Menu>
-      </HashRouter>
-    );
-  }
+											<Dropdown.Item onClick={this.handleLogout} name="logout">
+												<span>Log Out</span>
+											</Dropdown.Item>
+										</Dropdown.Menu>
+									</Dropdown>
+								</Label>
+							</Menu.Item>
+						) : (
+							<React.Fragment>
+								<Menu.Item
+									as={NavLink}
+									to="/registration"
+									name="register"
+									color="teal"
+								>
+									<span>Register</span>
+								</Menu.Item>
+
+								<Menu.Item as={NavLink} to="/login" name="login" color="teal">
+									<span>Log In</span>
+								</Menu.Item>
+							</React.Fragment>
+						)}
+					</Menu.Menu>
+				</Menu>
+			</HashRouter>
+		);
+	}
 }
 
 Header.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+	logoutUser: PropTypes.func.isRequired,
+	auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+	auth: state.auth
 });
 
 export default connect(
-  mapStateToProps,
-  { logoutUser }
+	mapStateToProps,
+	{ logoutUser }
 )(Header);

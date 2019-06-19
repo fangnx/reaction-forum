@@ -1,5 +1,4 @@
 import React from 'react';
-import mongoose from 'mongoose';
 import Radium, { StyleRoot } from 'radium';
 import {} from 'semantic-ui-react';
 import { fadeIn, headShake } from 'react-animations';
@@ -31,15 +30,13 @@ class UserPostBoard extends React.Component {
 	}
 
 	componentDidMount() {
-		const userIdString = store.getState().auth.user.id;
-		if (userIdString) {
-			getAllPostsOfUser({ userId: mongoose.Types.ObjectId(userIdString) }).then(
-				res => {
-					if (res.data) {
-						this.setState({ posts: res.data.map(post => post) });
-					}
+		const userEmail = store.getState().auth.user.email;
+		if (userEmail) {
+			getAllPostsOfUser({ userEmail: userEmail }).then(res => {
+				if (res.data) {
+					this.setState({ posts: res.data.map(post => post) });
 				}
-			);
+			});
 		}
 		console.log(this.state.posts);
 	}
@@ -69,6 +66,7 @@ class UserPostBoard extends React.Component {
 								<PostView
 									className="postBoard-postView"
 									key={'postBoard-postView-' + index}
+									pid={post._id}
 									title={post.title}
 									author={post.author}
 									content={post.content}

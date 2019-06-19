@@ -14,9 +14,9 @@ export const getAllPosts = async () => {
 		.catch(err => console.log(`Get all Posts Error: ${err}`));
 };
 
-export const getAllPostsOfUser = async userId => {
+export const getAllPostsOfUser = async userEmail => {
 	return axios
-		.post(`http://localhost:5000/api/posts/userposts`, userId)
+		.post(`http://localhost:5000/api/posts/userposts`, userEmail)
 		.then(res => res)
 		.catch(err => console.log(`Get all Posts of User Error: ${err}`));
 };

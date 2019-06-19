@@ -51,7 +51,7 @@ class App extends React.Component {
 							<Route path="/registration" component={Registration} />
 							<Route path="/login" component={Login} />
 							<Route path="/post/add" component={AddPost} />
-							<Route path="/post/myposts" component={UserPostBoard} />
+							<Route path="/myposts" component={UserPostBoard} />
 						</div>
 					</HashRouter>
 				</Provider>

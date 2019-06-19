@@ -16,9 +16,9 @@ import { posts } from './api/postApi';
 const app = new express();
 
 app.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
+	bodyParser.urlencoded({
+		extended: true
+	})
 );
 app.use(bodyParser.json());
 
@@ -28,31 +28,31 @@ const port = config.port;
 
 // Connect to Mongoose
 mongoose
-  .connect(db, { useNewUrlParser: true })
-  .then(() => console.log('Successfully connected to MongoDB ;)'))
-  .catch(err => console.log(err));
+	.connect(db, { useNewUrlParser: true })
+	.then(() => console.log('Successfully connected to MongoDB ;)'))
+	.catch(err => console.log(err));
 
 app.use(express.static(path.join(__dirname, 'client/public')));
 app.use(
-  session({
-    name: config.session.key,
-    secret: config.session.secret,
-    resave: true,
-    saveUninitialized: false, // creates a session even not logged in
-    cookie: {
-      maxAge: config.session.maxAge // session expiry time
-    },
-    store: new MongoStore({
-      url: config.mongodb // stores session into mongodb
-    })
-  })
+	session({
+		name: config.session.key,
+		secret: config.session.secret,
+		resave: true,
+		saveUninitialized: false, // creates a session even not logged in
+		cookie: {
+			maxAge: config.session.maxAge // session expiry time
+		},
+		store: new MongoStore({
+			url: config.mongodb // stores session into mongodb
+		})
+	})
 );
 
 app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-  })
+	cors({
+		origin: 'http://localhost:3000',
+		credentials: true
+	})
 );
 
 app.use(flash());
@@ -64,7 +64,7 @@ app.use(passport.session());
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 
-require('../models/User');
+require('./models/User');
 const User = mongoose.model('users');
 const opts = {};
 
@@ -72,14 +72,14 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = config.secretOrKey;
 
 const strategy = new JwtStrategy(opts, (jwt_payload, done) => {
-  User.findById(jwt_payload.id)
-    .then(user => {
-      if (user) {
-        return done(null, user);
-      }
-      return done(null, false);
-    })
-    .catch(err => console.log(err));
+	User.findById(jwt_payload.id)
+		.then(user => {
+			if (user) {
+				return done(null, user);
+			}
+			return done(null, false);
+		})
+		.catch(err => console.log(err));
 });
 
 passport.use(strategy);
