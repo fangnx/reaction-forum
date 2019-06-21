@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Menu, Label, Dropdown } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
-import { logoutUser } from '../../actions/loginSignoutService';
+import { logoutUser } from '../../actions/loginSignoutAction';
 import store from '../../store';
 
 class Header extends React.Component {

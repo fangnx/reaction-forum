@@ -1,12 +1,10 @@
-import { GET_ERRORS } from '../actions/types';
+import { AUTH_ERRORS } from '../actions/actionTypes';
 
 const initialState = {};
 
 export default (state = initialState, action) => {
-  switch (action.type) {
-    case GET_ERRORS:
-      return action.payload;
-    default:
-      return state;
-  }
+	if (action.type === AUTH_ERRORS) {
+		return action.payload;
+	}
+	return state;
 };

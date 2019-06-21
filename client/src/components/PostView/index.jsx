@@ -4,8 +4,6 @@ import { Label, Card, Grid, Icon, Modal, Button } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../App.css';
 import './PostView.css';
-import EditPost from '../EditPost';
-import { deletePost } from '../../actions/postService';
 
 const tagColors = [
 	'orange',

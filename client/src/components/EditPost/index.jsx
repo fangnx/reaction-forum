@@ -130,7 +130,6 @@ class EditPost extends React.Component {
 			timeStamp: dateFormat(new Date(), 'isoDateTime'),
 			tags: this.state.tags
 		};
-		console.log(update);
 
 		editPost(update).then(res => {
 			if (res.status === 200) {

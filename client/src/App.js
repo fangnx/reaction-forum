@@ -19,7 +19,7 @@ import AddPost from './components/AddPost';
 import EditPost from './components/EditPost';
 import Registration from './components/Registration';
 import Login from './components/Login';
-import { setCurrentUser, logoutUser } from './actions/loginSignoutService';
+import { setCurrentUser, logoutUser } from './actions/loginSignoutAction';
 
 // Check if logged in
 if (localStorage.jwtToken) {
