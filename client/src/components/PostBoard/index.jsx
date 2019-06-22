@@ -62,6 +62,7 @@ class PostBoard extends React.Component {
 									className="postBoard-postView"
 									key={'postBoard-postView-' + index}
 									canManage={false}
+									pid={post._id}
 									title={post.title}
 									author={post.author}
 									content={post.content}

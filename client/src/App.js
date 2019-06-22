@@ -1,7 +1,9 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store } from './store';
+import { persistor } from './store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 
@@ -21,6 +23,8 @@ import Registration from './components/Registration';
 import Login from './components/Login';
 import { setCurrentUser, logoutUser } from './actions/loginSignoutAction';
 
+// const { store, persistor } = configureStore();
+
 // Check if logged in
 if (localStorage.jwtToken) {
 	const token = localStorage.jwtToken;
@@ -37,25 +41,28 @@ if (localStorage.jwtToken) {
 	}
 }
 console.log(store.getState());
+
 class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
 				<div className="app-background" />
 				<Provider store={store}>
-					<div className="app-fixed">
-						<Header />
-					</div>
-					<HashRouter>
-						<div className="app-content">
-							<Route path="/" exact component={PostBoard} />
-							<Route path="/registration" component={Registration} />
-							<Route path="/login" component={Login} />
-							<Route path="/post/add" component={AddPost} />
-							<Route path="/post/edit" component={EditPost} />
-							<Route path="/myposts" component={UserPostBoard} />
+					<PersistGate persistor={persistor}>
+						<div className="app-fixed">
+							<Header />
 						</div>
-					</HashRouter>
+						<HashRouter>
+							<div className="app-content">
+								<Route path="/" exact component={PostBoard} />
+								<Route path="/registration" component={Registration} />
+								<Route path="/login" component={Login} />
+								<Route path="/post/add" component={AddPost} />
+								<Route path="/post/edit" component={EditPost} />
+								<Route path="/myposts" component={UserPostBoard} />
+							</div>
+						</HashRouter>
+					</PersistGate>
 				</Provider>
 			</div>
 		);

@@ -1,6 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
-	Image,
 	Label,
 	Card,
 	Form,
@@ -14,7 +14,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import dateFormat from 'dateformat';
 import { editPost } from '../../actions/postService';
-import store from '../../store';
+import { store } from '../../store';
 
 const SPACE_KEY = 32;
 const COMMA_KEY = 188;
@@ -102,16 +102,14 @@ class EditPost extends React.Component {
 	};
 
 	componentDidMount() {
-		const passedState = this.props.location.state;
-		if (passedState) {
-			this.setState({
-				pid: passedState.pid,
-				title: passedState.title,
-				content: passedState.content,
-				timeStamp: passedState.timeStamp,
-				tags: passedState.tags
-			});
-		}
+		console.log(store.getState());
+		this.setState({
+			pid: this.props.pid,
+			title: this.props.title,
+			content: this.props.content,
+			timeStamp: this.props.timeStamp,
+			tags: this.props.tags
+		});
 
 		if (!!store.getState().auth.isAuthenticated) {
 			this.setState({
@@ -139,7 +137,7 @@ class EditPost extends React.Component {
 	};
 
 	render() {
-		const { tags, success } = this.state;
+		const { success } = this.state;
 
 		return (
 			<div className="addPost-wrapper">
@@ -184,7 +182,7 @@ class EditPost extends React.Component {
 
 								<Segment>
 									<Label.Group size="large" className="addPost-tagList">
-										{tags.map((tag, index) => (
+										{this.state.tags.map((tag, index) => (
 											<Label
 												className="addPost-tag"
 												color={tagColors[index % tagColors.length]}
@@ -232,4 +230,14 @@ class EditPost extends React.Component {
 	}
 }
 
-export default EditPost;
+const mapStateToProps = state => {
+	return {
+		pid: state.editPost.pid,
+		title: state.editPost.title,
+		content: state.editPost.content,
+		timeStamp: state.editPost.timeStamp,
+		tags: state.editPost.tags
+	};
+};
+
+export default connect(mapStateToProps)(EditPost);

@@ -2,7 +2,7 @@ import React from 'react';
 import Radium, { StyleRoot } from 'radium';
 import {} from 'semantic-ui-react';
 import { fadeIn, headShake } from 'react-animations';
-import store from '../../store';
+import { store } from '../../store';
 import { getAllPostsOfUser } from '../../actions/postService';
 import PostView from '../PostView';
 

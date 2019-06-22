@@ -1,24 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Cairo&display=swap');
 
-.App {
-	/* background-image: linear-gradient(
-    to left top,
-    #7564a5,
-    #6f61a3,
-    #695da1,
-    #635a9f,
-    #5c579d,
-    #57549b,
-    #51529a,
-    #4b4f98,
-    #454c96,
-    #3f4894,
-    #384592,
-    #314290
-  ); */
-}
-
 .app-background {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
 		url('../src/assets/lucas-davies-507228-unsplash.jpg');

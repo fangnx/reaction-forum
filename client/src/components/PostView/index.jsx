@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Label, Card, Grid, Icon, Modal, Button } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../App.css';
@@ -52,17 +53,15 @@ class PostView extends React.Component {
 	};
 
 	render() {
+		const { pid, title, content, timeStamp, tags } = this.props;
+		console.log(pid);
 		if (this.state.shouldEdit) {
+			this.props.dispatch({
+				type: 'EDIT_POST',
+				payload: { pid, title, content, timeStamp, tags }
+			});
 			this.props.history.push({
-				pathname: '/post/edit',
-				state: {
-					pid: this.props.pid,
-					title: this.props.title,
-					content: this.props.content,
-					timeStamp: this.props.timeStamp,
-					tags: this.props.tags,
-					deleteModalOpened: false
-				}
+				pathname: '/post/edit'
 			});
 		}
 		return (
@@ -126,14 +125,6 @@ class PostView extends React.Component {
 							</Grid.Row>
 						</Grid>
 
-						{/* <Grid.Row>
-							<span className="postView-viewCount-field">
-								<label>Viewed: {this.props.viewCount}</label>
-							</span>
-							<span className="postView-likeCount-field">
-								<label>Liked: {this.props.likeCount}</label>
-							</span>
-						</Grid.Row> */}
 						<Modal
 							open={this.state.deleteModalOpened}
 							onClose={this.deleteModalClose}
@@ -164,4 +155,11 @@ class PostView extends React.Component {
 		);
 	}
 }
-export default withRouter(PostView);
+
+const mapStateToProps = state => ({});
+
+// const mapDispatchToProps = data => dispatch => ({
+// 	editPost: () => dispatch({ type: 'EDIT_POST', pid: data })
+// });
+
+export default connect(mapStateToProps)(withRouter(PostView));
