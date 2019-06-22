@@ -14,7 +14,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './AddPost.css';
 import dateFormat from 'dateformat';
-import { addPost } from '../../actions/postService';
+import { addPost } from '../../actions/postActions';
 import { store } from '../../store';
 
 const SPACE_KEY = 32;

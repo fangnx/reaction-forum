@@ -1,7 +1,16 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Label, Card, Grid, Icon, Modal, Button } from 'semantic-ui-react';
+import ReactMarkdown from 'react-markdown';
+import {
+	Label,
+	Card,
+	Grid,
+	Icon,
+	Modal,
+	Button,
+	Segment
+} from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../App.css';
 import './PostView.css';
@@ -107,7 +116,9 @@ class PostView extends React.Component {
 							<hr className="postView-card-divider" />
 
 							<Grid.Row className="postView-content-field">
-								{this.props.content}}
+								<Segment style={{ width: '100%' }}>
+									<ReactMarkdown source={this.props.content} />
+								</Segment>
 							</Grid.Row>
 							<hr className="postView-card-divider" />
 

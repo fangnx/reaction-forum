@@ -13,7 +13,7 @@ import {
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import dateFormat from 'dateformat';
-import { editPost } from '../../actions/postService';
+import { editPost } from '../../actions/postActions';
 import { store } from '../../store';
 
 const SPACE_KEY = 32;

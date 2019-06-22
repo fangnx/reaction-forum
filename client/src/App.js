@@ -21,7 +21,7 @@ import AddPost from './components/AddPost';
 import EditPost from './components/EditPost';
 import Registration from './components/Registration';
 import Login from './components/Login';
-import { setCurrentUser, logoutUser } from './actions/loginSignoutAction';
+import { setCurrentUser, logoutUser } from './actions/loginSignoutActions';
 
 // const { store, persistor } = configureStore();
 

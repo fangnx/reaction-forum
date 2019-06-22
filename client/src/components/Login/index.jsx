@@ -11,7 +11,7 @@ import {
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Login.css';
-import { loginUser } from '../../actions/loginSignoutAction';
+import { loginUser } from '../../actions/loginSignoutActions';
 
 class Login extends React.Component {
 	constructor() {
