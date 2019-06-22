@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
 	Label,
 	Card,
-	Form,
+	Grid,
 	TextArea,
 	Input,
 	Button,
@@ -32,10 +32,34 @@ const tagColors = [
 ];
 
 const styles = {
-	column: {
-		paddingLeft: '0',
-		paddingRight: '0'
+	title: {
+		marginTop: '15px',
+		width: '100%',
+		fontFamily: 'Cairo',
+		fontSize: '1.5em',
+		fontWeight: '600'
 	},
+	content: {
+		marginTop: '15px',
+		width: '100%',
+		fontSize: '1em',
+		background: 'rgba(245, 245, 245)'
+	},
+	tags: {
+		marginTop: '15px',
+		width: '100%',
+		border: '1px solid #ddd',
+		borderRadius: '0px',
+		boxShadow: 'none',
+		background: 'rgba(245, 245, 245)'
+	},
+	tagInput: {
+		display: 'inline !important'
+	},
+	message: {
+		width: '100%'
+	},
+	button: {},
 	iconGroup: { background: 'transparent', padding: 'none', float: 'right' },
 	icon: { margin: '0' }
 };
@@ -140,53 +164,50 @@ class EditPost extends React.Component {
 		const { success } = this.state;
 
 		return (
-			<div className="addPost-wrapper">
-				<Card className="addPost-card" fluid>
-					<Card.Content className="addPost-card-content">
-						<Form success={!!success} className="addPost-form">
-							<Form.Field className="addPost-title-field">
+			<div className="postView-wrapper">
+				<Card className="postView-card" fluid>
+					<Card.Content className="postView-card-content">
+						<Grid padded className="postView-card-grid">
+							<Grid.Row>
 								<Label color="grey" size="large">
 									Title
 								</Label>
+
 								<Input
 									id="title"
 									value={this.state.title}
 									onChange={this.onChange}
 									placeholder=""
+									style={styles.title}
 								/>
-							</Form.Field>
+							</Grid.Row>
 
-							<Form.Field className="addPost-content-field">
-								<Label
-									color="grey"
-									size="large"
-									style={{ marginBottom: '15px' }}
-								>
+							<Grid.Row>
+								<Label color="grey" size="large">
 									Content
 								</Label>
+
 								<TextArea
 									id="content"
 									value={this.state.content}
 									onChange={this.onChange}
 									placeholder="Write whatever you want ;)"
 									rows="12"
+									style={styles.content}
 								/>
-							</Form.Field>
+							</Grid.Row>
 
-							<Form.Field className="addPost-tags-field">
-								<div className="addPost-tags-label-wrapper">
+							<Grid.Row>
+								<div>
 									<Label color="grey" size="large">
 										Tags
 									</Label>
 								</div>
 
-								<Segment>
+								<Segment style={styles.tags}>
 									<Label.Group size="large" className="addPost-tagList">
 										{this.state.tags.map((tag, index) => (
-											<Label
-												className="addPost-tag"
-												color={tagColors[index % tagColors.length]}
-											>
+											<Label color={tagColors[index % tagColors.length]}>
 												{this.capitalizeTag(tag)}
 												<Icon name="delete" />
 											</Label>
@@ -194,35 +215,44 @@ class EditPost extends React.Component {
 									</Label.Group>
 									<Input
 										id="currentTag"
-										className="addPost-tagInput"
 										placeholder="Add tags here"
 										value={this.state.currentTag}
 										onChange={this.onChange}
 										onKeyUp={this.onKeyUp}
 										onKeyDown={this.onKeyDown}
+										style={styles.tagInput}
 									/>
 								</Segment>
-							</Form.Field>
+							</Grid.Row>
+							{this.state.success ? (
+								<Grid.Row>
+									<Message
+										success
+										header="Success"
+										content="Posted!"
+										style={styles.message}
+									/>
+								</Grid.Row>
+							) : (
+								''
+							)}
 
-							<Form.Field>
-								<Message success header="Success" content="Posted!" />
-							</Form.Field>
-
-							<Form.Field
-								as={Button}
-								className="addPost-button"
-								disabled={false}
-								onClick={this.onSubmit}
-								animated="vertical"
-								size="big"
-								primary
-							>
-								<Button.Content visible>Submit</Button.Content>
-								<Button.Content hidden>
-									<FontAwesomeIcon icon={['fas', 'check']} size="1x" />
-								</Button.Content>
-							</Form.Field>
-						</Form>
+							<Grid.Row>
+								<Button
+									disabled={false}
+									onClick={this.onSubmit}
+									animated="vertical"
+									size="big"
+									primary
+									style={styles.button}
+								>
+									<Button.Content visible>Submit</Button.Content>
+									<Button.Content hidden>
+										<FontAwesomeIcon icon={['fas', 'check']} size="1x" />
+									</Button.Content>
+								</Button>
+							</Grid.Row>
+						</Grid>
 					</Card.Content>
 				</Card>
 			</div>
