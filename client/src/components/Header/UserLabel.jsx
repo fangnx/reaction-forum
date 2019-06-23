@@ -1,15 +1,15 @@
 import React from 'react';
-import { Menu, Label, Image } from 'semantic-ui-react';
+import { Label, Image } from 'semantic-ui-react';
 
 class UserLabel extends React.Component {
 	render() {
 		return (
-			<Menu.Item>
-				<span>
-					<Image avatar src={this.props.userAvatar} alt="" />
+			<span>
+				<Label as="a" image style={{ fontSize: '18px' }}>
+					<Image src={this.props.userAvatar} />
 					{this.props.userName}
-				</span>
-			</Menu.Item>
+				</Label>
+			</span>
 		);
 	}
 }

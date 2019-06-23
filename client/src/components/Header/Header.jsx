@@ -1,8 +1,17 @@
+/**
+ * Header.jsx
+ * @author fangnx
+ * @description
+ * @created 2019-05-02T20:29:23.164Z-04:00
+ * @copyright
+ * @last-modified 2019-06-23T18:42:56.682Z-04:00
+ */
+
 import React from 'react';
 import { HashRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Dropdown, Icon, Button } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
 import { logoutUser } from '../../actions/loginSignoutActions';
@@ -19,7 +28,7 @@ class Header extends React.Component {
 		};
 	}
 
-	handleLogout = e => {
+	onLogout = e => {
 		e.preventDefault();
 		this.props.logoutUser();
 	};
@@ -68,12 +77,26 @@ class Header extends React.Component {
 
 					<Menu.Menu position="right" className="header-menu-rightmenu">
 						{isLoggedIn ? (
-							<Menu.Item>
-								<UserLabel
-									userName={this.props.auth.user.name}
-									userAvatar={this.props.auth.user.avatar}
-								/>
-							</Menu.Item>
+							<React.Fragment>
+								<Menu.Item>
+									<UserLabel
+										userName={this.props.auth.user.name}
+										userAvatar={this.props.auth.user.avatar}
+									/>
+									<Icon
+										as={Dropdown}
+										name="dropdown"
+										style={{ background: 'none' }}
+									>
+										<Dropdown.Menu>
+											<Dropdown.Item>View User Info</Dropdown.Item>
+											<Dropdown.Item onClick={this.onLogout}>
+												Log Out
+											</Dropdown.Item>
+										</Dropdown.Menu>
+									</Icon>
+								</Menu.Item>
+							</React.Fragment>
 						) : (
 							<React.Fragment>
 								<Menu.Item
