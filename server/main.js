@@ -5,13 +5,13 @@ import connectMongo from 'connect-mongo';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import cors from 'cors';
-import flash from 'connect-flash';
 
 import config from '../config/config';
 import path from 'path';
 
 import { users } from './api/userApi';
 import { posts } from './api/postApi';
+import { images } from './api/imageApi';
 
 const app = new express();
 
@@ -55,8 +55,6 @@ app.use(
 	})
 );
 
-app.use(flash());
-
 // Passport.js auth setup
 app.use(passport.initialize());
 app.use(passport.session());
@@ -84,7 +82,9 @@ const strategy = new JwtStrategy(opts, (jwt_payload, done) => {
 
 passport.use(strategy);
 
+// API Routes
 app.use('/api/users', users);
 app.use('/api/posts', posts);
+app.use('/api/images', images);
 
 app.listen(port, () => console.log(`App listening on port ${port} !`));

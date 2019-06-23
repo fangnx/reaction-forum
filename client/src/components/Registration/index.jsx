@@ -7,6 +7,7 @@ import {
 	Card,
 	Form,
 	Input,
+	Image,
 	Dropdown,
 	Message,
 	Transition
@@ -14,6 +15,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Registration.css';
 import { registerUser } from '../../actions/registerActions';
+import axios from 'axios';
 
 const genderOptions = [
 	{ key: 'm', text: 'Male', value: 'm' },
@@ -30,6 +32,7 @@ class Registration extends React.Component {
 			gender: '',
 			password: '',
 			passwordRe: '',
+			avatar: '',
 			checked: false,
 			errors: {},
 			success: false,
@@ -63,6 +66,21 @@ class Registration extends React.Component {
 
 	onCheck = () => {
 		this.setState({ checked: !this.state.checked });
+	};
+
+	onUploadAvatar = e => {
+		const imageInfo = new FormData();
+		// Generate image name based on the current timestamp
+		imageInfo.append('name', 'avatar-image-' + Date.now());
+		imageInfo.append('imageData', e.target.files[0]);
+
+		axios
+			.post('http://localhost:5000/api/images/uploadavatar', imageInfo)
+			.then(value => {
+				console.log(value);
+				this.setState({ avatar: URL.createObjectURL(e.target.files[0]) });
+			})
+			.catch(err => console.log(err));
 	};
 
 	onSubmit = e => {
@@ -173,7 +191,12 @@ class Registration extends React.Component {
 									<label for="avatar" className="registration-field-text">
 										Avatar
 									</label>
-									<Input id="avatar" type="file" />
+									<Input
+										id="avatar"
+										type="file"
+										onChange={this.onUploadAvatar}
+									/>
+									<img src={this.state.avatar} />
 								</Form.Field>
 
 								<Form.Field
