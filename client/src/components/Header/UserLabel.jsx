@@ -5,10 +5,10 @@ class UserLabel extends React.Component {
 	render() {
 		return (
 			<Menu.Item>
-				<Label as="a" color="teal" size="big" image>
-					<Image src={this.props.userAvatar} />
-					<span>{this.props.userName}</span>
-				</Label>
+				<span>
+					<Image avatar src={this.props.userAvatar} alt="" />
+					{this.props.userName}
+				</span>
 			</Menu.Item>
 		);
 	}

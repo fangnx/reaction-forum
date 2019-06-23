@@ -14,7 +14,7 @@ import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { faCheck, faWater, faPlus } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import PostBoard from './components/PostBoard';
 import UserPostBoard from './components/UserPostBoard';
 import AddPost from './components/AddPost';

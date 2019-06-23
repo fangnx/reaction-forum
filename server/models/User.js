@@ -21,8 +21,7 @@ const UserSchema = new Schema({
 		required: true
 	},
 	avatar: {
-		type: Schema.Types.ObjectId,
-		ref: 'avatarimages',
+		type: String,
 		required: false
 	}
 });

@@ -1,3 +1,12 @@
+/**
+ * userApi.js
+ * @author fangnx
+ * @description
+ * @created 2019-05-21T22:11:28.067Z-04:00
+ * @copyright
+ * @last-modified 2019-06-23T18:02:05.198Z-04:00
+ */
+
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -6,6 +15,7 @@ import User from '../models/User';
 import AvatarImage from '../models/AvatarImage';
 import { validateRegisterInputs } from '../validators/register';
 import { validateLoginInputs } from '../validators/login';
+import { getValues } from '@firebase/util';
 
 const router = express.Router();
 
@@ -62,11 +72,12 @@ router.post('/login', (req, res) => {
 
 		bcrypt.compare(password, user.password).then(isMatch => {
 			if (isMatch) {
+				// Include useful User attributes
 				const payload = {
 					id: user.id,
 					name: user.name,
 					email: user.email,
-					avatarImage: user.avatarImage
+					avatar: user.avatar
 				};
 				// Sign token
 				jwt.sign(
@@ -93,9 +104,7 @@ router.post('/login', (req, res) => {
 
 // Get Avatar.ImageData of a User
 router.post('/avatarimagedata', (req, res) => {
-	User.findOne({ email: req.body.email }).then(value =>
-		AvatarImage.findOne({ _id: value.avatar }).then(value => value.imageData)
-	);
+	User.findOne({ email: req.body.email }).then(value => res.json(value.avatar));
 });
 
 export { router as users };

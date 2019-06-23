@@ -4,7 +4,7 @@
  * @description
  * @created 2019-06-02T16:22:08.107Z-04:00
  * @copyright
- * @last-modified 2019-06-23T15:34:04.168Z-04:00
+ * @last-modified 2019-06-23T17:59:22.842Z-04:00
  */
 
 import axios from 'axios';
@@ -53,9 +53,10 @@ export const logoutUser = () => dispatch => {
 };
 
 export const getAvatarData = data => {
-	axios
+	return axios
 		.post('http://localhost:5000/api/users/avatarimagedata', data)
 		.then(res => {
-			console.log('a');
-		});
+			return res;
+		})
+		.catch(err => console.log(err));
 };

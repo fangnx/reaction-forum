@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Registration.css';
 import { registerUser } from '../../actions/registerActions';
 import axios from 'axios';
+import { storage } from '../../firebase-config';
 
 const genderOptions = [
 	{ key: 'm', text: 'Male', value: 'm' },
@@ -33,7 +34,6 @@ class Registration extends React.Component {
 			password: '',
 			passwordRe: '',
 			avatar: '',
-			avatarImage: '',
 			checked: false,
 			errors: {},
 			success: false,
@@ -70,19 +70,44 @@ class Registration extends React.Component {
 	};
 
 	onUploadAvatar = e => {
-		const imageInfo = new FormData();
-		// Generate image name based on the current timestamp
-		imageInfo.append('name', 'avatar-image-' + Date.now());
-		imageInfo.append('imageData', e.target.files[0]);
-		this.setState({ avatarImage: URL.createObjectURL(e.target.files[0]) });
+		const imageName = 'firebase-image-' + Date.now();
+		const uploadImage = storage
+			.ref(`images/${imageName}`)
+			.put(e.target.files[0]);
 
-		axios
-			.post('http://localhost:5000/api/images/uploadavatar', imageInfo)
-			.then(value => {
-				console.log(value);
-				this.setState({ avatar: value.data.document._id });
-			})
-			.catch(err => console.log(err));
+		uploadImage.on(
+			'state_changed',
+			snapshot => {},
+			error => alert(error),
+			() => {
+				storage
+					.ref('images')
+					.child(imageName)
+					.getDownloadURL()
+					.then(url => {
+						this.setState({
+							avatar: url
+						});
+
+						const avatarImage = {
+							name: imageName,
+							imageData: url
+						};
+
+						axios
+							.post(
+								'http://localhost:5000/api/images/uploadavatar',
+								avatarImage
+							)
+							.then(value => {
+								if (value.data.success) {
+									alert('Avatar image uploaded!');
+								}
+							})
+							.catch(err => alert(err));
+					});
+			}
+		);
 	};
 
 	onSubmit = e => {
@@ -96,9 +121,12 @@ class Registration extends React.Component {
 			avatar: this.state.avatar
 		};
 		console.log(newUser);
+		this.props.registerUser(newUser);
 	};
 
 	render() {
+		console.log(this.state);
+
 		const errors = this.state.errors;
 		const isSuccess = this.state.success;
 		const { visible } = this.state;
@@ -199,7 +227,7 @@ class Registration extends React.Component {
 										type="file"
 										onChange={this.onUploadAvatar}
 									/>
-									<Image src={this.state.avatarImage} />
+									<Image src={this.state.avatar} />
 								</Form.Field>
 
 								<Form.Field

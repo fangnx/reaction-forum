@@ -2,10 +2,10 @@ import React from 'react';
 import { HashRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Menu, Label, Dropdown } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
-import { logoutUser, getAvatarData } from '../../actions/loginSignoutActions';
+import { logoutUser } from '../../actions/loginSignoutActions';
 import { store } from '../../store';
 import UserLabel from './UserLabel';
 
@@ -14,7 +14,8 @@ class Header extends React.Component {
 		super();
 		this.state = {
 			isLoggedIn: false,
-			userName: ''
+			userName: '',
+			userAvatar: ''
 		};
 	}
 
@@ -26,12 +27,9 @@ class Header extends React.Component {
 	componentDidMount() {
 		if (store.getState().auth.isAuthenticated) {
 			this.setState({
-				isLoggedIn: true,
-				userName: store.getState().auth.user['name'],
-				userAvatar: store.getState().auth.user['avatar']
+				isLoggedIn: true
 			});
 		}
-		this.getUserAvatar();
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -45,13 +43,7 @@ class Header extends React.Component {
 				isLoggedIn: false
 			});
 		}
-	}
-
-	getUserAvatar() {
-		console.log('a');
-		getAvatarData({ email: this.props.auth.user['email'] }).then(res =>
-			console.log(res)
-		);
+		console.log(this.state);
 	}
 
 	render() {
@@ -77,22 +69,9 @@ class Header extends React.Component {
 					<Menu.Menu position="right" className="header-menu-rightmenu">
 						{isLoggedIn ? (
 							<Menu.Item>
-								<Label as="a" color="teal" size="big" image>
-									<span>{this.props.auth.user['name']}</span>
-
-									<Dropdown>
-										<Dropdown.Menu floating>
-											<Dropdown.Item text="View User Info" />
-
-											<Dropdown.Item onClick={this.handleLogout} name="logout">
-												<span>Log Out</span>
-											</Dropdown.Item>
-										</Dropdown.Menu>
-									</Dropdown>
-								</Label>
 								<UserLabel
-									userName={this.props.auth.user['name']}
-									userAvatar={this.props.auth.user['avatarImage']}
+									userName={this.props.auth.user.name}
+									userAvatar={this.props.auth.user.avatar}
 								/>
 							</Menu.Item>
 						) : (

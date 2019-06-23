@@ -20,6 +20,7 @@
     "express": "^4.16.4",
     "express-formidable": "^1.2.0",
     "express-session": "^1.16.1",
+    "firebase": "^6.2.2",
     "fs": "0.0.1-security",
     "gulp": "^3.9.1",
     "is-empty": "^1.2.0",
