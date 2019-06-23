@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import { Menu, Label, Dropdown } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
-import { logoutUser } from '../../actions/loginSignoutActions';
+import { logoutUser, getAvatarData } from '../../actions/loginSignoutActions';
 import { store } from '../../store';
+import UserLabel from './UserLabel';
 
 class Header extends React.Component {
 	constructor() {
@@ -23,33 +24,38 @@ class Header extends React.Component {
 	};
 
 	componentDidMount() {
-		console.log(store.getState());
 		if (store.getState().auth.isAuthenticated) {
 			this.setState({
 				isLoggedIn: true,
-				userName: store.getState().auth.user['name']
+				userName: store.getState().auth.user['name'],
+				userAvatar: store.getState().auth.user['avatar']
 			});
 		}
+		this.getUserAvatar();
 	}
 
 	componentWillReceiveProps(nextProps) {
 		console.log(nextProps.auth);
 		if (nextProps.auth.isAuthenticated) {
 			this.setState({
-				isLoggedIn: true,
-				userName: nextProps.auth.user['name']
+				isLoggedIn: true
 			});
 		} else {
 			this.setState({
-				isLoggedIn: false,
-				userName: ''
+				isLoggedIn: false
 			});
 		}
 	}
 
+	getUserAvatar() {
+		console.log('a');
+		getAvatarData({ email: this.props.auth.user['email'] }).then(res =>
+			console.log(res)
+		);
+	}
+
 	render() {
 		const { isLoggedIn } = this.state;
-		const { userName } = this.state;
 
 		return (
 			<HashRouter>
@@ -72,7 +78,7 @@ class Header extends React.Component {
 						{isLoggedIn ? (
 							<Menu.Item>
 								<Label as="a" color="teal" size="big" image>
-									<span>{userName}</span>
+									<span>{this.props.auth.user['name']}</span>
 
 									<Dropdown>
 										<Dropdown.Menu floating>
@@ -84,6 +90,10 @@ class Header extends React.Component {
 										</Dropdown.Menu>
 									</Dropdown>
 								</Label>
+								<UserLabel
+									userName={this.props.auth.user['name']}
+									userAvatar={this.props.auth.user['avatarImage']}
+								/>
 							</Menu.Item>
 						) : (
 							<React.Fragment>

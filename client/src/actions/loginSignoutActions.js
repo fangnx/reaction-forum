@@ -1,3 +1,12 @@
+/**
+ * loginSignoutActions.js
+ * @author fangnx
+ * @description
+ * @created 2019-06-02T16:22:08.107Z-04:00
+ * @copyright
+ * @last-modified 2019-06-23T15:34:04.168Z-04:00
+ */
+
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import setAuthToken from '../utils/setAuthToken';
@@ -41,4 +50,12 @@ export const logoutUser = () => dispatch => {
 		type: AUTH_ERRORS,
 		payload: {}
 	});
+};
+
+export const getAvatarData = data => {
+	axios
+		.post('http://localhost:5000/api/users/avatarimagedata', data)
+		.then(res => {
+			console.log('a');
+		});
 };

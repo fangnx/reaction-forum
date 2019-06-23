@@ -33,6 +33,7 @@ class Registration extends React.Component {
 			password: '',
 			passwordRe: '',
 			avatar: '',
+			avatarImage: '',
 			checked: false,
 			errors: {},
 			success: false,
@@ -73,12 +74,13 @@ class Registration extends React.Component {
 		// Generate image name based on the current timestamp
 		imageInfo.append('name', 'avatar-image-' + Date.now());
 		imageInfo.append('imageData', e.target.files[0]);
+		this.setState({ avatarImage: URL.createObjectURL(e.target.files[0]) });
 
 		axios
 			.post('http://localhost:5000/api/images/uploadavatar', imageInfo)
 			.then(value => {
 				console.log(value);
-				this.setState({ avatar: URL.createObjectURL(e.target.files[0]) });
+				this.setState({ avatar: value.data.document._id });
 			})
 			.catch(err => console.log(err));
 	};
@@ -90,9 +92,10 @@ class Registration extends React.Component {
 			email: this.state.email,
 			gender: this.state.gender,
 			password: this.state.password,
-			passwordRe: this.state.passwordRe
+			passwordRe: this.state.passwordRe,
+			avatar: this.state.avatar
 		};
-		this.props.registerUser(newUser);
+		console.log(newUser);
 	};
 
 	render() {
@@ -196,7 +199,7 @@ class Registration extends React.Component {
 										type="file"
 										onChange={this.onUploadAvatar}
 									/>
-									<img src={this.state.avatar} />
+									<Image src={this.state.avatarImage} />
 								</Form.Field>
 
 								<Form.Field

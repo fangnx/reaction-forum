@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import keys from '../../config/config';
 import User from '../models/User';
+import AvatarImage from '../models/AvatarImage';
 import { validateRegisterInputs } from '../validators/register';
 import { validateLoginInputs } from '../validators/login';
 
@@ -26,7 +27,8 @@ router.post('/register', (req, res) => {
 		name: req.body.name,
 		email: req.body.email,
 		gender: req.body.gender,
-		password: req.body.password
+		password: req.body.password,
+		avatar: req.body.avatar
 	});
 
 	// Encrpyt password
@@ -63,7 +65,8 @@ router.post('/login', (req, res) => {
 				const payload = {
 					id: user.id,
 					name: user.name,
-					email: user.email
+					email: user.email,
+					avatarImage: user.avatarImage
 				};
 				// Sign token
 				jwt.sign(
@@ -86,6 +89,13 @@ router.post('/login', (req, res) => {
 			}
 		});
 	});
+});
+
+// Get Avatar.ImageData of a User
+router.post('/avatarimagedata', (req, res) => {
+	User.findOne({ email: req.body.email }).then(value =>
+		AvatarImage.findOne({ _id: value.avatar }).then(value => value.imageData)
+	);
 });
 
 export { router as users };

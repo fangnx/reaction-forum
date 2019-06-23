@@ -14,4 +14,4 @@ const AvatarImage = new Schema({
 	}
 });
 
-export default mongoose.model('avatars', AvatarImage);
+export default mongoose.model('avatarimages', AvatarImage);

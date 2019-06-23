@@ -63,7 +63,6 @@ class PostView extends React.Component {
 
 	render() {
 		const { pid, title, content, timeStamp, tags } = this.props;
-		console.log(pid);
 		if (this.state.shouldEdit) {
 			this.props.dispatch({
 				type: 'EDIT_POST',
