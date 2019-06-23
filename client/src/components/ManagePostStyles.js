@@ -15,9 +15,7 @@ export const ManagePostStyles = {
 		fontSize: '1em'
 	},
 	tags: {},
-	tagInput: {
-		display: 'inline !important'
-	},
+	tagInput: {},
 	message: {},
 	button: {},
 	iconGroup: { background: 'transparent', padding: 'none', float: 'right' },

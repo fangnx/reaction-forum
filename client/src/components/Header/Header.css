@@ -1,17 +1,17 @@
 .header-menu {
-  height: 8vh;
-  /* font-family: monospace !important; */
+	height: 8vh;
+	/* font-family: monospace !important; */
 }
 
 .header-menu-rightmenu {
-  font-size: 18px !important;
+	font-size: 18px !important;
 }
 
 .header-menu-rightmenu .item:hover {
-  font-style: oblique;
+	font-style: oblique;
 }
 
 .dropdown .menu {
-  font-size: 14px !important;
-  background: rgba(255, 255, 255, 0.8) !important;
+	font-size: 14px !important;
+	background: rgba(255, 255, 255, 0.8) !important;
 }

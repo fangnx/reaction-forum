@@ -13,27 +13,19 @@ import {
 	Message
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '../ManagePost.css';
 import { ManagePostStyles as styles } from '../ManagePostStyles';
 import dateFormat from 'dateformat';
 import { addPost } from '../../actions/postActions';
 import { store } from '../../store';
-import { mergeStyles, capitalizeTag } from '../../utils/commonUtils';
-
-const SPACE_KEY = 32;
-const COMMA_KEY = 188;
-const BACKSPACE_KEY = 8;
-const tagColors = [
-	'orange',
-	'yellow',
-	'olive',
-	'green',
-	'teal',
-	'blue',
-	'purple',
-	'brown',
-	'grey'
-];
-
+import {
+	mergeStyles,
+	capitalizeTag,
+	SPACE_KEY,
+	COMMA_KEY,
+	BACKSPACE_KEY,
+	TAG_COLORS
+} from '../../utils/commonUtils';
 class AddPost extends React.Component {
 	constructor() {
 		super();
@@ -173,7 +165,7 @@ class AddPost extends React.Component {
 								>
 									<Label.Group size="large" style={styles.tagList}>
 										{this.state.tags.map((tag, index) => (
-											<Label color={tagColors[index % tagColors.length]}>
+											<Label color={TAG_COLORS[index % TAG_COLORS.length]}>
 												{capitalizeTag(tag)}
 												<Icon name="delete" />
 											</Label>
