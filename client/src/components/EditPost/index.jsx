@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ReactMarkdown from 'react-markdown';
 import {
 	Label,
 	Card,
@@ -12,9 +13,11 @@ import {
 	Message
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ManagePostStyles as styles } from '../ManagePostStyles';
 import dateFormat from 'dateformat';
 import { editPost } from '../../actions/postActions';
 import { store } from '../../store';
+import { mergeStyles, capitalizeTag } from '../../utils/commonUtils';
 
 const SPACE_KEY = 32;
 const COMMA_KEY = 188;
@@ -30,39 +33,6 @@ const tagColors = [
 	'brown',
 	'grey'
 ];
-
-const styles = {
-	title: {
-		marginTop: '15px',
-		width: '100%',
-		fontFamily: 'Cairo',
-		fontSize: '1.5em',
-		fontWeight: '600'
-	},
-	content: {
-		marginTop: '15px',
-		width: '100%',
-		fontSize: '1em',
-		background: 'rgba(245, 245, 245)'
-	},
-	tags: {
-		marginTop: '15px',
-		width: '100%',
-		border: '1px solid #ddd',
-		borderRadius: '0px',
-		boxShadow: 'none',
-		background: 'rgba(245, 245, 245)'
-	},
-	tagInput: {
-		display: 'inline !important'
-	},
-	message: {
-		width: '100%'
-	},
-	button: {},
-	iconGroup: { background: 'transparent', padding: 'none', float: 'right' },
-	icon: { margin: '0' }
-};
 
 class EditPost extends React.Component {
 	constructor() {
@@ -82,10 +52,6 @@ class EditPost extends React.Component {
 		this.onKeyUp = this.onKeyUp.bind(this);
 		this.onKeyDown = this.onKeyDown.bind(this);
 		this.appendTag = this.appendTag.bind(this);
-	}
-
-	capitalizeTag(word) {
-		return word.charAt(0).toUpperCase() + word.slice(1);
 	}
 
 	onKeyUp(e) {
@@ -126,7 +92,6 @@ class EditPost extends React.Component {
 	};
 
 	componentDidMount() {
-		console.log(store.getState());
 		this.setState({
 			pid: this.props.pid,
 			title: this.props.title,
@@ -161,8 +126,6 @@ class EditPost extends React.Component {
 	};
 
 	render() {
-		const { success } = this.state;
-
 		return (
 			<div className="postView-wrapper">
 				<Card className="postView-card" fluid>
@@ -173,12 +136,14 @@ class EditPost extends React.Component {
 									Title
 								</Label>
 
-								<Input
+								<Segment
+									as={TextArea}
 									id="title"
 									value={this.state.title}
 									onChange={this.onChange}
 									placeholder=""
-									style={styles.title}
+									rows="1"
+									style={mergeStyles([styles.field, styles.title])}
 								/>
 							</Grid.Row>
 
@@ -187,14 +152,19 @@ class EditPost extends React.Component {
 									Content
 								</Label>
 
-								<TextArea
+								<Segment
+									as={TextArea}
 									id="content"
 									value={this.state.content}
 									onChange={this.onChange}
 									placeholder="Write whatever you want ;)"
 									rows="12"
-									style={styles.content}
+									style={mergeStyles([styles.field, styles.content])}
 								/>
+
+								<Segment style={mergeStyles([styles.field, styles.content])}>
+									<ReactMarkdown source={this.state.content} />
+								</Segment>
 							</Grid.Row>
 
 							<Grid.Row>
@@ -204,11 +174,14 @@ class EditPost extends React.Component {
 									</Label>
 								</div>
 
-								<Segment style={styles.tags}>
+								<Segment
+									id="tags"
+									style={mergeStyles([styles.field, styles.tags])}
+								>
 									<Label.Group size="large" className="addPost-tagList">
 										{this.state.tags.map((tag, index) => (
 											<Label color={tagColors[index % tagColors.length]}>
-												{this.capitalizeTag(tag)}
+												{capitalizeTag(tag)}
 												<Icon name="delete" />
 											</Label>
 										))}
@@ -220,7 +193,6 @@ class EditPost extends React.Component {
 										onChange={this.onChange}
 										onKeyUp={this.onKeyUp}
 										onKeyDown={this.onKeyDown}
-										style={styles.tagInput}
 									/>
 								</Segment>
 							</Grid.Row>

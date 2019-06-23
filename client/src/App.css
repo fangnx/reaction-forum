@@ -25,3 +25,7 @@
 .app-content {
 	padding-top: 15vh;
 }
+
+input {
+	background: rgb(245, 245, 245);
+}
