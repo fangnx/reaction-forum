@@ -4,7 +4,7 @@
  * @description
  * @created 2019-05-21T22:11:28.067Z-04:00
  * @copyright
- * @last-modified 2019-06-23T18:02:05.198Z-04:00
+ * @last-modified 2019-06-23T20:42:23.591Z-04:00
  */
 
 import express from 'express';
@@ -12,10 +12,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import keys from '../../config/config';
 import User from '../models/User';
-import AvatarImage from '../models/AvatarImage';
 import { validateRegisterInputs } from '../validators/register';
 import { validateLoginInputs } from '../validators/login';
-import { getValues } from '@firebase/util';
 
 const router = express.Router();
 
@@ -70,39 +68,42 @@ router.post('/login', (req, res) => {
 			return res.status(404).json({ emailnotfound: 'Email not found' });
 		}
 
-		bcrypt.compare(password, user.password).then(isMatch => {
-			if (isMatch) {
-				// Include useful User attributes
-				const payload = {
-					id: user.id,
-					name: user.name,
-					email: user.email,
-					avatar: user.avatar
-				};
-				// Sign token
-				jwt.sign(
-					payload,
-					keys.secretOrKey,
-					{
-						expiresIn: 31556926
-					},
-					(err, token) => {
-						res.json({
-							success: true,
-							token: 'Bearer ' + token
-						});
-					}
-				);
-			} else {
-				return res
-					.status(400)
-					.json({ passwordincorrect: 'Password incorrect' });
-			}
-		});
+		bcrypt
+			.compare(password, user.password)
+			.then(isMatch => {
+				if (isMatch) {
+					// Include useful User attributes
+					const payload = {
+						id: user.id,
+						name: user.name,
+						email: user.email,
+						avatar: user.avatar
+					};
+					// Sign token
+					jwt.sign(
+						payload,
+						keys.secretOrKey,
+						{
+							expiresIn: 31556926
+						},
+						(err, token) => {
+							res.json({
+								success: true,
+								token: 'Bearer ' + token
+							});
+						}
+					);
+				} else {
+					return res
+						.status(400)
+						.json({ passwordincorrect: 'Password incorrect' });
+				}
+			})
+			.catch(err => console.log(err));
 	});
 });
 
-// Get Avatar.ImageData of a User
+// Get Avatar of a User
 router.post('/avatarimagedata', (req, res) => {
 	User.findOne({ email: req.body.email }).then(value => res.json(value.avatar));
 });
