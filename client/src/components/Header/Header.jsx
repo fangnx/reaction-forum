@@ -4,20 +4,27 @@
  * @description
  * @created 2019-05-02T20:29:23.164Z-04:00
  * @copyright
- * @last-modified 2019-06-23T18:42:56.682Z-04:00
+ * @last-modified 2019-06-23T20:32:56.672Z-04:00
  */
 
 import React from 'react';
 import { HashRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Menu, Dropdown, Icon, Button } from 'semantic-ui-react';
+import { Menu, Dropdown, Icon } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
 import { logoutUser } from '../../actions/loginSignoutActions';
 import { store } from '../../store';
 import UserLabel from './UserLabel';
 
+const styles = {
+	dropdownMenu: {
+		marginRight: '20px',
+		marginTop: '25px',
+		background: 'rgba(245, 245, 245, 0.9)'
+	}
+};
 class Header extends React.Component {
 	constructor() {
 		super();
@@ -88,7 +95,7 @@ class Header extends React.Component {
 										name="dropdown"
 										style={{ background: 'none' }}
 									>
-										<Dropdown.Menu>
+										<Dropdown.Menu direction="left" style={styles.dropdownMenu}>
 											<Dropdown.Item>View User Info</Dropdown.Item>
 											<Dropdown.Item onClick={this.onLogout}>
 												Log Out
