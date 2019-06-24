@@ -1,5 +1,7 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import Post from '../models/Post';
+import Comment from '../models/Comment';
 
 const router = express.Router();
 
@@ -53,7 +55,45 @@ router.post('/userposts', (req, res) => {
 	Post.find({
 		authorEmail: req.body.userEmail
 	}).then(v => res.json(v));
-	// Post.find({ author: 'nxxinf' }).then(v => res.json(v));
+});
+
+// Add Comment to a Post
+router.post('/addComment', (req, res) => {
+	Post.findOne({ _id: req.body.pid }).then(post => {
+		if (!post) {
+			return res.status(404).json({ postnotfound: 'Post not found' });
+		}
+
+		const newComment = new Comment({
+			content: req.body.content,
+			pid: req.body.pid,
+			author: req.body.author,
+			authorEmail: req.body.authorEmail,
+			timeStamp: req.body.timeStamp
+		});
+
+		newComment
+			.save()
+			.then(comment => res.json(comment))
+			.catch(err => console.log(err));
+	});
+});
+
+/**
+ * Get all Comments of a Post
+ */
+router.post('/postcomments', (req, res) => {
+	Post.findOne({ _id: req.body.pid }).then(post => {
+		if (!post) {
+			return res.status(404).json({ postnotfound: 'Post not found' });
+		}
+		Comment.find({ pid: req.body.pid })
+			.then(comments => {
+				console.log(comments);
+				res.json(comments);
+			})
+			.catch(err => console.log(err));
+	});
 });
 
 export { router as posts };

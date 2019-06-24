@@ -1,3 +1,12 @@
+/**
+ * PostView.jsx
+ * @author fangnx
+ * @description
+ * @created 2019-06-14T01:31:06.070Z-04:00
+ * @copyright
+ * @last-modified 2019-06-24T00:15:48.857Z-04:00
+ */
+
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,23 +18,15 @@ import {
 	Icon,
 	Modal,
 	Button,
-	Segment
+	Segment,
+	Feed
 } from 'semantic-ui-react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../App.css';
 import './PostView.css';
-
-const tagColors = [
-	'orange',
-	'yellow',
-	'olive',
-	'green',
-	'teal',
-	'blue',
-	'purple',
-	'brown',
-	'grey'
-];
+import dateFormat from 'dateformat';
+import { addComment, getAllCommentsOfPost } from '../../actions/postActions';
+import CommentSection from './CommentSection';
+import { TAG_COLORS } from '../../utils/commonUtils';
 
 const styles = {
 	column: {
@@ -39,8 +40,13 @@ const styles = {
 class PostView extends React.Component {
 	constructor() {
 		super();
-		this.state = { shouldRedirect: false };
+		this.state = {
+			comments: [],
+			newCommentContent: 'another sample content',
+			shouldRedirect: false
+		};
 		this.directToEditPost = this.directToEditPost.bind(this);
+		// this.setState({ newCommentContent: 'sample content' });
 	}
 
 	capitalizeTag(word) {
@@ -55,10 +61,38 @@ class PostView extends React.Component {
 		this.setState({ deleteModalOpened: false });
 	};
 
-	onDelete = async e => {
+	onDelete = e => {
 		e.preventDefault();
 		this.setState({ deleteModalOpened: true });
 		// deletePost({ pid: this.props.pid }).then();
+	};
+
+	onAddComment = e => {
+		e.preventDefault();
+
+		const newComment = {
+			content: this.state.newCommentContent,
+			pid: this.props.pid,
+			author: this.props.auth.user.name,
+			authorEmail: this.props.auth.user.email,
+			timeStamp: dateFormat(new Date(), 'isoDateTime')
+		};
+
+		addComment(newComment).then(res => {
+			if (res.status === 200) {
+				this.setState({ success: true });
+			}
+		});
+	};
+
+	componentDidMount = () => {
+		getAllCommentsOfPost({ pid: this.props.pid }).then(res => {
+			if (res.data) {
+				this.setState({ comments: res.data.map(comment => comment) }, () =>
+					console.log(this.state)
+				);
+			}
+		});
 	};
 
 	render() {
@@ -126,12 +160,20 @@ class PostView extends React.Component {
 									{this.props.tags.map((tag, index) => (
 										<Label
 											className="postView-tag"
-											color={tagColors[index % tagColors.length]}
+											key={'postView-tag-' + index}
+											color={TAG_COLORS[index % TAG_COLORS.length]}
 										>
 											{this.capitalizeTag(tag)}
 										</Label>
 									))}
 								</Label.Group>
+							</Grid.Row>
+
+							<Grid.Row>
+								<Button icon>
+									<Icon name="talk" size="large" onClick={this.onAddComment} />
+								</Button>
+								<CommentSection comments={this.state.comments} />
 							</Grid.Row>
 						</Grid>
 
@@ -166,7 +208,7 @@ class PostView extends React.Component {
 	}
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({ auth: state.auth });
 
 // const mapDispatchToProps = data => dispatch => ({
 // 	editPost: () => dispatch({ type: 'EDIT_POST', pid: data })

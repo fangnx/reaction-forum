@@ -22,16 +22,6 @@
 	font-size: 1.2em;
 }
 
-/* .postView-image {
-	display: block;
-	width: 100%;
-	height: auto;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 10px;
-	margin-bottom: 10px;
-} */
-
 .postView-viewCount-field,
 .postView-likeCount-field {
 	display: inline-block;

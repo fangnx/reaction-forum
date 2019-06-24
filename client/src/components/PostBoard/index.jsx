@@ -3,7 +3,7 @@ import Radium, { StyleRoot } from 'radium';
 import {} from 'semantic-ui-react';
 import { fadeIn, headShake } from 'react-animations';
 import { getAllPosts } from '../../actions/postActions';
-import PostView from '../PostView';
+import PostView from '../PostView/PostView';
 
 const styles = {
 	fadeIn: {
@@ -43,14 +43,14 @@ class PostBoard extends React.Component {
 			<StyleRoot>
 				<div style={styles.fadeIn}>
 					{posts.map((post, index) => (
-						<React.Fragment>
+						<React.Fragment key={index}>
 							<div
-								onClick={() =>
-									this.setState({ doAnimate: true, clickedIndex: index })
-								}
-								onAnimationEnd={() =>
-									this.setState({ doAnimate: false, clickedIndex: -1 })
-								}
+								// onClick={() =>
+								// 	this.setState({ doAnimate: true, clickedIndex: index })
+								// }
+								// onAnimationEnd={() =>
+								// 	this.setState({ doAnimate: false, clickedIndex: -1 })
+								// }
 								style={
 									this.state.doAnimate && index === this.state.clickedIndex
 										? styles.postViewAnimated
