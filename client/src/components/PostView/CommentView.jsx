@@ -4,7 +4,7 @@
  * @description
  * @created 2019-06-23T21:20:08.234Z-04:00
  * @copyright
- * @last-modified 2019-06-24T23:33:42.722Z-04:00
+ * @last-modified 2019-06-24T23:51:24.950Z-04:00
  */
 
 import React from 'react';
@@ -20,8 +20,8 @@ class CommentView extends React.Component {
 					</Feed.Label>
 					<Feed.Content style={{ marginTop: 0 }}>
 						<Feed.Summary>
-							<Feed.User>{this.props.author}</Feed.User> commented
-							<Feed.Date>{this.props.timeStamp}</Feed.Date>
+							{this.props.author}
+							{/* <Feed.Date>{this.props.timeStamp}</Feed.Date> */}
 						</Feed.Summary>
 						<Feed.Extra text>{this.props.content}</Feed.Extra>
 					</Feed.Content>

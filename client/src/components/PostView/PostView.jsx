@@ -4,7 +4,7 @@
  * @description
  * @created 2019-06-14T01:31:06.070Z-04:00
  * @copyright
- * @last-modified 2019-06-24T23:36:58.553Z-04:00
+ * @last-modified 2019-06-25T00:27:25.160Z-04:00
  */
 
 import React from 'react';
@@ -16,6 +16,8 @@ import {
 	Card,
 	Grid,
 	Icon,
+	Input,
+	TextArea,
 	Modal,
 	Button,
 	Segment,
@@ -23,10 +25,11 @@ import {
 } from 'semantic-ui-react';
 import '../../App.css';
 import './PostView.css';
+import { ManagePostStyles as managePostStyles } from '../ManagePostStyles';
 import dateFormat from 'dateformat';
 import { addComment, getAllCommentsOfPost } from '../../actions/postActions';
 import CommentSection from './CommentSection';
-import { TAG_COLORS } from '../../utils/commonUtils';
+import { TAG_COLORS, mergeStyles } from '../../utils/commonUtils';
 
 const styles = {
 	column: {
@@ -42,11 +45,10 @@ class PostView extends React.Component {
 		super();
 		this.state = {
 			comments: [],
-			newCommentContent: 'another sample content',
+			newCommentContent: '',
 			shouldRedirect: false
 		};
 		this.directToEditPost = this.directToEditPost.bind(this);
-		// this.setState({ newCommentContent: 'sample content' });
 	}
 
 	capitalizeTag(word) {
@@ -59,6 +61,10 @@ class PostView extends React.Component {
 
 	deleteModalClose = () => {
 		this.setState({ deleteModalOpened: false });
+	};
+
+	onChange = (e, data) => {
+		this.setState({ [data.id]: data.value });
 	};
 
 	onDelete = e => {
@@ -168,15 +174,40 @@ class PostView extends React.Component {
 							</Grid.Row>
 
 							<Divider style={{ marginLeft: 0, marginRight: 0 }} />
+							{this.state.comments.length ? (
+								<Grid.Row>
+									<CommentSection comments={this.state.comments} />
+								</Grid.Row>
+							) : (
+								''
+							)}
 
 							<Grid.Row>
-								<CommentSection comments={this.state.comments} />
+								<TextArea
+									as={Input}
+									id="newCommentContent"
+									value={this.state.newCommentContent}
+									onChange={this.onChange}
+									placeholder="Write your comment: "
+									rows="2"
+									icon={
+										<Button icon style={{ background: 'transparent' }}>
+											<Icon
+												name="talk"
+												size="large"
+												onClick={this.onAddComment}
+											/>
+										</Button>
+									}
+									style={{
+										width: '100%',
+										background: 'rgba(245, 245, 245)',
+										border: '1px solid #ddd',
+										boxShadow: 'none'
+									}}
+								/>
 							</Grid.Row>
 						</Grid>
-
-						<Button icon>
-							<Icon name="talk" size="large" onClick={this.onAddComment} />
-						</Button>
 
 						<Modal>
 							open={this.state.deleteModalOpened}
