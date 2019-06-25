@@ -4,7 +4,7 @@
  * @description
  * @created 2019-05-02T20:29:23.164Z-04:00
  * @copyright
- * @last-modified 2019-06-23T20:32:56.672Z-04:00
+ * @last-modified 2019-06-24T18:01:07.201Z-04:00
  */
 
 import React from 'react';
@@ -69,8 +69,12 @@ class Header extends React.Component {
 			<HashRouter>
 				<Menu inverted borderless className="header-menu">
 					<Menu.Menu>
-						<Menu.Item as={NavLink} to="/" exact name="main">
+						<Menu.Item as={NavLink} to="/forum" name="main">
 							<FontAwesomeIcon icon={['fas', 'water']} size="2x" />
+						</Menu.Item>
+
+						<Menu.Item as={NavLink} to="/" exact name="addPost">
+							ALL POSTS
 						</Menu.Item>
 
 						<Menu.Item as={NavLink} to="/myposts" name="addPost">

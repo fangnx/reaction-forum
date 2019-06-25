@@ -1,6 +1,6 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import Post from '../models/Post';
+import User from '../models/User';
 import Comment from '../models/Comment';
 
 const router = express.Router();
@@ -83,14 +83,27 @@ router.post('/addComment', (req, res) => {
  * Get all Comments of a Post
  */
 router.post('/postcomments', (req, res) => {
+	// Check if Post of the given pid exists
 	Post.findOne({ _id: req.body.pid }).then(post => {
 		if (!post) {
 			return res.status(404).json({ postnotfound: 'Post not found' });
 		}
+
+		let avatarComments = [];
 		Comment.find({ pid: req.body.pid })
-			.then(comments => {
-				console.log(comments);
-				res.json(comments);
+			.then(async comments => {
+				avatarComments = await comments.map(comment =>
+					User.findOne({ email: comment.authorEmail }).then(value => {
+						// Add authorAvatar attribute to Comment
+						comment = comment.toObject();
+						comment['authorAvatar'] = value.avatar;
+						return comment;
+					})
+				);
+				// Resolve when all promises in avatarComments have resolved
+				Promise.all(avatarComments).then(values => {
+					res.json(values);
+				});
 			})
 			.catch(err => console.log(err));
 	});

@@ -4,7 +4,7 @@
  * @description
  * @created 2019-06-14T01:31:06.070Z-04:00
  * @copyright
- * @last-modified 2019-06-24T00:15:48.857Z-04:00
+ * @last-modified 2019-06-24T23:36:58.553Z-04:00
  */
 
 import React from 'react';
@@ -19,7 +19,7 @@ import {
 	Modal,
 	Button,
 	Segment,
-	Feed
+	Divider
 } from 'semantic-ui-react';
 import '../../App.css';
 import './PostView.css';
@@ -88,9 +88,7 @@ class PostView extends React.Component {
 	componentDidMount = () => {
 		getAllCommentsOfPost({ pid: this.props.pid }).then(res => {
 			if (res.data) {
-				this.setState({ comments: res.data.map(comment => comment) }, () =>
-					console.log(this.state)
-				);
+				this.setState({ comments: res.data.map(comment => comment) });
 			}
 		});
 	};
@@ -169,18 +167,20 @@ class PostView extends React.Component {
 								</Label.Group>
 							</Grid.Row>
 
+							<Divider style={{ marginLeft: 0, marginRight: 0 }} />
+
 							<Grid.Row>
-								<Button icon>
-									<Icon name="talk" size="large" onClick={this.onAddComment} />
-								</Button>
 								<CommentSection comments={this.state.comments} />
 							</Grid.Row>
 						</Grid>
 
-						<Modal
+						<Button icon>
+							<Icon name="talk" size="large" onClick={this.onAddComment} />
+						</Button>
+
+						<Modal>
 							open={this.state.deleteModalOpened}
-							onClose={this.deleteModalClose}
-						>
+							onClose={this.deleteModalClose}>
 							<Modal.Header>Deleting your post</Modal.Header>
 							<Modal.Content image>
 								<p>Are you sure you would like to have this post removed?</p>

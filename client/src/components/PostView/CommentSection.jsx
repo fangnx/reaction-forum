@@ -4,7 +4,7 @@
  * @description
  * @created 2019-06-23T21:20:48.940Z-04:00
  * @copyright
- * @last-modified 2019-06-24T00:14:45.331Z-04:00
+ * @last-modified 2019-06-24T18:11:37.866Z-04:00
  */
 
 import React from 'react';
@@ -23,6 +23,7 @@ class CommentSection extends React.Component {
 						pid={comment.pid}
 						author={comment.author}
 						authorEmail={comment.authorEmail}
+						authorAvatar={comment.authorAvatar}
 						timeStamp={comment.timeStamp}
 					/>
 				))}
