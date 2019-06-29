@@ -42,6 +42,7 @@ class PostView extends React.Component {
 			shouldRedirect: false
 		};
 		this.directToEditPost = this.directToEditPost.bind(this);
+		this.loadComments = this.loadComments.bind(this);
 	}
 
 	capitalizeTag(word) {
@@ -78,25 +79,27 @@ class PostView extends React.Component {
 		};
 
 		addComment(newComment).then(res => {
+			console.log(res);
 			if (res.status === 200) {
-				this.setState({ success: true });
+				this.loadComments();
+			}
+		});
+	};
+
+	loadComments = async () => {
+		await getAllCommentsOfPost({ pid: this.props.pid }).then(res => {
+			if (res.data) {
+				this.setState({ comments: res.data.map(comment => comment) });
 			}
 		});
 	};
 
 	componentDidMount = async () => {
-		await getAvatarData({ email: this.props.authorEmail })
-			.then(res => {
-				if (res.data.avatar) {
-					this.setState({ authorAvatar: res.data.avatar });
-				} else {
-					this.setState({ authorAvatar: '' });
-				}
-			})
-			.catch(err => console.log(err));
-		await getAllCommentsOfPost({ pid: this.props.pid }).then(res => {
-			if (res.data) {
-				this.setState({ comments: res.data.map(comment => comment) });
+		await getAvatarData({ email: this.props.authorEmail }).then(res => {
+			if (res.data.avatar) {
+				this.setState({ authorAvatar: res.data.avatar });
+			} else {
+				this.setState({ authorAvatar: '' });
 			}
 		});
 	};
@@ -170,12 +173,16 @@ class PostView extends React.Component {
 								</Label.Group>
 							</Grid.Row>
 							<Divider
+								// horizontal
 								style={{
 									background: 'rgba(228, 228, 228, 0.2)',
-									marginLeft: 0,
-									marginRight: 0
+									marginLeft: '0px',
+									marginRight: '0px'
 								}}
-							/>{' '}
+							/>
+							<Button icon style={{ background: 'transparent' }}>
+								<Icon name="angle down" onClick={this.loadComments} />
+							</Button>
 							{this.state.comments.length ? (
 								<Grid.Row>
 									<CommentSection comments={this.state.comments} />

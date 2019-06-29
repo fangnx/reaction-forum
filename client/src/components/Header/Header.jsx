@@ -11,7 +11,7 @@ import React from 'react';
 import { HashRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Menu, Dropdown, Icon } from 'semantic-ui-react';
+import { Menu, Dropdown, Icon, Label } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
 import { logoutUser } from '../../actions/loginSignoutActions';
@@ -94,6 +94,7 @@ class Header extends React.Component {
 										userName={this.props.auth.user.name}
 										userAvatar={this.props.auth.user.avatar}
 									/>
+
 									<Icon
 										as={Dropdown}
 										name="dropdown"
@@ -116,11 +117,11 @@ class Header extends React.Component {
 									name="register"
 									color="teal"
 								>
-									<span>Register</span>
+									REGISTER
 								</Menu.Item>
 
 								<Menu.Item as={NavLink} to="/login" name="login" color="teal">
-									<span>Log In</span>
+									LOG IN
 								</Menu.Item>
 							</React.Fragment>
 						)}
