@@ -148,13 +148,6 @@ class PostView extends React.Component {
 									)}
 								</Grid.Column>
 							</Grid.Row>
-							<Divider
-								style={{
-									background: 'rgba(228, 228, 228, 0.2)',
-									marginLeft: 0,
-									marginRight: 0
-								}}
-							/>
 							<Grid.Row style={mergeStyles([styles.field, styles.title])}>
 								{this.props.title}
 							</Grid.Row>

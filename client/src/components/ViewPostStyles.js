@@ -5,10 +5,10 @@ export const ViewPostStyles = {
 		margin: '0 auto'
 	},
 	card: {
-		background: 'rgba(240, 240, 240, 98%)'
+		background: 'rgba(240, 240, 240, 96%)'
 	},
 	cardContent: {
-		width: '96%',
+		width: '97.5%',
 		margin: '0 auto'
 	},
 	field: {

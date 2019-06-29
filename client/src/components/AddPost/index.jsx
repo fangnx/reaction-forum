@@ -113,10 +113,10 @@ class AddPost extends React.Component {
 
 	render() {
 		return (
-			<div className="postView-wrapper">
-				<Card className="postView-card" fluid>
-					<Card.Content className="postView-card-content">
-						<Grid padded className="postView-card-grid">
+			<div style={styles.wrapper}>
+				<Card style={styles.card} fluid>
+					<Card.Content style={styles.cardContent}>
+						<Grid padded>
 							<Grid.Row>
 								<Label color="grey" size="large">
 									Title

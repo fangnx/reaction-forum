@@ -1,4 +1,16 @@
 export const ManagePostStyles = {
+	wrapper: {
+		width: '60%',
+		minWidth: '500px',
+		margin: '0 auto'
+	},
+	card: {
+		background: 'rgba(240, 240, 240, 96%)'
+	},
+	cardContent: {
+		width: '97.5%',
+		margin: '0 auto'
+	},
 	field: {
 		marginTop: '15px',
 		width: '100%',
