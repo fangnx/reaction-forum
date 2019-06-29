@@ -103,9 +103,21 @@ router.post('/login', (req, res) => {
 	});
 });
 
-// Get Avatar of a User
+/**
+ * Get Avatar of a User
+ * @param email
+ * @returns avatar
+ */
 router.post('/avatarimagedata', (req, res) => {
-	User.findOne({ email: req.body.email }).then(value => res.json(value.avatar));
+	User.findOne({ email: req.body.email })
+		.then(value => {
+			if (value.avatar) {
+				res.json({ avatar: value.avatar });
+			} else {
+				res.json({ avatar: '' });
+			}
+		})
+		.catch(err => console.log(err));
 });
 
 export { router as users };

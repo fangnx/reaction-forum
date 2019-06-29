@@ -24,26 +24,19 @@ import {
 	Divider
 } from 'semantic-ui-react';
 import '../../App.css';
-import './PostView.css';
-import { ManagePostStyles as managePostStyles } from '../ManagePostStyles';
+import { ViewPostStyles as styles } from '../ViewPostStyles';
 import dateFormat from 'dateformat';
 import { addComment, getAllCommentsOfPost } from '../../actions/postActions';
+import { getAvatarData } from '../../actions/loginSignoutActions';
+import UserLabel from '../Header/UserLabel';
 import CommentSection from './CommentSection';
 import { TAG_COLORS, mergeStyles } from '../../utils/commonUtils';
-
-const styles = {
-	column: {
-		paddingLeft: '0',
-		paddingRight: '0'
-	},
-	iconGroup: { background: 'transparent', padding: 'none', float: 'right' },
-	icon: { margin: '0' }
-};
 
 class PostView extends React.Component {
 	constructor() {
 		super();
 		this.state = {
+			authorAvatar: '',
 			comments: [],
 			newCommentContent: '',
 			shouldRedirect: false
@@ -91,8 +84,17 @@ class PostView extends React.Component {
 		});
 	};
 
-	componentDidMount = () => {
-		getAllCommentsOfPost({ pid: this.props.pid }).then(res => {
+	componentDidMount = async () => {
+		await getAvatarData({ email: this.props.authorEmail })
+			.then(res => {
+				if (res.data.avatar) {
+					this.setState({ authorAvatar: res.data.avatar });
+				} else {
+					this.setState({ authorAvatar: '' });
+				}
+			})
+			.catch(err => console.log(err));
+		await getAllCommentsOfPost({ pid: this.props.pid }).then(res => {
 			if (res.data) {
 				this.setState({ comments: res.data.map(comment => comment) });
 			}
@@ -111,15 +113,16 @@ class PostView extends React.Component {
 			});
 		}
 		return (
-			<div className="postView-wrapper">
-				<Card className="postView-card" fluid>
-					<Card.Content className="postView-card-content">
-						<Grid padded className="postView-card-grid">
-							<Grid.Row columns={2}>
+			<div style={styles.wrapper}>
+				<Card style={styles.card} fluid>
+					<Card.Content style={styles.cardContent}>
+						<Grid padded>
+							<Grid.Row columns={2} style={mergeStyles([styles.field])}>
 								<Grid.Column style={styles.column} width={14}>
-									<Label as="a" size="large" color="grey">
-										{this.props.author}
-									</Label>
+									<UserLabel
+										userName={this.props.author}
+										userAvatar={this.state.authorAvatar}
+									/>
 								</Grid.Column>
 
 								<Grid.Column style={styles.column} width={2}>
@@ -145,20 +148,21 @@ class PostView extends React.Component {
 									)}
 								</Grid.Column>
 							</Grid.Row>
-							<hr className="postView-card-divider" />
-
-							<Grid.Row className="postView-title-field">
+							<Divider
+								style={{
+									background: 'rgba(228, 228, 228, 0.2)',
+									marginLeft: 0,
+									marginRight: 0
+								}}
+							/>
+							<Grid.Row style={mergeStyles([styles.field, styles.title])}>
 								{this.props.title}
 							</Grid.Row>
-							<hr className="postView-card-divider" />
-
-							<Grid.Row className="postView-content-field">
-								<Segment style={{ width: '100%' }}>
+							<Grid.Row>
+								<Segment style={mergeStyles([styles.field, styles.content])}>
 									<ReactMarkdown source={this.props.content} />
 								</Segment>
 							</Grid.Row>
-							<hr className="postView-card-divider" />
-
 							<Grid.Row className="postView-tags-field">
 								<Label.Group size="medium" className="postView-tagList">
 									{this.props.tags.map((tag, index) => (
@@ -172,8 +176,13 @@ class PostView extends React.Component {
 									))}
 								</Label.Group>
 							</Grid.Row>
-
-							<Divider style={{ marginLeft: 0, marginRight: 0 }} />
+							<Divider
+								style={{
+									background: 'rgba(228, 228, 228, 0.2)',
+									marginLeft: 0,
+									marginRight: 0
+								}}
+							/>{' '}
 							{this.state.comments.length ? (
 								<Grid.Row>
 									<CommentSection comments={this.state.comments} />
@@ -181,7 +190,6 @@ class PostView extends React.Component {
 							) : (
 								''
 							)}
-
 							<Grid.Row>
 								<TextArea
 									as={Input}
@@ -240,9 +248,5 @@ class PostView extends React.Component {
 }
 
 const mapStateToProps = state => ({ auth: state.auth });
-
-// const mapDispatchToProps = data => dispatch => ({
-// 	editPost: () => dispatch({ type: 'EDIT_POST', pid: data })
-// });
 
 export default connect(mapStateToProps)(withRouter(PostView));

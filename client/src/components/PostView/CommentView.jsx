@@ -13,7 +13,7 @@ import { Feed, Image } from 'semantic-ui-react';
 class CommentView extends React.Component {
 	render() {
 		return (
-			<Feed style={{ width: '100%' }}>
+			<Feed style={{ width: '100%', margin: '0.5em 0' }}>
 				<Feed.Event>
 					<Feed.Label>
 						<Image src={this.props.authorAvatar} />

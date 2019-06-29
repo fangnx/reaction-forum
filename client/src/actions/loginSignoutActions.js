@@ -52,11 +52,9 @@ export const logoutUser = () => dispatch => {
 	});
 };
 
-export const getAvatarData = data => {
+export const getAvatarData = async data => {
 	return axios
 		.post('http://localhost:5000/api/users/avatarimagedata', data)
-		.then(res => {
-			return res;
-		})
+		.then(res => res)
 		.catch(err => console.log(err));
 };

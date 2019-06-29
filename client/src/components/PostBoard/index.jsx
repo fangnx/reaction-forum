@@ -28,8 +28,8 @@ class PostBoard extends React.Component {
 		this.state = { posts: [], doAnimate: false, clickedIndex: -1 };
 	}
 
-	componentDidMount() {
-		getAllPosts().then(res => {
+	async componentDidMount() {
+		await getAllPosts().then(res => {
 			if (res.data) {
 				this.setState({ posts: res.data.map(post => post) });
 			}
@@ -65,6 +65,7 @@ class PostBoard extends React.Component {
 									pid={post._id}
 									title={post.title}
 									author={post.author}
+									authorEmail={post.authorEmail}
 									content={post.content}
 									tags={post.tags}
 									timeStamp={post.timeStamp}

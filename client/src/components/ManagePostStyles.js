@@ -2,7 +2,7 @@ export const ManagePostStyles = {
 	field: {
 		marginTop: '15px',
 		width: '100%',
-		background: 'rgba(245, 245, 245)',
+		background: 'rgba(240, 240, 240)',
 		border: '1px solid #ddd',
 		boxShadow: 'none'
 	},

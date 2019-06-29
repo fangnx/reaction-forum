@@ -28,10 +28,6 @@ const PostSchema = new Schema({
 		type: String,
 		required: true
 	},
-	authorAvatar: {
-		type: String,
-		required: false
-	},
 	timeStamp: {
 		type: String,
 		required: true
