@@ -55,7 +55,11 @@ export const ViewPostStyles = {
 		boxShadow: 'none',
 		borderRadius: '3px',
 		marginTop: '30px',
-		marginBottom: '15px'
+		marginBottom: '15px',
+		padding: '0px'
+	},
+	commentSubmitButton: {
+		background: 'transparent'
 	},
 	divider: {
 		background: 'rgba(228, 228, 228, 0.2)',

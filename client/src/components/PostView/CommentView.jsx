@@ -8,9 +8,17 @@
  */
 
 import React from 'react';
-import { Feed, Image } from 'semantic-ui-react';
+import { Feed } from 'semantic-ui-react';
 
 const styles = {
+	commentFeed: {
+		width: '100%',
+		margin: '0.5em 0'
+	},
+	commentContent: {
+		background: 'rgba(230, 230, 230, 0.8)',
+		marginTop: '0px'
+	},
 	avatarWrapper: {
 		display: 'inline-block',
 		width: '35px',
@@ -37,7 +45,7 @@ const styles = {
 class CommentView extends React.Component {
 	render() {
 		return (
-			<Feed style={{ width: '100%', margin: '0.5em 0' }}>
+			<Feed style={styles.commentFeed}>
 				<Feed.Event>
 					<Feed.Label>
 						<div style={styles.avatarWrapper}>
@@ -50,7 +58,7 @@ class CommentView extends React.Component {
 							</div>
 						</div>
 					</Feed.Label>
-					<Feed.Content style={{ marginTop: 0 }}>
+					<Feed.Content style={styles.commentContent}>
 						<Feed.Summary>
 							{this.props.author}
 							{/* <Feed.Date>{this.props.timeStamp}</Feed.Date> */}

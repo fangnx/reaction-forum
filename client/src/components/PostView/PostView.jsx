@@ -263,11 +263,12 @@ class PostView extends React.Component {
 										placeholder="Write your comment: "
 										rows="2"
 										icon={
-											<Button icon style={{ background: 'transparent' }}>
+											<Button icon style={styles.commentSubmitButton}>
 												<Icon
-													name="talk"
-													size="large"
+													name="check"
 													onClick={this.onAddComment}
+													size="large"
+													color="black"
 												/>
 											</Button>
 										}

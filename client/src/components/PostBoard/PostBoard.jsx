@@ -4,33 +4,14 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-13 00:46:23
- * @last-modified 2019-06-30 14:52:52
+ * @last-modified 2019-06-30 15:15:39
  */
 
 import React from 'react';
-import Radium, { StyleRoot } from 'radium';
-import {} from 'semantic-ui-react';
-import { fadeIn, headShake } from 'react-animations';
+import { StyleRoot } from 'radium';
+import { PostBoardStyles as styles } from './PostBoardStyles';
 import { getAllPosts } from '../../actions/postActions';
-
 import PostView from '../PostView/PostView';
-
-const styles = {
-	fadeIn: {
-		animation: '1 0.4s',
-		animationName: Radium.keyframes(fadeIn)
-	},
-
-	postViewAnimated: {
-		animation: '1 1s',
-		animationName: Radium.keyframes(headShake)
-	},
-
-	postBoardSeparator: {
-		visibility: 'hidden',
-		height: '30px'
-	}
-};
 
 class PostBoard extends React.Component {
 	_isMounted = false;
