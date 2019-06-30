@@ -49,14 +49,13 @@ class Registration extends React.Component {
 		if (
 			nextProps.errors &&
 			Object.keys(nextProps.errors).length > 0 &&
-			!('registerSuccess' in nextProps.errors)
+			!nextProps.errors.registerSuccess
 		) {
-			console.log(nextProps.errors);
 			this.setState({
 				errors: nextProps.errors,
 				success: false
 			});
-		} else if ('registerSuccess' in nextProps.errors) {
+		} else if (nextProps.errors.registerSuccess) {
 			this.setState({ errors: {}, success: true });
 		}
 	}
@@ -120,13 +119,10 @@ class Registration extends React.Component {
 			passwordRe: this.state.passwordRe,
 			avatar: this.state.avatar
 		};
-		console.log(newUser);
 		this.props.registerUser(newUser);
 	};
 
 	render() {
-		console.log(this.state);
-
 		const errors = this.state.errors;
 		const isSuccess = this.state.success;
 		const { visible } = this.state;

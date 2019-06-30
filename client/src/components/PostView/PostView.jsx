@@ -33,16 +33,20 @@ import CommentSection from './CommentSection';
 import { TAG_COLORS, mergeStyles } from '../../utils/commonUtils';
 
 class PostView extends React.Component {
+	_isMounted = false;
+
 	constructor() {
 		super();
 		this.state = {
 			authorAvatar: '',
+			showComments: false,
 			comments: [],
 			newCommentContent: '',
 			shouldRedirect: false
 		};
 		this.directToEditPost = this.directToEditPost.bind(this);
 		this.loadComments = this.loadComments.bind(this);
+		this.onClickShowComments = this.onClickShowComments.bind(this);
 	}
 
 	capitalizeTag(word) {
@@ -87,21 +91,36 @@ class PostView extends React.Component {
 	};
 
 	loadComments = async () => {
-		await getAllCommentsOfPost({ pid: this.props.pid }).then(res => {
-			if (res.data) {
-				this.setState({ comments: res.data.map(comment => comment) });
-			}
-		});
+		if (this._isMounted) {
+			await getAllCommentsOfPost({ pid: this.props.pid }).then(res => {
+				if (res.data) {
+					this.setState({ comments: res.data.map(comment => comment) });
+				}
+			});
+		}
+	};
+
+	onClickShowComments = async () => {
+		if (this.state.showComments === false) {
+			await this.loadComments();
+			this.setState({ showComments: true });
+		} else {
+			this.setState({ showComments: false });
+		}
 	};
 
 	componentDidMount = async () => {
-		await getAvatarData({ email: this.props.authorEmail }).then(res => {
-			if (res.data.avatar) {
-				this.setState({ authorAvatar: res.data.avatar });
-			} else {
-				this.setState({ authorAvatar: '' });
-			}
-		});
+		this._isMounted = true;
+
+		if (this._isMounted) {
+			getAvatarData({ email: this.props.authorEmail }).then(res => {
+				if (res.data.avatar) {
+					this.setState({ authorAvatar: res.data.avatar });
+				} else {
+					this.setState({ authorAvatar: '' });
+				}
+			});
+		}
 	};
 
 	render() {
@@ -180,10 +199,14 @@ class PostView extends React.Component {
 									marginRight: '0px'
 								}}
 							/>
-							<Button icon style={{ background: 'transparent' }}>
-								<Icon name="angle down" onClick={this.loadComments} />
+							<Button
+								icon
+								onClick={this.onClickShowComments}
+								style={{ background: 'transparent' }}
+							>
+								<Icon name="angle down" />
 							</Button>
-							{this.state.comments.length ? (
+							{this.state.showComments && this.state.comments.length ? (
 								<Grid.Row>
 									<CommentSection comments={this.state.comments} />
 								</Grid.Row>

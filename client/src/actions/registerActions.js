@@ -13,15 +13,17 @@ import { AUTH_ERRORS } from './actionTypes';
 export const registerUser = data => dispatch => {
 	axios
 		.post('http://localhost:5000/api/users/register', data)
-		.then(
+		.then(value => {
+			console.log(value);
 			dispatch({
 				type: AUTH_ERRORS,
 				payload: {
 					registerSuccess: 1
 				}
-			})
-		)
+			});
+		})
 		.catch(err => {
+			console.log(err.response.data);
 			dispatch({
 				type: AUTH_ERRORS,
 				payload: err.response.data

@@ -25,17 +25,23 @@ const styles = {
 };
 
 class PostBoard extends React.Component {
+	_isMounted = false;
+
 	constructor(props) {
 		super(props);
 		this.state = { posts: [], doAnimate: false, clickedIndex: -1 };
 	}
 
 	async componentDidMount() {
-		await getAllPosts().then(res => {
-			if (res.data) {
-				this.setState({ posts: res.data.map(post => post) });
-			}
-		});
+		this._isMounted = true;
+
+		if (this._isMounted) {
+			await getAllPosts().then(async res => {
+				if (res.data) {
+					await this.setState({ posts: res.data.map(post => post) });
+				}
+			});
+		}
 	}
 
 	render() {

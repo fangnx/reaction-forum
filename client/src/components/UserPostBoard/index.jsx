@@ -24,17 +24,21 @@ const styles = {
 };
 
 class UserPostBoard extends React.Component {
+	_isMounted = false;
+
 	constructor(props) {
 		super(props);
 		this.state = { posts: [], doAnimate: false, clickedIndex: -1 };
 	}
 
-	componentDidMount() {
+	async componentDidMount() {
+		this._isMounted = true;
+
 		const userEmail = store.getState().auth.user.email;
-		if (userEmail) {
-			getAllPostsOfUser({ userEmail: userEmail }).then(res => {
+		if (this._isMounted && userEmail) {
+			await getAllPostsOfUser({ userEmail: userEmail }).then(async res => {
 				if (res.data) {
-					this.setState({ posts: res.data.map(post => post) });
+					await this.setState({ posts: res.data.map(post => post) });
 				}
 			});
 		}
