@@ -30,6 +30,10 @@ export const ManagePostStyles = {
 	tagInput: {},
 	message: {},
 	button: {},
-	iconGroup: { background: 'transparent', padding: 'none', float: 'right' },
+	iconGroup: {
+		background: 'transparent',
+		padding: 'none',
+		float: 'right'
+	},
 	icon: { margin: '0' }
 };

@@ -29,6 +29,11 @@ export const ViewPostStyles = {
 		border: 'none',
 		background: 'rgba(228, 228, 228, 1)'
 	},
-	iconGroup: { background: 'transparent', padding: 'none', float: 'right' },
+	iconGroup: {
+		background: 'transparent',
+		marginLeft: '600px',
+		padding: 'none',
+		float: 'right'
+	},
 	icon: { margin: '0' }
 };

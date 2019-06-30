@@ -5,6 +5,50 @@ import { getColorFromURL } from 'color-thief-node';
 const defaultUnisexAvatar =
 	'https://firebasestorage.googleapis.com/v0/b/fangnx-rview.appspot.com/o/defaultUnisexAvatar.svg?alt=media&token=7c1142e6-4698-4d20-874e-385a652da894';
 
+const styles = {
+	loader: {
+		display: 'inline-block',
+		width: '35px',
+		height: '35px'
+	},
+	avatarWrapper: {
+		display: 'inline-block',
+		width: '35px',
+		height: '35px'
+	},
+	avatarCrop: {
+		// position: 'relative',
+		overflow: 'hidden',
+		height: '100%'
+	},
+	avatarImg: {
+		display: 'inline-block',
+		width: '35px',
+		// height: '35px',
+		top: '-100%',
+		right: '-100%',
+		bottom: '-100%',
+		left: '-100%',
+		borderRadius: '5%'
+	},
+	label: {
+		minWidth: '70px',
+		maxWidth: '120px',
+		height: '35px',
+		borderRadius: '0%',
+		margin: '0',
+		paddingTop: '0',
+		paddingBottom: '0',
+		borderTopRightRadius: '5%',
+		borderBottomRightRadius: '5%',
+		background: 'transparent'
+	},
+	labelText: {
+		fontSize: '1.25em',
+		paddingTop: '10px'
+	}
+};
+
 class UserLabel extends React.Component {
 	constructor() {
 		super();
@@ -43,38 +87,30 @@ class UserLabel extends React.Component {
 
 	render() {
 		const rgb = 'rgb(' + this.state.color.join(', ') + ')';
-		const labelStyle = { background: rgb, fontSize: '16px' };
 		const avatar = this.props.userAvatar || defaultUnisexAvatar;
 
 		return (
-			<span>
-				<Label as="a" image style={labelStyle}>
-					<Image
-						src={avatar}
-						onLoad={this.onLoad}
-						style={
-							this.state.loaded
-								? { display: 'inline-block' }
-								: { display: 'none' }
-						}
-					/>
-
-					<Loader
-						inline
-						active
-						size="tiny"
-						style={
-							!this.state.loaded
-								? {
-										display: 'inline-block'
-								  }
-								: { display: 'none' }
-						}
-					/>
-
-					{this.props.userName}
+			<React.Fragment>
+				<div style={styles.avatarWrapper}>
+					<div style={styles.avatarCrop}>
+						<Loader
+							inline
+							active
+							size="small"
+							style={!this.state.loaded ? styles.loader : { display: 'none' }}
+						/>
+						<img
+							src={avatar}
+							alt="avatar"
+							onLoad={this.onLoad}
+							style={this.state.loaded ? styles.avatarImg : { display: 'none' }}
+						/>
+					</div>
+				</div>
+				<Label style={styles.label}>
+					<div style={styles.labelText}>{this.props.userName}</div>
 				</Label>
-			</span>
+			</React.Fragment>
 		);
 	}
 }

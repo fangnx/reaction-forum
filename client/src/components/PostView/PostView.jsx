@@ -139,37 +139,33 @@ class PostView extends React.Component {
 				<Card style={styles.card} fluid>
 					<Card.Content style={styles.cardContent}>
 						<Grid padded>
-							<Grid.Row columns={2} style={mergeStyles([styles.field])}>
-								<Grid.Column style={styles.column} width={14}>
-									<UserLabel
-										userName={this.props.author}
-										userAvatar={this.state.authorAvatar}
-									/>
-								</Grid.Column>
-
-								<Grid.Column style={styles.column} width={2}>
-									{this.props.canManage ? (
-										<div style={styles.iconGroup}>
-											<Icon
-												size="large"
-												onClick={this.directToEditPost}
-												name="pencil"
-												style={styles.icon}
-											/>
-											&nbsp;
-											<Icon
-												size="large"
-												onClick={this.onDelete}
-												name="close"
-												color="red"
-												style={styles.icon}
-											/>
-										</div>
-									) : (
-										''
-									)}
-								</Grid.Column>
+							<Grid.Row style={mergeStyles([styles.field])}>
+								<UserLabel
+									userName={this.props.author}
+									userAvatar={this.state.authorAvatar}
+								/>
+								{this.props.canManage ? (
+									<div style={styles.iconGroup}>
+										<Icon
+											size="large"
+											onClick={this.directToEditPost}
+											name="pencil"
+											style={styles.icon}
+										/>
+										&nbsp;
+										<Icon
+											size="large"
+											onClick={this.onDelete}
+											name="close"
+											color="red"
+											style={styles.icon}
+										/>
+									</div>
+								) : (
+									''
+								)}
 							</Grid.Row>
+
 							<Grid.Row style={mergeStyles([styles.field, styles.title])}>
 								{this.props.title}
 							</Grid.Row>

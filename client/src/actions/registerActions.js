@@ -14,7 +14,6 @@ export const registerUser = data => dispatch => {
 	axios
 		.post('http://localhost:5000/api/users/register', data)
 		.then(value => {
-			console.log(value);
 			dispatch({
 				type: AUTH_ERRORS,
 				payload: {
@@ -23,7 +22,6 @@ export const registerUser = data => dispatch => {
 			});
 		})
 		.catch(err => {
-			console.log(err.response.data);
 			dispatch({
 				type: AUTH_ERRORS,
 				payload: err.response.data
