@@ -1,3 +1,12 @@
+/**
+ * index.jsx
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-06-02 16:17:26
+ * @last-modified 2019-06-30 13:46:34
+ */
+
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -37,13 +46,13 @@ class Login extends React.Component {
 		if (
 			nextProps.errors &&
 			Object.keys(nextProps.errors).length > 0 &&
-			!('loginSuccess' in nextProps.errors)
+			!nextProps.errors.loginSuccess
 		) {
 			this.setState({
 				errors: nextProps.errors,
 				success: false
 			});
-		} else if ('loginSuccess' in nextProps.errors) {
+		} else if (nextProps.errors.loginSuccess) {
 			this.setState({ errors: {}, success: true });
 		}
 	}

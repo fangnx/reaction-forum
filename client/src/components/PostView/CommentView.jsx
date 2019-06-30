@@ -10,13 +10,45 @@
 import React from 'react';
 import { Feed, Image } from 'semantic-ui-react';
 
+const styles = {
+	avatarWrapper: {
+		display: 'inline-block',
+		width: '35px',
+		height: '35px'
+	},
+	avatarCrop: {
+		// position: 'relative',
+		overflow: 'hidden',
+		height: '100%',
+		borderRadius: '3px'
+	},
+	avatarImg: {
+		display: 'inline-block',
+		width: '35px',
+		// height: '35px',
+		top: '-100%',
+		right: '-100%',
+		bottom: '-100%',
+		left: '-100%',
+		borderRadius: '0'
+	}
+};
+
 class CommentView extends React.Component {
 	render() {
 		return (
 			<Feed style={{ width: '100%', margin: '0.5em 0' }}>
 				<Feed.Event>
 					<Feed.Label>
-						<Image src={this.props.authorAvatar} />
+						<div style={styles.avatarWrapper}>
+							<div style={styles.avatarCrop}>
+								<img
+									src={this.props.authorAvatar}
+									alt=""
+									style={styles.avatarImg}
+								/>
+							</div>
+						</div>
 					</Feed.Label>
 					<Feed.Content style={{ marginTop: 0 }}>
 						<Feed.Summary>

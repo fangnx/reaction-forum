@@ -185,7 +185,12 @@ class AddPost extends React.Component {
 
 							{this.state.success ? (
 								<Grid.Row>
-									<Message success header="Success" content="Posted!" />
+									<Message
+										success
+										header="Success"
+										content="Posted!"
+										style={styles.field}
+									/>
 								</Grid.Row>
 							) : (
 								''

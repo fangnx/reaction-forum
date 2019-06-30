@@ -21,12 +21,17 @@ export const ManagePostStyles = {
 	title: {
 		fontFamily: 'Cairo',
 		fontSize: '1.5em',
-		fontWeight: '600'
+		fontWeight: '600',
+		background: 'rgba(236, 236, 236, 1)'
 	},
 	content: {
-		fontSize: '1em'
+		fontSize: '1em',
+		minHeight: '236px', // Equal to 12 rows in TextArea
+		background: 'rgba(236, 236, 236, 1)'
 	},
-	tags: {},
+	tags: {
+		background: 'rgba(236, 236, 236, 1)'
+	},
 	tagInput: {},
 	message: {},
 	button: {},

@@ -57,50 +57,48 @@ router.post('/login', (req, res) => {
 	const { errors, isValid } = validateLoginInputs(req.body);
 	if (!isValid) {
 		return res.status(400).json(errors);
+	} else {
+		const email = req.body.email;
+		const password = req.body.password;
+
+		// Check if user exists
+		User.findOne({ email }).then(user => {
+			if (!user) {
+				return res.status(400).json({ email: 'Email not found' });
+			}
+
+			bcrypt
+				.compare(password, user.password)
+				.then(isMatch => {
+					if (isMatch) {
+						// Include useful User attributes
+						const payload = {
+							id: user.id,
+							name: user.name,
+							email: user.email,
+							avatar: user.avatar
+						};
+						// Sign token
+						jwt.sign(
+							payload,
+							keys.secretOrKey,
+							{
+								expiresIn: 31556926
+							},
+							(err, token) => {
+								res.json({
+									success: true,
+									token: 'Bearer ' + token
+								});
+							}
+						);
+					} else {
+						return res.status(400).json({ password: 'Password incorrect' });
+					}
+				})
+				.catch(err => console.log(err));
+		});
 	}
-
-	const email = req.body.email;
-	const password = req.body.password;
-
-	// Check if user exists
-	User.findOne({ email }).then(user => {
-		if (!user) {
-			return res.status(404).json({ emailnotfound: 'Email not found' });
-		}
-
-		bcrypt
-			.compare(password, user.password)
-			.then(isMatch => {
-				if (isMatch) {
-					// Include useful User attributes
-					const payload = {
-						id: user.id,
-						name: user.name,
-						email: user.email,
-						avatar: user.avatar
-					};
-					// Sign token
-					jwt.sign(
-						payload,
-						keys.secretOrKey,
-						{
-							expiresIn: 31556926
-						},
-						(err, token) => {
-							res.json({
-								success: true,
-								token: 'Bearer ' + token
-							});
-						}
-					);
-				} else {
-					return res
-						.status(400)
-						.json({ passwordincorrect: 'Password incorrect' });
-				}
-			})
-			.catch(err => console.log(err));
-	});
 });
 
 /**

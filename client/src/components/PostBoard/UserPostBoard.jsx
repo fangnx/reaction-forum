@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-17 22:29:29
- * @last-modified 2019-06-30 00:40:06
+ * @last-modified 2019-06-30 14:53:39
  */
 
 import React from 'react';
@@ -28,7 +28,7 @@ const styles = {
 
 	postBoardSeparator: {
 		visibility: 'hidden',
-		height: '60px'
+		height: '30px'
 	}
 };
 

@@ -1,6 +1,14 @@
+/**
+ * UserLabel.jsx
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-06-23 14:09:31
+ * @last-modified 2019-06-30 13:34:15
+ */
+
 import React from 'react';
-import { Label, Image, Placeholder, Loader } from 'semantic-ui-react';
-import { getColorFromURL } from 'color-thief-node';
+import { Label, Loader } from 'semantic-ui-react';
 
 const defaultUnisexAvatar =
 	'https://firebasestorage.googleapis.com/v0/b/fangnx-rview.appspot.com/o/defaultUnisexAvatar.svg?alt=media&token=7c1142e6-4698-4d20-874e-385a652da894';
@@ -83,10 +91,7 @@ class UserLabel extends React.Component {
 	// 	console.log('x');
 	// };
 
-	componentWillReceiveProps() {}
-
 	render() {
-		const rgb = 'rgb(' + this.state.color.join(', ') + ')';
 		const avatar = this.props.userAvatar || defaultUnisexAvatar;
 
 		return (
@@ -96,7 +101,7 @@ class UserLabel extends React.Component {
 						<Loader
 							inline
 							active
-							size="small"
+							size="medium"
 							style={!this.state.loaded ? styles.loader : { display: 'none' }}
 						/>
 						<img

@@ -195,7 +195,7 @@ class EditPost extends React.Component {
 										success
 										header="Success"
 										content="Posted!"
-										style={styles.message}
+										style={styles.field}
 									/>
 								</Grid.Row>
 							) : (

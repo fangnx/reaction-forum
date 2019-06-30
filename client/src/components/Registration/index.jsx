@@ -1,3 +1,12 @@
+/**
+ * index.jsx
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-06-23 00:52:32
+ * @last-modified 2019-06-30 13:37:07
+ */
+
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
