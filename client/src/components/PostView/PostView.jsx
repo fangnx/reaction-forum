@@ -27,7 +27,7 @@ import '../../App.css';
 import { ViewPostStyles as styles } from '../ViewPostStyles';
 import dateFormat from 'dateformat';
 import { addComment, getAllCommentsOfPost } from '../../actions/postActions';
-import { getAvatarData } from '../../actions/loginSignoutActions';
+import { getAvatarData } from '../../actions/userActions';
 import UserLabel from '../Header/UserLabel';
 import CommentSection from './CommentSection';
 import { TAG_COLORS, mergeStyles } from '../../utils/commonUtils';

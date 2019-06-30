@@ -1,9 +1,17 @@
+/**
+ * PostBoard.jsx
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-06-13 00:46:23
+ * @last-modified 2019-06-30 00:38:54
+ */
+
 import React from 'react';
 import Radium, { StyleRoot } from 'radium';
 import {} from 'semantic-ui-react';
 import { fadeIn, headShake } from 'react-animations';
-import { getAllPosts, getAllCommentsOfPost } from '../../actions/postActions';
-import { getAvatarData } from '../../actions/loginSignoutActions';
+import { getAllPosts } from '../../actions/postActions';
 
 import PostView from '../PostView/PostView';
 

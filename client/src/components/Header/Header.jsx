@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 import { Menu, Dropdown, Icon, Label } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
-import { logoutUser } from '../../actions/loginSignoutActions';
+import { logoutUser } from '../../actions/userActions';
 import { store } from '../../store';
 import UserLabel from './UserLabel';
 

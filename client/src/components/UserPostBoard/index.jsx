@@ -1,3 +1,12 @@
+/**
+ * UserPostBoard.jsx
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-06-17 22:29:29
+ * @last-modified 2019-06-30 00:40:06
+ */
+
 import React from 'react';
 import Radium, { StyleRoot } from 'radium';
 import {} from 'semantic-ui-react';
@@ -34,7 +43,7 @@ class UserPostBoard extends React.Component {
 	async componentDidMount() {
 		this._isMounted = true;
 
-		const userEmail = store.getState().auth.user.email;
+		const userEmail = await store.getState().auth.user.email;
 		if (this._isMounted && userEmail) {
 			await getAllPostsOfUser({ userEmail: userEmail }).then(async res => {
 				if (res.data) {
@@ -73,6 +82,7 @@ class UserPostBoard extends React.Component {
 									pid={post._id}
 									title={post.title}
 									author={post.author}
+									authorEmail={post.authorEmail}
 									content={post.content}
 									tags={post.tags}
 									timeStamp={post.timeStamp}

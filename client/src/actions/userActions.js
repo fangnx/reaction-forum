@@ -1,10 +1,10 @@
 /**
- * loginSignoutActions.js
- * @author fangnx
- * @description
- * @created 2019-06-02T16:22:08.107Z-04:00
- * @copyright
- * @last-modified 2019-06-23T17:59:22.842Z-04:00
+ * userActions.js
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-06-02 16:22:08
+ * @last-modified 2019-06-30 00:35:54
  */
 
 import axios from 'axios';

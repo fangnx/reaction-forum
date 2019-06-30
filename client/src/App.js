@@ -30,7 +30,7 @@ import AddPost from './components/AddPost';
 import EditPost from './components/EditPost';
 import Registration from './components/Registration';
 import Login from './components/Login';
-import { setCurrentUser, logoutUser } from './actions/loginSignoutActions';
+import { setCurrentUser, logoutUser } from './actions/userActions';
 
 // const { store, persistor } = configureStore();
 

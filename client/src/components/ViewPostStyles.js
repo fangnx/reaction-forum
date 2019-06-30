@@ -25,6 +25,7 @@ export const ViewPostStyles = {
 		fontSize: '2.5em'
 	},
 	content: {
+		minHeight: '200px',
 		fontSize: '1em',
 		border: 'none',
 		background: 'rgba(228, 228, 228, 1)'

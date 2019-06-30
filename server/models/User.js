@@ -31,6 +31,8 @@ const UserSchema = new Schema({
 	},
 	avatar: {
 		type: String,
+		default:
+			'https://firebasestorage.googleapis.com/v0/b/fangnx-rview.appspot.com/o/defaultUnisexAvatar.svg?alt=media&token=7c1142e6-4698-4d20-874e-385a652da894',
 		required: false
 	}
 });
