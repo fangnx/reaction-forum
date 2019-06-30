@@ -24,8 +24,8 @@ import { faCheck, faWater, faPlus } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
 import Header from './components/Header/Header';
-import PostBoard from './components/PostBoard';
-import UserPostBoard from './components/UserPostBoard';
+import PostBoard from './components/PostBoard/PostBoard';
+import UserPostBoard from './components/PostBoard/UserPostBoard';
 import AddPost from './components/AddPost';
 import EditPost from './components/EditPost';
 import Registration from './components/Registration';
@@ -40,7 +40,6 @@ if (localStorage.jwtToken) {
 	setAuthToken(token);
 	const decoded = jwt_decode(token);
 	store.dispatch(setCurrentUser(decoded));
-	// console.log('is logged in');
 
 	// Check if token has expired
 	const currentTime = Date.now() / 1000; // to get in milliseconds

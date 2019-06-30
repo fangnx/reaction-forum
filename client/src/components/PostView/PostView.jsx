@@ -21,7 +21,8 @@ import {
 	Modal,
 	Button,
 	Segment,
-	Divider
+	Divider,
+	GridColumn
 } from 'semantic-ui-react';
 import '../../App.css';
 import { ViewPostStyles as styles } from '../ViewPostStyles';
@@ -46,7 +47,7 @@ class PostView extends React.Component {
 		};
 		this.directToEditPost = this.directToEditPost.bind(this);
 		this.loadComments = this.loadComments.bind(this);
-		this.onClickShowComments = this.onClickShowComments.bind(this);
+		this.onShowComments = this.onShowComments.bind(this);
 	}
 
 	capitalizeTag(word) {
@@ -86,6 +87,7 @@ class PostView extends React.Component {
 			console.log(res);
 			if (res.status === 200) {
 				this.loadComments();
+				this.setState({ showComments: true });
 			}
 		});
 	};
@@ -100,7 +102,7 @@ class PostView extends React.Component {
 		}
 	};
 
-	onClickShowComments = async () => {
+	onShowComments = async () => {
 		if (this.state.showComments === false) {
 			await this.loadComments();
 			this.setState({ showComments: true });
@@ -144,26 +146,32 @@ class PostView extends React.Component {
 									userName={this.props.author}
 									userAvatar={this.state.authorAvatar}
 								/>
-								{this.props.canManage ? (
-									<div style={styles.iconGroup}>
-										<Icon
-											size="large"
-											onClick={this.directToEditPost}
-											name="pencil"
-											style={styles.icon}
-										/>
-										&nbsp;
-										<Icon
-											size="large"
-											onClick={this.onDelete}
-											name="close"
-											color="red"
-											style={styles.icon}
-										/>
-									</div>
-								) : (
-									''
-								)}
+							</Grid.Row>
+
+							<Grid.Row columns="2" style={{ marginTop: '-50px' }}>
+								<Grid.Column style={styles.column} />
+								<Grid.Column style={styles.column}>
+									{this.props.canManage ? (
+										<div style={styles.iconGroup}>
+											<Icon
+												size="large"
+												onClick={this.directToEditPost}
+												name="pencil"
+												style={styles.icon}
+											/>
+											&nbsp;
+											<Icon
+												size="large"
+												onClick={this.onDelete}
+												name="close"
+												color="red"
+												style={styles.icon}
+											/>
+										</div>
+									) : (
+										''
+									)}
+								</Grid.Column>
 							</Grid.Row>
 
 							<Grid.Row style={mergeStyles([styles.field, styles.title])}>
@@ -187,21 +195,16 @@ class PostView extends React.Component {
 									))}
 								</Label.Group>
 							</Grid.Row>
-							<Divider
-								// horizontal
-								style={{
-									background: 'rgba(228, 228, 228, 0.2)',
-									marginLeft: '0px',
-									marginRight: '0px'
-								}}
-							/>
-							<Button
-								icon
-								onClick={this.onClickShowComments}
-								style={{ background: 'transparent' }}
-							>
-								<Icon name="angle down" />
-							</Button>
+							<Divider horizontal style={styles.divider}>
+								<Button
+									icon
+									onClick={this.onShowComments}
+									style={{ background: 'transparent' }}
+								>
+									<Icon name="angle down" size="large" />
+								</Button>
+							</Divider>
+
 							{this.state.showComments && this.state.comments.length ? (
 								<Grid.Row>
 									<CommentSection comments={this.state.comments} />
@@ -209,31 +212,25 @@ class PostView extends React.Component {
 							) : (
 								''
 							)}
-							<Grid.Row>
-								<TextArea
-									as={Input}
-									id="newCommentContent"
-									value={this.state.newCommentContent}
-									onChange={this.onChange}
-									placeholder="Write your comment: "
-									rows="2"
-									icon={
-										<Button icon style={{ background: 'transparent' }}>
-											<Icon
-												name="talk"
-												size="large"
-												onClick={this.onAddComment}
-											/>
-										</Button>
-									}
-									style={{
-										width: '100%',
-										background: 'rgba(245, 245, 245)',
-										border: '1px solid #ddd',
-										boxShadow: 'none'
-									}}
-								/>
-							</Grid.Row>
+
+							<TextArea
+								as={Input}
+								id="newCommentContent"
+								value={this.state.newCommentContent}
+								onChange={this.onChange}
+								placeholder="Write your comment: "
+								rows="2"
+								icon={
+									<Button icon style={{ background: 'transparent' }}>
+										<Icon
+											name="talk"
+											size="large"
+											onClick={this.onAddComment}
+										/>
+									</Button>
+								}
+								style={styles.commentInput}
+							/>
 						</Grid>
 
 						<Modal>

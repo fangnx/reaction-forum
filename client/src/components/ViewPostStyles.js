@@ -5,7 +5,8 @@ export const ViewPostStyles = {
 		margin: '0 auto'
 	},
 	card: {
-		background: 'rgba(240, 240, 240, 96%)'
+		background: 'rgba(240, 240, 240, 96%)',
+		borderRadius: '3px'
 	},
 	cardContent: {
 		width: '97.5%',
@@ -32,9 +33,21 @@ export const ViewPostStyles = {
 	},
 	iconGroup: {
 		background: 'transparent',
-		marginLeft: '600px',
 		padding: 'none',
 		float: 'right'
 	},
-	icon: { margin: '0' }
+	icon: { margin: '0' },
+	commentInput: {
+		width: '100%',
+		background: 'rgba(245, 245, 245)',
+		border: '1px solid #ddd',
+		boxShadow: 'none',
+		borderRadius: '3px'
+	},
+	divider: {
+		background: 'rgba(228, 228, 228, 0.2)',
+		marginLeft: '0px',
+		marginRight: '0px',
+		padding: '0 0 10px 0'
+	}
 };

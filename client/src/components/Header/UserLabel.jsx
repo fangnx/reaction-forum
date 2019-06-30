@@ -19,7 +19,8 @@ const styles = {
 	avatarCrop: {
 		// position: 'relative',
 		overflow: 'hidden',
-		height: '100%'
+		height: '100%',
+		borderRadius: '3px'
 	},
 	avatarImg: {
 		display: 'inline-block',
@@ -28,8 +29,7 @@ const styles = {
 		top: '-100%',
 		right: '-100%',
 		bottom: '-100%',
-		left: '-100%',
-		borderRadius: '5%'
+		left: '-100%'
 	},
 	label: {
 		minWidth: '70px',
@@ -39,8 +39,8 @@ const styles = {
 		margin: '0',
 		paddingTop: '0',
 		paddingBottom: '0',
-		borderTopRightRadius: '5%',
-		borderBottomRightRadius: '5%',
+		borderTopRightRadius: '3px',
+		borderBottomRightRadius: '3px',
 		background: 'transparent'
 	},
 	labelText: {
