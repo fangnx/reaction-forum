@@ -1,0 +1,38 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@primaryColor   : @monet-navy;
+@secondaryColor : @monet-red;
+
+/*******************************
+     http://www.colorlisa.com/ 
+*******************************/
+
+@mondrian-navy : #314290;
+@mondrian-blue: #4A71C0;
+@mondrian-yellow: #F0D32D;
+@mondrian-red: #AB3A2C;
+
+@monet-navy: #395A92;
+@monet-blue: #4885A4;
+@monet-red: #9F4640;
+@monet-green: #7EA860;
+@monet-purple: #B985BA;
+
+@renoir-orange: #D16647;
+@renoir-cream: #FFFBDD;
+@renoir-yellow: #F1D395;
+@renoir-green: #A69F55;
+
+@fontName: 'Avenir Next';
+@fontSize: 14px;
+@fontWeight: 500px;
+
+@headerFont: 'monospace';
+@pageFont: 'Avenir Next';
+@contentFont: 'Avenir Next';
+@inputFont: 'Avenir Next';
+@labelFont: 'Avenir Next';
+
+
