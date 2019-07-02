@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-02 16:22:08
- * @last-modified 2019-06-30 13:46:31
+ * @last-modified 2019-07-02 00:51:18
  */
 
 import axios from 'axios';
@@ -19,9 +19,28 @@ export const setCurrentUser = decoded => {
 	};
 };
 
+export const registerUser = data => dispatch => {
+	axios
+		.post('/api/users/register', data)
+		.then(res => {
+			dispatch({
+				type: AUTH_ERRORS,
+				payload: {
+					registerSuccess: 1
+				}
+			});
+		})
+		.catch(err => {
+			dispatch({
+				type: AUTH_ERRORS,
+				payload: err.response.data
+			});
+		});
+};
+
 export const loginUser = data => dispatch => {
 	axios
-		.post('http://localhost:5000/api/users/login', data)
+		.post('/api/users/login', data)
 		.then(res => {
 			// Set token to localStorage
 			let { token } = res.data;
@@ -54,7 +73,7 @@ export const logoutUser = () => dispatch => {
 
 export const getAvatarData = async data => {
 	return axios
-		.post('http://localhost:5000/api/users/avatarimagedata', data)
+		.post('/api/users/avatarimagedata', data)
 		.then(res => res)
 		.catch(err => console.log(err));
 };

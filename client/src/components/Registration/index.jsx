@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-23 00:52:32
- * @last-modified 2019-06-30 13:37:07
+ * @last-modified 2019-07-02 00:32:01
  */
 
 import React from 'react';
@@ -23,7 +23,7 @@ import {
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Registration.css';
-import { registerUser } from '../../actions/registerActions';
+import { registerUser } from '../../actions/userActions';
 import axios from 'axios';
 import { storage } from '../../firebase-config';
 

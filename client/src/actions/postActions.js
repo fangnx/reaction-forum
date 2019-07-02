@@ -11,26 +11,22 @@ import axios from 'axios';
 
 export const addPost = async data => {
 	return axios
-		.post('http://localhost:5000/api/posts/add', data)
+		.post('/api/posts/add', data)
 		.then(res => res)
 		.catch(err => console.log(`Add Post Error: ${err}`));
 };
 
 export const deletePost = async data => {
-	return axios
-		.post('http://localhost:5000/api/posts/delete', data)
-		.then(res => res);
+	return axios.post('/api/posts/delete', data).then(res => res);
 };
 
 export const editPost = async data => {
-	return axios
-		.post('http://localhost:5000/api/posts/edit', data)
-		.then(res => res);
+	return axios.post('/api/posts/edit', data).then(res => res);
 };
 
 export const getAllPosts = async () => {
 	return axios
-		.post('http://localhost:5000/api/posts/findAll')
+		.post('/api/posts/findAll')
 		.then(res => res)
 		.catch(err => console.log(`Get all Posts Error: ${err}`));
 };
@@ -41,14 +37,14 @@ export const getAllPosts = async () => {
  */
 export const getAllPostsOfUser = async data => {
 	return axios
-		.post('http://localhost:5000/api/posts/userposts', data)
+		.post('/api/posts/userposts', data)
 		.then(res => res)
 		.catch(err => console.log(`Get all Posts of User Error: ${err}`));
 };
 
 export const addComment = async data => {
 	return axios
-		.post('http://localhost:5000/api/posts/addComment', data)
+		.post('/api/posts/addComment', data)
 		.then(res => res)
 		.catch(err => console.log(`Add Comment Error: ${err}`));
 };
@@ -59,7 +55,7 @@ export const addComment = async data => {
  */
 export const getAllCommentsOfPost = async data => {
 	return axios
-		.post('http://localhost:5000/api/posts/postcomments', data)
+		.post('/api/posts/postcomments', data)
 		.then(res => res)
 		.catch(err => console.log(`Get all Comments of Post Error: ${err}`));
 };

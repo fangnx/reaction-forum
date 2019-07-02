@@ -87,4 +87,5 @@ app.use('/api/users', users);
 app.use('/api/posts', posts);
 app.use('/api/images', images);
 
-app.listen(port, '172.31.44.200', () => console.log(`App listening on port ${port} !`));
+app.listen(port, () => console.log(`App listening on port ${port} !`));
+// app.listen(port, '172.31.44.200', () => console.log(`App listening on port ${port} !`));
