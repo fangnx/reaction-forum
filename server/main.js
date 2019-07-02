@@ -32,7 +32,7 @@ mongoose
 	.then(() => console.log('Successfully connected to MongoDB ;)'))
 	.catch(err => console.log(err));
 
-app.use(express.static(path.join(__dirname, 'client/public')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(
 	session({
 		name: config.session.key,
@@ -87,4 +87,4 @@ app.use('/api/users', users);
 app.use('/api/posts', posts);
 app.use('/api/images', images);
 
-app.listen(port, () => console.log(`App listening on port ${port} !`));
+app.listen(port, '172.31.44.200', () => console.log(`App listening on port ${port} !`));
