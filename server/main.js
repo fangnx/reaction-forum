@@ -13,6 +13,8 @@ import { users } from './api/userApi';
 import { posts } from './api/postApi';
 import { images } from './api/imageApi';
 
+import { postFromRssSource } from './rss';
+
 const app = new express();
 
 app.use(
@@ -81,6 +83,8 @@ const strategy = new JwtStrategy(opts, (jwt_payload, done) => {
 });
 
 passport.use(strategy);
+
+// postFromRssSource('https://rsshub.app/bbc', 'BBC', ['News', 'World'], 5);
 
 // API Routes
 app.use('/api/users', users);
