@@ -49,7 +49,6 @@ class Header extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps.auth);
 		if (nextProps.auth.isAuthenticated) {
 			this.setState({
 				isLoggedIn: true
@@ -59,7 +58,6 @@ class Header extends React.Component {
 				isLoggedIn: false
 			});
 		}
-		console.log(this.state);
 	}
 
 	render() {

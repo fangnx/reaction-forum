@@ -109,7 +109,6 @@ router.post('/login', (req, res) => {
 router.post('/avatarimagedata', (req, res) => {
 	User.findOne({ email: req.body.email })
 		.then(value => {
-			console.log(value.avatar);
 			if (value.avatar) {
 				res.json({ avatar: value.avatar });
 			} else {

@@ -96,7 +96,6 @@ class PostView extends React.Component {
 		};
 
 		addComment(newComment).then(res => {
-			console.log(res);
 			if (res.status === 200) {
 				this.loadComments();
 				this.setState({ showComments: true });
