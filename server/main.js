@@ -12,6 +12,7 @@ import path from 'path';
 import { users } from './api/userApi';
 import { posts } from './api/postApi';
 import { images } from './api/imageApi';
+import { sources } from './api/rssSourceAPI';
 
 import { postFromRssSource } from './rss';
 
@@ -90,6 +91,7 @@ passport.use(strategy);
 app.use('/api/users', users);
 app.use('/api/posts', posts);
 app.use('/api/images', images);
+app.use('/api/sources', sources);
 
 app.listen(port, () => console.log(`App listening on port ${port} !`));
 // app.listen(port, '172.31.44.200', () => console.log(`App listening on port ${port} !`));

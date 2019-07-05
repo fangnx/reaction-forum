@@ -36,7 +36,8 @@ export const ViewPostStyles = {
 		minHeight: '200px',
 		fontSize: '1em',
 		border: 'none',
-		background: 'rgba(228, 228, 228, 1)'
+		padding: '0',
+		background: 'transparent'
 	},
 	iconGroup: {
 		background: 'transparent',

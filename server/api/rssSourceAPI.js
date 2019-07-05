@@ -4,13 +4,13 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-04 20:00:48
- * @last-modified 2019-07-04 20:08:21
+ * @last-modified 2019-07-04 21:30:31
  */
 
 import express from 'express';
 import Source from '../models/Source';
 
-const router = express.Router;
+const router = express.Router();
 
 router.post('/subscribe', (req, res) => {
 	Source.findOne({ sourceUrl: req.body.sourceUrl }).then(source => {
@@ -23,10 +23,10 @@ router.post('/subscribe', (req, res) => {
 				name: req.body.name,
 				sourceUrl: req.body.sourceUrl,
 				description: req.body.description,
-				category: res.body.category,
-				avatar: res.body.avatar
+				category: req.body.category,
+				// avatar: '',
+				active: true
 			});
-
 			newSource
 				.save()
 				.then(source => res.json(source))
@@ -34,3 +34,5 @@ router.post('/subscribe', (req, res) => {
 		}
 	});
 });
+
+export { router as sources };

@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-04 19:58:01
- * @last-modified 2019-07-04 20:00:19
+ * @last-modified 2019-07-04 20:13:17
  */
 
 import mongoose from 'mongoose';
@@ -34,6 +34,12 @@ const SourceSchema = new Schema({
 		default:
 			'https://firebasestorage.googleapis.com/v0/b/fangnx-rview.appspot.com/o/defaultUnisexAvatar.svg?alt=media&token=7c1142e6-4698-4d20-874e-385a652da894',
 		required: false
+	},
+	// Always active when Source is first subscribed.
+	active: {
+		type: Boolean,
+		default: true,
+		required: true
 	}
 });
 
