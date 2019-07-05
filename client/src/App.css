@@ -23,5 +23,5 @@
 }
 
 .app-content {
-	padding-top: 15vh;
+	padding-top: calc(8vh + 30px);
 }

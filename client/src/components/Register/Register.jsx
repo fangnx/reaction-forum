@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-23 00:52:32
- * @last-modified 2019-07-02 00:32:01
+ * @last-modified 2019-07-04 19:46:32
  */
 
 import React from 'react';
@@ -33,7 +33,7 @@ const genderOptions = [
 	{ key: 'o', text: 'Other', value: 'o' }
 ];
 
-class Registration extends React.Component {
+class Register extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -103,10 +103,7 @@ class Registration extends React.Component {
 						};
 
 						axios
-							.post(
-								'http://localhost:5000/api/images/uploadavatar',
-								avatarImage
-							)
+							.post('api/images/uploadavatar', avatarImage)
 							.then(value => {
 								if (value.data.success) {
 									alert('Avatar image uploaded!');
@@ -269,7 +266,7 @@ class Registration extends React.Component {
 	}
 }
 
-Registration.propTypes = {
+Register.propTypes = {
 	registerUser: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired
@@ -287,4 +284,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Registration);
+)(Register);

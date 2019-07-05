@@ -10,7 +10,10 @@ node_modules/
 build
 
 # theming
-# **/semantic/
+client/src/semantic/dist/
+client/src/semantic/tasks/
+client/src/semantic/src/definitions/
+client/src/semantic/src/themes/
 
 # misc
 .DS_Store

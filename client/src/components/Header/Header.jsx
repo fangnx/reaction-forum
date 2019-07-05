@@ -66,21 +66,25 @@ class Header extends React.Component {
 		return (
 			<HashRouter>
 				<Menu inverted borderless className="header-menu">
-					<Menu.Menu>
+					<Menu.Menu position="left">
 						<Menu.Item as={NavLink} to="/forum" name="main">
 							<FontAwesomeIcon icon={['fas', 'water']} size="2x" />
 						</Menu.Item>
 
-						<Menu.Item as={NavLink} to="/" exact name="addPost">
+						<Menu.Item as={NavLink} to="/" exact name="allPosts">
 							ALL POSTS
 						</Menu.Item>
 
-						<Menu.Item as={NavLink} to="/myposts" name="addPost">
+						<Menu.Item as={NavLink} to="/myposts" name="myPosts">
 							MY POSTS
 						</Menu.Item>
 
-						<Menu.Item as={NavLink} to="/post/add" name="addPost">
+						<Menu.Item as={NavLink} to="/post/add" name="newPost">
 							NEW POST
+						</Menu.Item>
+
+						<Menu.Item as={NavLink} to="/subscribe" name="subscribe">
+							SUBSCRIBE
 						</Menu.Item>
 					</Menu.Menu>
 
@@ -109,16 +113,11 @@ class Header extends React.Component {
 							</React.Fragment>
 						) : (
 							<React.Fragment>
-								<Menu.Item
-									as={NavLink}
-									to="/registration"
-									name="register"
-									color="teal"
-								>
+								<Menu.Item as={NavLink} to="/register" name="register">
 									REGISTER
 								</Menu.Item>
 
-								<Menu.Item as={NavLink} to="/login" name="login" color="teal">
+								<Menu.Item as={NavLink} to="/login" name="login">
 									LOG IN
 								</Menu.Item>
 							</React.Fragment>

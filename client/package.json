@@ -20,7 +20,7 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build-semantic": "cd src/semantic && gulp build",
+		"build-semantic": "cd src/semantic && gulp build-css && gulp build-javascript",
 		"build": "npm run build-semantic && react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject"

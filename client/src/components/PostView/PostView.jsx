@@ -20,8 +20,7 @@ import {
 	TextArea,
 	Modal,
 	Button,
-	Segment,
-	Divider
+	Segment
 } from 'semantic-ui-react';
 import '../../App.css';
 import { ViewPostStyles as styles } from '../ViewPostStyles';
@@ -209,7 +208,7 @@ class PostView extends React.Component {
 										: mergeStyles([styles.field, styles.titleTight])
 								}
 							>
-								{this.props.title}
+								<h1>{this.props.title}</h1>
 							</Grid.Row>
 
 							{this.state.showFullCard ? (
@@ -221,7 +220,6 @@ class PostView extends React.Component {
 											<ReactMarkdown source={this.props.content} />
 										</Segment>
 									</Grid.Row>
-
 									<Grid.Row>
 										<Label.Group size="medium">
 											{this.props.tags.map((tag, index) => (
@@ -236,15 +234,16 @@ class PostView extends React.Component {
 										</Label.Group>
 									</Grid.Row>
 
-									<Divider horizontal style={styles.divider}>
-										<Button
-											icon
+									<Grid.Row>
+										<Label
 											onClick={this.onShowComments}
-											style={{ background: 'transparent' }}
+											size="large"
+											style={styles.commentLabel}
 										>
-											<Icon name="angle down" size="large" />
-										</Button>
-									</Divider>
+											Comments &nbsp;
+											<Icon name="comments outline" />
+										</Label>
+									</Grid.Row>
 
 									{this.state.showComments && this.state.comments.length ? (
 										<Grid.Row style={styles.commentsRow}>
@@ -253,7 +252,6 @@ class PostView extends React.Component {
 									) : (
 										''
 									)}
-
 									<TextArea
 										as={Input}
 										id="newCommentContent"

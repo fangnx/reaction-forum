@@ -28,8 +28,9 @@ import PostBoard from './components/PostBoard/PostBoard';
 import UserPostBoard from './components/PostBoard/UserPostBoard';
 import AddPost from './components/AddPost';
 import EditPost from './components/EditPost';
-import Registration from './components/Registration';
+import Register from './components/Register/Register';
 import Login from './components/Login';
+import Subscribe from './components/Subscribe/Subscribe';
 import { setCurrentUser, logoutUser } from './actions/userActions';
 
 // const { store, persistor } = configureStore();
@@ -63,11 +64,12 @@ class App extends React.Component {
 						<HashRouter>
 							<div className="app-content">
 								<Route path="/" exact component={PostBoard} />
-								<Route path="/registration" component={Registration} />
+								<Route path="/register" component={Register} />
 								<Route path="/login" component={Login} />
 								<Route path="/post/add" component={AddPost} />
 								<Route path="/post/edit" component={EditPost} />
 								<Route path="/myposts" component={UserPostBoard} />
+								<Route path="/subscribe" component={Subscribe} />
 							</div>
 						</HashRouter>
 					</PersistGate>

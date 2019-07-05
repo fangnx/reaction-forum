@@ -26,11 +26,10 @@ export const ViewPostStyles = {
 	},
 	title: {
 		fontFamily: 'Cairo',
-		fontSize: '2.5em'
+		paddingTop: '0px'
 	},
 	titleTight: {
 		fontFamily: 'Cairo',
-		fontSize: '1.5em',
 		paddingTop: '0px'
 	},
 	content: {
@@ -45,6 +44,15 @@ export const ViewPostStyles = {
 		float: 'right'
 	},
 	icon: { margin: '0' },
+	commentLabel: {
+		background: 'transparent',
+		paddingLeft: '0',
+		width: '100%',
+		fontFamily: 'Cairo',
+		fontSize: '1.2em',
+		fontWeight: '500',
+		color: 'rgba(0, 0, 0, 0.87)'
+	},
 	commentsRow: {
 		padding: '0px'
 	},
@@ -54,7 +62,7 @@ export const ViewPostStyles = {
 		border: '1px solid #ddd',
 		boxShadow: 'none',
 		borderRadius: '3px',
-		marginTop: '30px',
+		marginTop: '5px',
 		marginBottom: '15px',
 		padding: '0px'
 	},

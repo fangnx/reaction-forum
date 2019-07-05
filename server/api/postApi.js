@@ -1,3 +1,12 @@
+/**
+ * postApi.js
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-06-23 00:52:32
+ * @last-modified 2019-07-04 20:01:08
+ */
+
 import express from 'express';
 import Post from '../models/Post';
 import User from '../models/User';

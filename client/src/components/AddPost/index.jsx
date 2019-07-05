@@ -26,6 +26,7 @@ import {
 	BACKSPACE_KEY,
 	TAG_COLORS
 } from '../../utils/commonUtils';
+
 class AddPost extends React.Component {
 	constructor() {
 		super();
