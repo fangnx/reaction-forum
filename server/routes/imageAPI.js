@@ -1,5 +1,5 @@
 /**
- * imageApi.js
+ * imageAPI.js
  * @author fangnx
  * @description
  * @created 2019-06-23T00:53:48.481Z-04:00

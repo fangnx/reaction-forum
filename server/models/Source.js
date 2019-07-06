@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-04 19:58:01
- * @last-modified 2019-07-04 20:13:17
+ * @last-modified 2019-07-05 00:36:31
  */
 
 import mongoose from 'mongoose';
@@ -39,6 +39,12 @@ const SourceSchema = new Schema({
 	active: {
 		type: Boolean,
 		default: true,
+		required: true
+	},
+	// Number of items that can be posted per day.
+	dailyLimit: {
+		type: Number,
+		default: 10,
 		required: true
 	}
 });
