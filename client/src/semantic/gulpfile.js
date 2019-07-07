@@ -6,7 +6,7 @@ try {
 } catch (e) {
 	console.log("Copying 'tasks' folder from 'node_modules/semantic-ui/tasks'");
 	fs.copySync(
-		path.join(__dirname, '../node_modules/semantic-ui/tasks'),
+		path.join(__dirname, '../../node_modules/semantic-ui/tasks'),
 		path.join(__dirname, './tasks')
 	);
 	console.log('Copying done! Continuing.');
