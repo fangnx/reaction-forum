@@ -4,14 +4,13 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-03 17:22:30
- * @last-modified 2019-07-06 01:06:02
+ * @last-modified 2019-07-06 01:43:16
  */
 
 import axios from 'axios';
-import config from '../config/config';
-import Source from './models/Source';
 import Post from './models/Post';
-var CronJob = require('cron').CronJob;
+import { CronJob } from 'cron';
+import TurndownService from 'turndown';
 
 const axiosLocal = axios.create({
 	baseURL: 'http://localhost:5000'
@@ -32,6 +31,8 @@ const rssToJson = url => 'https://api.rss2json.com/v1/api.json?rss_url=' + url;
  * @param {Number} numOfItem
  */
 const getPostsFromRssSource = (sourceName, sourceUrl, category, numOfItems) => {
+	const turndownService = new TurndownService();
+
 	return axios.get(rssToJson(sourceUrl)).then(res => {
 		console.log(res);
 		if (res.data.items) {
@@ -41,7 +42,7 @@ const getPostsFromRssSource = (sourceName, sourceUrl, category, numOfItems) => {
 			rawItems.forEach(item => {
 				const postFields = {
 					title: item.title,
-					content: item.description,
+					content: turndownService.turndown(item.description),
 					author: sourceName,
 					authorEmail: 'RSS',
 					timeStamp: item.pubDate,
@@ -85,7 +86,6 @@ const postDailySubscriptions = () => {
 				.post('/api/sources/allactive')
 				.then(res => {
 					const subscriptions = res.data;
-					console.log(subscriptions);
 					subscriptions.forEach(async source => {
 						// Gets all posts (daily quota) from one source.
 						const posts = await getPostsFromRssSource(

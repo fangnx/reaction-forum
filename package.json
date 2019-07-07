@@ -40,12 +40,14 @@
 		"radium": "^0.25.2",
 		"rimraf": "^2.6.3",
 		"styled-components": "^4.2.0",
+		"turndown": "^5.0.3",
 		"validator": "^10.11.0"
 	},
 	"scripts": {
 		"server": "nodemon --config \"./nodemon.json\" server/index.js",
 		"client": "cd client && npm start",
-		"dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+		"dev": "kill-port 5000 && concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+		"prod": "cd ./client && npm run build && cd .. && kill-port 5000 && concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},

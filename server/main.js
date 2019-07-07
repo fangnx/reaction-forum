@@ -14,7 +14,6 @@ import { posts } from './routes/postAPI';
 import { images } from './routes/imageAPI';
 import { sources } from './routes/rssSourceAPI';
 import { postDailySubscriptions } from './rssService';
-import axios from 'axios';
 
 const app = new express();
 

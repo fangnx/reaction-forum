@@ -50,6 +50,10 @@ const PostSchema = new Schema({
 		default: 'public',
 		required: true
 	},
+	isRSS: {
+		type: Boolean,
+		required: false
+	},
 	subforum: {
 		type: String,
 		required: false
