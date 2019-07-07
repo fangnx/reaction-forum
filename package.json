@@ -44,10 +44,11 @@
 		"validator": "^10.11.0"
 	},
 	"scripts": {
-		"server": "nodemon --config \"./nodemon.json\" server/index.js",
+		"server-nodemon": "nodemon --config \"./nodemon.json\" server/index.js",
+		"server": "kill-port 5000 && node server/index.js",
 		"client": "cd client && npm start",
-		"dev": "kill-port 5000 && concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-		"prod": "cd ./client && npm run build && cd .. && kill-port 5000 && concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+		"dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+		"prod": "cd ./client && npm run build && cd .. && concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},

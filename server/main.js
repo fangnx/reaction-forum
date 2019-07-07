@@ -96,7 +96,7 @@ app.use('/api/sources', sources);
 app.listen(port, () => console.log(`App listening on port ${port} !`));
 // app.listen(port, '172.31.44.200', () => console.log(`App listening on port ${port} !`));
 
-process.on('SIGINT', () => {
-	console.log('Should exit now!');
-	process.exit();
-});
+// process.on('SIGINT', () => {
+// 	console.log('Should exit now!');
+// 	process.exit();
+// });
