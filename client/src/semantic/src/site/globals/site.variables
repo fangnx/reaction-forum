@@ -15,12 +15,6 @@
 @monet-green: #7EA860;
 @monet-purple: #B985BA;
 
-@fontName: 'Avenir Next';
+@fontName: 'Lato';
 @fontSize: 14px;
 @fontWeight: 500px;
-
-@headerFont: 'Avenir Next';
-@pageFont: 'Avenir Next';
-@contentFont: 'Avenir Next';
-@inputFont: 'Avenir Next';
-@labelFont: 'Avenir Next';

@@ -24,6 +24,7 @@ import {
 } from 'semantic-ui-react';
 import '../../App.css';
 import { ViewPostStyles as styles } from '../ViewPostStyles';
+import './PostView.css';
 import dateFormat from 'dateformat';
 import {
 	addComment,
@@ -38,10 +39,10 @@ import { TAG_COLORS, mergeStyles } from '../../utils/commonUtils';
 class PostView extends React.Component {
 	_isMounted = false;
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
-			showFullCard: true,
+			showFullCard: props.showFullCard,
 			authorAvatar: '',
 			showComments: false,
 			comments: [],
@@ -135,6 +136,10 @@ class PostView extends React.Component {
 		}
 	};
 
+	componentWillReceiveProps = () => {
+		this.setState({ showFullCard: this.props.showFullCard });
+	};
+
 	render() {
 		const { pid, title, content, timeStamp, tags } = this.props;
 		if (this.state.shouldEdit) {
@@ -147,7 +152,7 @@ class PostView extends React.Component {
 			});
 		}
 		return (
-			<div style={styles.wrapper}>
+			<div style={styles.wrapper} className="postview">
 				<Card style={styles.card} fluid>
 					<Card.Content style={styles.cardContent}>
 						<Grid padded>

@@ -1,7 +1,6 @@
 export const ManagePostStyles = {
 	wrapper: {
-		width: '60%',
-		minWidth: '500px',
+		width: '100%',
 		margin: '0 auto'
 	},
 	card: {

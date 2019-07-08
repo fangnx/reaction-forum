@@ -15,5 +15,11 @@ export const PostBoardStyles = {
 	postBoardSeparator: {
 		visibility: 'hidden',
 		height: '30px'
+	},
+
+	toolbar: {
+		width: '100%',
+		background: 'transparent',
+		border: 'none'
 	}
 };

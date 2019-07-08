@@ -23,4 +23,8 @@
 
 .app-content {
 	padding-top: calc(8vh + 30px);
+	max-width: 750px;
+	min-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
 }
