@@ -71,7 +71,7 @@ class Header extends React.Component {
 						</Menu.Item>
 
 						<Menu.Item as={NavLink} to="/" exact name="allPosts">
-							ALL POSTS
+							BROWSE ALL
 						</Menu.Item>
 
 						<Menu.Item as={NavLink} to="/post/add" name="newPost">

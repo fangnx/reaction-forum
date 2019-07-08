@@ -18,8 +18,8 @@ export const PostBoardStyles = {
 	},
 
 	toolbar: {
-		width: '100%',
-		background: 'transparent',
-		border: 'none'
+		width: '100%'
+		// background: 'transparent',
+		// border: 'none'
 	}
 };

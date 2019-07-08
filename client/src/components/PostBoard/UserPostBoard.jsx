@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-17 22:29:29
- * @last-modified 2019-06-30 15:14:52
+ * @last-modified 2019-07-07 22:02:27
  */
 
 import React from 'react';
@@ -39,45 +39,38 @@ class UserPostBoard extends React.Component {
 		const { posts } = this.state;
 
 		return (
-			<StyleRoot>
-				<div style={styles.fadeIn}>
-					{posts.map((post, index) => (
-						<React.Fragment>
-							<div
-								// onClick={() =>
-								// 	this.setState({ doAnimate: true, clickedIndex: index })
-								// }
-								// onAnimationEnd={() =>
-								// 	this.setState({ doAnimate: false, clickedIndex: -1 })
-								// }
-								style={
-									this.state.doAnimate && index === this.state.clickedIndex
-										? styles.postViewAnimated
-										: {}
-								}
-								key={'postBoard-postView-wrapper-' + index}
-							>
-								<PostView
-									className="postBoard-postView"
-									key={'postBoard-postView-' + index}
-									canManage={true}
-									pid={post._id}
-									title={post.title}
-									author={post.author}
-									authorEmail={post.authorEmail}
-									content={post.content}
-									tags={post.tags}
-									timeStamp={post.timeStamp}
-									viewCount={post.viewCount}
-									likeCount={post.likeCount}
-								/>
-							</div>
+			<div>
+				{posts.map((post, index) => (
+					<React.Fragment>
+						<div
+							style={
+								this.state.doAnimate && index === this.state.clickedIndex
+									? styles.postViewAnimated
+									: {}
+							}
+							key={'postBoard-postView-wrapper-' + index}
+						>
+							<PostView
+								className="postBoard-postView"
+								key={'postBoard-postView-' + index}
+								canManage={true}
+								pid={post._id}
+								title={post.title}
+								author={post.author}
+								authorEmail={post.authorEmail}
+								content={post.content}
+								tags={post.tags}
+								timeStamp={post.timeStamp}
+								viewCount={post.viewCount}
+								likeCount={post.likeCount}
+								showFullCard={true}
+							/>
+						</div>
 
-							<div style={styles.postBoardSeparator} />
-						</React.Fragment>
-					))}
-				</div>
-			</StyleRoot>
+						<div style={styles.postBoardSeparator} />
+					</React.Fragment>
+				))}
+			</div>
 		);
 	}
 }

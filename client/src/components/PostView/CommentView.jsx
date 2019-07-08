@@ -16,7 +16,6 @@ const styles = {
 		margin: '0.5em 0'
 	},
 	commentContent: {
-		background: 'rgba(230, 230, 230, 0.8)',
 		marginTop: '0px'
 	},
 	avatarWrapper: {

@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-03 17:22:30
- * @last-modified 2019-07-06 01:43:16
+ * @last-modified 2019-07-07 22:11:57
  */
 
 import axios from 'axios';
@@ -74,11 +74,11 @@ const submitPosts = posts => {
 
 /**
  * Posts from all registered active RSS sources, on a daily basis.
- * At 01:30 every day.
+ * At 00:05 every day.
  */
 const postDailySubscriptions = () => {
 	const cronJob = new CronJob(
-		'0 30 1 * * *',
+		'0 5 0 * * *',
 		() => {
 			console.log('Daily task started!');
 			// Gets all active Source objects from the database as valid subscriptions.
