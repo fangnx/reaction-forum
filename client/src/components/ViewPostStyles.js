@@ -44,9 +44,7 @@ export const ViewPostStyles = {
 		paddingRight: '0px',
 		background: 'transparent'
 	},
-	tags: {
-		fontFamily: 'Cairo'
-	},
+	tags: {},
 	iconGroup: {
 		background: 'transparent',
 		padding: '0px',

@@ -25,6 +25,7 @@ import './App.css';
 
 import Header from './components/Header/Header';
 import Forum from './components/Forum/Forum';
+import SubforumBoard from './components/Forum/SubforumBoard';
 import PostBoard from './components/PostBoard/PostBoard';
 import UserPostBoard from './components/PostBoard/UserPostBoard';
 import AddPost from './components/AddPost';
@@ -65,7 +66,8 @@ class App extends React.Component {
 						<HashRouter>
 							<div className="app-content">
 								<Route path="/" exact component={PostBoard} />
-								<Route path="/forum" component={Forum} />
+								<Route path="/forum" exact component={Forum} />
+								<Route path="/subforum/*" component={SubforumBoard} />
 								<Route path="/register" component={Register} />
 								<Route path="/login" component={Login} />
 								<Route path="/post/add" component={AddPost} />

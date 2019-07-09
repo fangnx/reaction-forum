@@ -25,7 +25,7 @@ import {
 import '../../App.css';
 import { ViewPostStyles as styles } from '../ViewPostStyles';
 import './PostView.css';
-import dateFormat from 'dateformat';
+
 import {
 	addComment,
 	getAllCommentsOfPost,
@@ -34,6 +34,7 @@ import {
 import { getAvatarData } from '../../actions/userActions';
 import UserLabel from '../Header/UserLabel';
 import CommentSection from './CommentSection';
+import dateFormat from 'dateformat';
 import { TAG_COLORS, mergeStyles } from '../../utils/commonUtils';
 
 class PostView extends React.Component {
@@ -151,6 +152,7 @@ class PostView extends React.Component {
 				pathname: '/post/edit'
 			});
 		}
+
 		return (
 			<div style={styles.wrapper} className="postview">
 				<Card style={styles.card} fluid>

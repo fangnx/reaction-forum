@@ -36,6 +36,7 @@ class AddPost extends React.Component {
 			author: '',
 			authorEmail: '',
 			timeStamp: '',
+			subforum: '',
 			tags: [],
 			currentTag: '',
 			success: false
@@ -102,7 +103,8 @@ class AddPost extends React.Component {
 			timeStamp: dateFormat(new Date(), 'isoDateTime'),
 			tags: this.state.tags,
 			viewCount: 0,
-			likeCount: 0
+			likeCount: 0,
+			subforum: this.state.subforum
 		};
 
 		addPost(newPost).then(res => {
@@ -182,6 +184,22 @@ class AddPost extends React.Component {
 										style={styles.tagInput}
 									/>
 								</Segment>
+							</Grid.Row>
+
+							<Grid.Row>
+								<Label color="grey" size="large">
+									Subforum
+								</Label>
+
+								<Segment
+									as={TextArea}
+									id="subforum"
+									value={this.state.subforum}
+									onChange={this.onChange}
+									placeholder=""
+									rows="1"
+									style={mergeStyles([styles.field, styles.subforum])}
+								/>
 							</Grid.Row>
 
 							{this.state.success ? (

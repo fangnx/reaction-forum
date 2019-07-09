@@ -1,18 +1,19 @@
 /**
- * PostBoard.jsx
+ * SubforumBoard.jsx
  *
  * @author nxxinf
  * @github https://github.com/fangnx
- * @created 2019-06-13 00:46:23
- * @last-modified 2019-07-09 00:15:46
+ * @created 2019-07-09 00:16:42
+ * @last-modified 2019-07-09 01:19:08
  */
 
 import React from 'react';
-import { PostBoardStyles as styles } from './PostBoardStyles';
-import { getAllPosts } from '../../actions/postActions';
+import { connect } from 'react-redux';
+import { PostBoardStyles as styles } from '../PostBoard/PostBoardStyles';
+import { getAllPostsInSubforum } from '../../actions/forumActions';
 import PostView from '../PostView/PostView';
 
-class PostBoard extends React.Component {
+class SubforumBoard extends React.Component {
 	_isMounted = false;
 
 	constructor(props) {
@@ -36,7 +37,7 @@ class PostBoard extends React.Component {
 		this._isMounted = true;
 
 		if (this._isMounted) {
-			await getAllPosts().then(async res => {
+			await getAllPostsInSubforum({ name: this.props.name }).then(async res => {
 				if (res.data) {
 					await this.setState({ posts: res.data.map(post => post) });
 				}
@@ -49,22 +50,6 @@ class PostBoard extends React.Component {
 
 		return (
 			<div>
-				{/* <Menu style={styles.toolbar}>
-					<Menu.Item>
-						<Button icon onClick={this.toggleShowFullCards}>
-							Toggle Expansion
-							<Icon
-									size="large"
-									name={
-										this.state.showFullCards
-											? 'window maximize'
-											: 'window maximize outline'
-									}
-								/>
-						</Button>
-					</Menu.Item>
-				</Menu> */}
-
 				{posts.map((post, index) => (
 					<React.Fragment key={index}>
 						<div
@@ -99,4 +84,10 @@ class PostBoard extends React.Component {
 	}
 }
 
-export default PostBoard;
+const mapStateToProps = state => {
+	return {
+		name: state.subforum.name
+	};
+};
+
+export default connect(mapStateToProps)(SubforumBoard);

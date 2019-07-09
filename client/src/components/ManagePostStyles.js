@@ -32,6 +32,7 @@ export const ManagePostStyles = {
 		background: 'rgba(236, 236, 236, 1)'
 	},
 	tagInput: {},
+	subforum: {},
 	message: {},
 	button: {},
 	iconGroup: {

@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-23 00:52:32
- * @last-modified 2019-07-08 00:44:15
+ * @last-modified 2019-07-09 00:11:39
  */
 
 import express from 'express';
@@ -25,7 +25,8 @@ router.post('/add', (req, res) => {
 		timeStamp: req.body.timeStamp,
 		tags: req.body.tags,
 		viewCount: req.body.viewCount,
-		likeCount: req.body.likeCount
+		likeCount: req.body.likeCount,
+		subforum: req.body.subforum
 	});
 
 	newPost
@@ -54,7 +55,7 @@ router.post('/edit', (req, res) => {
 });
 
 // Gets all Posts.
-router.post('/findAll', (req, res) => {
+router.post('/findall', (req, res) => {
 	Post.find().then(v => res.json(v));
 });
 
@@ -66,7 +67,7 @@ router.post('/userposts', (req, res) => {
 });
 
 // Adds a Comment to a Post.
-router.post('/addComment', (req, res) => {
+router.post('/addcomment', (req, res) => {
 	Post.findOne({ _id: req.body.pid }).then(post => {
 		if (!post) {
 			return res.status(404).json({ postnotfound: 'Post not found' });
