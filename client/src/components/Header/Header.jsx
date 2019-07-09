@@ -21,7 +21,7 @@ import UserLabel from './UserLabel';
 const styles = {
 	dropdownMenu: {
 		marginTop: '40px',
-		background: 'rgba(245, 245, 245, 0.9)'
+		background: 'rgba(245, 245, 245, 96%)'
 	}
 };
 class Header extends React.Component {

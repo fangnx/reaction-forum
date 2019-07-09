@@ -4,11 +4,10 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-13 00:46:23
- * @last-modified 2019-07-07 22:00:49
+ * @last-modified 2019-07-08 00:11:38
  */
 
 import React from 'react';
-import { StyleRoot } from 'radium';
 import { Icon, Button, Menu } from 'semantic-ui-react';
 import { PostBoardStyles as styles } from './PostBoardStyles';
 import { getAllPosts } from '../../actions/postActions';

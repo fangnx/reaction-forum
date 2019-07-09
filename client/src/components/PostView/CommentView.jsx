@@ -18,6 +18,9 @@ const styles = {
 	commentContent: {
 		marginTop: '0px'
 	},
+	commentText: {
+		fontFamily: 'Cairo'
+	},
 	avatarWrapper: {
 		display: 'inline-block',
 		width: '35px',
@@ -62,7 +65,9 @@ class CommentView extends React.Component {
 							{this.props.author}
 							{/* <Feed.Date>{this.props.timeStamp}</Feed.Date> */}
 						</Feed.Summary>
-						<Feed.Extra text>{this.props.content}</Feed.Extra>
+						<Feed.Extra text style={styles.commentText}>
+							{this.props.content}
+						</Feed.Extra>
 					</Feed.Content>
 				</Feed.Event>
 			</Feed>

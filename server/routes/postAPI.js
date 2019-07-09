@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-23 00:52:32
- * @last-modified 2019-07-04 20:01:08
+ * @last-modified 2019-07-08 00:44:15
  */
 
 import express from 'express';
@@ -14,10 +14,9 @@ import Comment from '../models/Comment';
 
 const router = express.Router();
 
-// Add Post
+// Adds a Post.
 router.post('/add', (req, res) => {
 	// TODO: validation
-
 	const newPost = new Post({
 		title: req.body.title,
 		content: req.body.content,
@@ -35,14 +34,14 @@ router.post('/add', (req, res) => {
 		.catch(err => console.log(err));
 });
 
-// Delete Post
+// Deletes a Post.
 router.post('/delete', (req, res) => {
 	Post.deleteOne({ _id: req.body.pid })
 		.then(value => res.json(value))
 		.catch(err => console.log(err));
 });
 
-// Edit Post
+// Edits a Post.
 router.post('/edit', (req, res) => {
 	const update = {
 		title: req.body.title,
@@ -54,19 +53,19 @@ router.post('/edit', (req, res) => {
 	Post.update({ _id: req.body.pid }, update).then(value => res.json(value));
 });
 
-// Get all Posts
+// Gets all Posts.
 router.post('/findAll', (req, res) => {
 	Post.find().then(v => res.json(v));
 });
 
-// Get all Posts of a User
+// Gets all Posts of a User.
 router.post('/userposts', (req, res) => {
 	Post.find({
 		authorEmail: req.body.userEmail
 	}).then(v => res.json(v));
 });
 
-// Add Comment to a Post
+// Adds a Comment to a Post.
 router.post('/addComment', (req, res) => {
 	Post.findOne({ _id: req.body.pid }).then(post => {
 		if (!post) {
@@ -88,11 +87,9 @@ router.post('/addComment', (req, res) => {
 	});
 });
 
-/**
- * Get all Comments of a Post
- */
+// Gets all Comments of a Post.
 router.post('/postcomments', (req, res) => {
-	// Check if Post of the given pid exists
+	// Checks if Post of the given pid exists
 	Post.findOne({ _id: req.body.pid }).then(post => {
 		if (!post) {
 			return res.status(404).json({ postnotfound: 'Post not found' });

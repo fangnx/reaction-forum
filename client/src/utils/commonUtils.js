@@ -10,6 +10,7 @@ export const capitalizeTag = word => {
 export const SPACE_KEY = 32;
 export const COMMA_KEY = 188;
 export const BACKSPACE_KEY = 8;
+
 export const TAG_COLORS = [
 	'orange',
 	'yellow',
@@ -21,3 +22,5 @@ export const TAG_COLORS = [
 	'brown',
 	'grey'
 ];
+
+export const TAG_COLORS_SOFT = ['olive', 'green', 'teal', 'blue', 'purple'];

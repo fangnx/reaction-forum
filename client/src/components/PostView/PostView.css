@@ -2,3 +2,7 @@
 	font-family: Lato;
 	font-size: 1.1em;
 }
+
+.ui.input > input {
+	font-family: 'Cairo';
+}

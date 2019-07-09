@@ -218,18 +218,21 @@ class PostView extends React.Component {
 
 							{this.state.showFullCard ? (
 								<React.Fragment>
-									<Grid.Row>
+									<Grid.Row style={styles.grey}>
 										<Segment
 											style={mergeStyles([styles.field, styles.content])}
 										>
 											<ReactMarkdown source={this.props.content} />
 										</Segment>
 									</Grid.Row>
+
 									<Grid.Row>
-										<Label.Group size="medium">
+										<Label.Group
+											size="medium"
+											style={mergeStyles([styles.field, styles.tags])}
+										>
 											{this.props.tags.map((tag, index) => (
 												<Label
-													className="postView-tag"
 													key={'postView-tag-' + index}
 													color={TAG_COLORS[index % TAG_COLORS.length]}
 												>
@@ -243,7 +246,7 @@ class PostView extends React.Component {
 										<Label
 											onClick={this.onShowComments}
 											size="large"
-											style={styles.commentLabel}
+											style={mergeStyles([styles.field, styles.commentLabel])}
 										>
 											Comments &nbsp;
 											<Icon name="comments outline" />
@@ -251,7 +254,9 @@ class PostView extends React.Component {
 									</Grid.Row>
 
 									{this.state.showComments && this.state.comments.length ? (
-										<Grid.Row style={styles.commentsRow}>
+										<Grid.Row
+											style={mergeStyles([styles.field, styles.commentsRow])}
+										>
 											<CommentSection comments={this.state.comments} />
 										</Grid.Row>
 									) : (

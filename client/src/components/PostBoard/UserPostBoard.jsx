@@ -4,11 +4,10 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-17 22:29:29
- * @last-modified 2019-07-07 22:02:27
+ * @last-modified 2019-07-08 00:11:45
  */
 
 import React from 'react';
-import { StyleRoot } from 'radium';
 import { PostBoardStyles as styles } from './PostBoardStyles';
 import { store } from '../../store';
 import { getAllPostsOfUser } from '../../actions/postActions';

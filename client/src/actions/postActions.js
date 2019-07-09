@@ -3,7 +3,6 @@
  * @author fangnx
  * @description
  * @created 2019-06-11T23:59:00.196Z-04:00
- * @copyright
  * @last-modified 2019-06-23T23:47:00.794Z-04:00
  */
 

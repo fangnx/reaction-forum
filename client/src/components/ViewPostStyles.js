@@ -9,19 +9,23 @@ export const ViewPostStyles = {
 	},
 	cardContent: {
 		width: '100%',
-		margin: '0 auto'
+		margin: '0 auto',
+		paddingLeft: '0px',
+		paddingRight: '0px'
 	},
 	field: {
 		marginTop: '5px',
 		width: '100%',
-		boxShadow: 'none'
+		boxShadow: 'none',
+		marginLeft: '20px',
+		marginRight: '20px'
 	},
 	top: {
 		paddingTop: '0px'
 	},
 	column: {
-		paddingLeft: '0',
-		paddingRight: '0'
+		paddingLeft: '0px',
+		paddingRight: '0px'
 	},
 	title: {
 		fontFamily: 'Cairo',
@@ -34,27 +38,32 @@ export const ViewPostStyles = {
 	content: {
 		minHeight: '200px',
 		fontSize: '1em',
+		fontFamily: 'Cairo',
 		border: 'none',
-		padding: '0',
+		paddingLeft: '0px',
+		paddingRight: '0px',
 		background: 'transparent'
+	},
+	tags: {
+		fontFamily: 'Cairo'
 	},
 	iconGroup: {
 		background: 'transparent',
-		padding: 'none',
+		padding: '0px',
+		marginRight: '20px',
 		float: 'right'
 	},
 	icon: { margin: '0' },
 	commentLabel: {
 		background: 'transparent',
-		paddingLeft: '0',
 		width: '100%',
-		fontFamily: 'Cairo',
+		padding: '0px',
 		fontSize: '1.2em',
 		fontWeight: '500',
 		color: 'rgba(0, 0, 0, 0.87)'
 	},
 	commentsRow: {
-		padding: '0px'
+		paddingTop: '0px'
 	},
 	commentInput: {
 		width: '100%',
@@ -64,15 +73,21 @@ export const ViewPostStyles = {
 		borderRadius: '3px',
 		marginTop: '5px',
 		marginBottom: '15px',
-		padding: '0px'
+		marginLeft: '20px',
+		marginRight: '20px',
+		padding: '0px',
+		fontFamily: 'Cairo'
 	},
 	commentSubmitButton: {
 		background: 'transparent'
 	},
 	divider: {
-		background: 'rgba(228, 228, 228, 0.2)',
 		marginLeft: '0px',
 		marginRight: '0px',
-		padding: '0'
+		width: '100%'
+	},
+	grey: {
+		width: '100%',
+		background: 'rgba(226, 226, 226, 96%)'
 	}
 };

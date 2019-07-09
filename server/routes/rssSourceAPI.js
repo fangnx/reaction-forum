@@ -4,13 +4,20 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-04 20:00:48
- * @last-modified 2019-07-06 00:46:25
+ * @last-modified 2019-07-08 00:08:11
  */
 
 import express from 'express';
 import Source from '../models/Source';
 
 const router = express.Router();
+
+// Returns all Source objects.
+router.post('/all', (req, res) => {
+	Source.find({})
+		.then(posts => res.json(posts))
+		.catch(err => console.log(err));
+});
 
 // Returns all active Source objects.
 router.post('/allactive', (req, res) => {

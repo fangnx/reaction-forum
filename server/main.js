@@ -10,6 +10,7 @@ import config from '../config/config';
 import path from 'path';
 
 import { users } from './routes/userAPI';
+import { subforums } from './routes/forumAPI';
 import { posts } from './routes/postAPI';
 import { images } from './routes/imageAPI';
 import { sources } from './routes/rssSourceAPI';
@@ -90,11 +91,11 @@ postDailySubscriptions().start();
 // API Routes.
 app.use('/api/users', users);
 app.use('/api/posts', posts);
+app.use('/api/subforums', subforums);
 app.use('/api/images', images);
 app.use('/api/sources', sources);
 
 app.listen(port, () => console.log(`App listening on port ${port} !`));
-// app.listen(port, '172.31.44.200', () => console.log(`App listening on port ${port} !`));
 
 // process.on('SIGINT', () => {
 // 	console.log('Should exit now!');
