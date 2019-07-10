@@ -51,10 +51,6 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
-
-	h1 {
-		font-weight: 600 !important;
-	}
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -63,8 +59,18 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
+}
 
-	h1 {
-		font-weight: 500 !important;
-	}
+h1 {
+	font-weight: 500 !important;
+}
+
+input {
+	border: none !important;
+	background: rgba(236, 236, 236, 1) !important;
+	display: inline !important;
+}
+
+img {
+	width: 100%;
 }

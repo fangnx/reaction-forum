@@ -74,16 +74,20 @@ class Header extends React.Component {
 				<Menu inverted borderless style={styles.header} className="header-menu">
 					<Menu.Menu position="left">
 						<Menu.Item as={NavLink} to="/forum" name="main">
-							{/* <FontAwesomeIcon icon={['fas', 'water']} size="2x" /> */}
-							<Icon name="road" size="large" style={styles.icon} />
+							<Icon name="newspaper" size="large" style={styles.icon} />
 						</Menu.Item>
 
 						<Menu.Item as={NavLink} to="/" exact name="allPosts">
 							<Icon name="newspaper outline" size="large" />
 						</Menu.Item>
 
+						<Menu.Item as={NavLink} to="/subscribe" name="newPost">
+							<Icon name="rss" size="large" />
+						</Menu.Item>
+
 						<Menu.Item as={NavLink} to="/post/add" name="newPost">
-							<Icon name="add circle" size="large" />
+							<Icon name="file text" size="large" />
+							<Icon corner name="add" />
 						</Menu.Item>
 					</Menu.Menu>
 
@@ -95,7 +99,7 @@ class Header extends React.Component {
 										userName={this.props.auth.user.name}
 										userAvatar={this.props.auth.user.avatar}
 									/>
-									<Dropdown icon="list layout" pointing>
+									<Dropdown icon="dropdown" pointing>
 										<Dropdown.Menu style={styles.dropdownMenu}>
 											<Dropdown.Header icon="user outline" content="	User" />
 

@@ -13,7 +13,6 @@ import {
 	Message
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '../ManagePost.css';
 import { ManagePostStyles as styles } from '../ManagePostStyles';
 import { AnimationStyles } from '../../animations';
 import { StyleRoot } from 'radium';
@@ -175,7 +174,7 @@ class EditPost extends React.Component {
 										id="tags"
 										style={mergeStyles([styles.field, styles.tags])}
 									>
-										<Label.Group style={styles.label}>
+										<Label.Group>
 											{this.state.tags.map((tag, index) => (
 												<Label color={TAG_COLORS[index % TAG_COLORS.length]}>
 													{capitalizeTag(tag)}

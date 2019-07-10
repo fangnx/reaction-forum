@@ -4,19 +4,22 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-04 19:49:48
- * @last-modified 2019-07-04 22:57:16
+ * @last-modified 2019-07-10 01:08:57
  */
 
 import React from 'react';
-import Radium from 'radium';
-import { Label, Card, Form, Input, Button } from 'semantic-ui-react';
+import { Label, Card, Grid, Input, Select, Button } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AnimationStyles } from '../../animations';
+import { StyleRoot } from 'radium';
+
+import { getAllSubforums } from '../../actions/forumActions';
 import { subscribeToSource } from '../../actions/rssSourceActions';
+import { mergeStyles } from '../../utils/commonUtils';
 
 const styles = {
 	wrapper: {
-		width: '60%',
-		minWidth: '500px',
+		width: '100%',
 		margin: '0 auto'
 	},
 	card: {
@@ -26,6 +29,17 @@ const styles = {
 	cardContent: {
 		width: '100%',
 		margin: '0 auto'
+	},
+	field: {
+		marginTop: '15px',
+		width: '100%',
+		background: 'rgba(240, 240, 240, 1)',
+		border: '1px solid #ddd',
+		boxShadow: 'none'
+	},
+	label: {
+		background: '#7ea860',
+		color: 'rgba(240, 240, 240, 1)'
 	}
 };
 
@@ -36,13 +50,28 @@ class Subscribe extends React.Component {
 			name: '',
 			sourceUrl: '',
 			description: '',
-			category: '',
+			subforum: '',
 			avatar: '',
+			subforumOpts: [],
 			success: false
 		};
 	}
 
-	componentDidMount() {}
+	getSubforums = async () => {
+		getAllSubforums().then(async res => {
+			const subforumNames = res.data.map(subforum => subforum.name);
+			await this.setState({
+				subforumOpts: subforumNames.map(name => ({
+					value: name,
+					text: name
+				}))
+			});
+		});
+	};
+
+	async componentDidMount() {
+		await this.getSubforums();
+	}
 
 	onChange = (e, data) => {
 		this.setState({ [data.id]: data.value });
@@ -54,7 +83,7 @@ class Subscribe extends React.Component {
 			name: this.state.name,
 			sourceUrl: this.state.sourceUrl,
 			description: this.state.description,
-			category: this.state.category,
+			subforum: this.state.subforum,
 			avatar: this.state.avatar
 		};
 		console.log(newSource);
@@ -63,63 +92,86 @@ class Subscribe extends React.Component {
 
 	render() {
 		return (
-			<div style={styles.wrapper}>
-				<Card style={styles.card} fluid>
-					<Card.Content style={styles.cardContent}>
-						<Form success={this.state.Success}>
-							<Form.Field>
-								<Input
-									id="name"
-									value={this.state.name}
-									onChange={this.onChange}
-									placeholder="Source Name"
-								/>
-							</Form.Field>
+			<StyleRoot>
+				<div style={mergeStyles([AnimationStyles.fadeIn, styles.wrapper])}>
+					<Card style={styles.card} fluid>
+						<Card.Content style={styles.cardContent}>
+							<Grid padded>
+								<Grid.Row>
+									<Label style={styles.label} size="large">
+										Source Name
+									</Label>
 
-							<Form.Field>
-								<Input
-									id="sourceUrl"
-									value={this.state.sourceUrl}
-									onChange={this.onChange}
-									placeholder="URL of the source"
-								/>
-							</Form.Field>
+									<Input
+										id="name"
+										value={this.state.name}
+										onChange={this.onChange}
+										placeholder="Source Name"
+										style={styles.field}
+									/>
+								</Grid.Row>
 
-							<Form.Field>
-								<Input
-									id="description"
-									value={this.state.description}
-									onChange={this.onChange}
-									placeholder="Some description of the subscription ;)"
-								/>
-							</Form.Field>
+								<Grid.Row>
+									<Label style={styles.label} size="large">
+										Source URL
+									</Label>
 
-							<Form.Field>
-								<Input
-									id="category"
-									value={this.state.category}
-									onChange={this.onChange}
-									placeholder="Source Category (News, Tech, Music, ...)"
-								/>
-							</Form.Field>
+									<Input
+										id="sourceUrl"
+										value={this.state.sourceUrl}
+										onChange={this.onChange}
+										placeholder="URL of the source"
+										style={styles.field}
+									/>
+								</Grid.Row>
 
-							<Form.Field
-								as={Button}
-								className="registration-button"
-								onClick={this.onSubmit}
-								animated="vertical"
-								size="large"
-								primary
-							>
-								<Button.Content visible>Submit</Button.Content>
-								<Button.Content hidden>
-									<FontAwesomeIcon icon={['fas', 'check']} size="1x" />
-								</Button.Content>
-							</Form.Field>
-						</Form>
-					</Card.Content>
-				</Card>
-			</div>
+								<Grid.Row>
+									<Label style={styles.label} size="large">
+										Description
+									</Label>
+
+									<Input
+										id="description"
+										value={this.state.description}
+										onChange={this.onChange}
+										placeholder="Some description of the subscription ;)"
+										style={styles.field}
+									/>
+								</Grid.Row>
+
+								<Grid.Row>
+									<Label style={styles.label} size="large">
+										Subforum
+									</Label>
+
+									<Select
+										id="subforum"
+										options={this.state.subforumOpts}
+										value={this.state.subforum}
+										onChange={this.onChange}
+										style={styles.field}
+									/>
+								</Grid.Row>
+
+								<Grid.Row>
+									<Button
+										disabled={false}
+										onClick={this.onSubmit}
+										animated="vertical"
+										size="big"
+										primary
+									>
+										<Button.Content visible>Submit</Button.Content>
+										<Button.Content hidden>
+											<FontAwesomeIcon icon={['fas', 'check']} size="1x" />
+										</Button.Content>
+									</Button>
+								</Grid.Row>
+							</Grid>
+						</Card.Content>
+					</Card>
+				</div>
+			</StyleRoot>
 		);
 	}
 }

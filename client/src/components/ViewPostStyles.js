@@ -74,8 +74,8 @@ export const ViewPostStyles = {
 		borderRadius: '3px',
 		marginTop: '5px',
 		marginBottom: '15px',
-		marginLeft: '20px',
-		marginRight: '20px',
+		marginLeft: '12px',
+		marginRight: '12px',
 		padding: '0px',
 		fontFamily: 'Cairo'
 	},

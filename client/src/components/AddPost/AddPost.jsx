@@ -13,7 +13,6 @@ import {
 	Message
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '../ManagePost.css';
 import { ManagePostStyles as styles } from '../ManagePostStyles';
 import { AnimationStyles } from '../../animations';
 import { StyleRoot } from 'radium';

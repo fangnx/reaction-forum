@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-03 17:22:30
- * @last-modified 2019-07-09 20:14:08
+ * @last-modified 2019-07-10 01:45:12
  */
 
 import axios from 'axios';
@@ -30,32 +30,35 @@ const rssToJson = url => 'https://api.rss2json.com/v1/api.json?rss_url=' + url;
  * @param {String} category
  * @param {Number} numOfItem
  */
-const getPostsFromRssSource = (sourceName, sourceUrl, category, numOfItems) => {
+const getPostsFromRssSource = (sourceName, sourceUrl, subforum, numOfItems) => {
 	const turndownService = new TurndownService();
 
-	return axios.get(rssToJson(sourceUrl)).then(res => {
-		console.log(res);
-		if (res.data.items) {
-			const postFieldsArr = [];
-			const rawItems = res.data.items.slice(0, numOfItems);
+	return axios
+		.get(rssToJson(sourceUrl))
+		.then(res => {
+			if (res.data.items) {
+				const postFieldsArr = [];
+				const rawItems = res.data.items.slice(0, numOfItems);
 
-			rawItems.forEach(item => {
-				const postFields = {
-					title: item.title,
-					content: turndownService.turndown(item.description),
-					author: sourceName,
-					authorEmail: 'RSS',
-					timeStamp: item.pubDate,
-					tags: [category],
-					viewCount: 0,
-					likeCount: 0
-				};
-				postFieldsArr.push(postFields);
-			});
-			// console.log(postFieldsArr);
-			return postFieldsArr;
-		}
-	});
+				rawItems.forEach(item => {
+					const postFields = {
+						title: item.title,
+						content: turndownService.turndown(item.description),
+						author: sourceName,
+						authorEmail: 'RSS',
+						timeStamp: item.pubDate,
+						tags: [subforum],
+						viewCount: 0,
+						likeCount: 0,
+						subforum: subforum
+					};
+					postFieldsArr.push(postFields);
+				});
+				// console.log(postFieldsArr);
+				return postFieldsArr;
+			}
+		})
+		.catch(err => console.log(err));
 };
 
 /**
@@ -80,7 +83,7 @@ const postDailySubscriptions = () => {
 	const cronJob = new CronJob(
 		'0 5 0 * * *',
 		() => {
-			console.log('Daily task started!');
+			console.log('Daily RSS fetching started!');
 			// Gets all active Source objects from the database as valid subscriptions.
 			axiosLocal
 				.post('/api/sources/allactive')
@@ -91,11 +94,13 @@ const postDailySubscriptions = () => {
 						const posts = await getPostsFromRssSource(
 							source.name,
 							source.sourceUrl,
-							source.category,
+							source.subforum,
 							source.dailyLimit
 						);
 						await submitPosts(posts);
-						console.log(`Posted from ${source.name} ;)`);
+						console.log(
+							`All posted from ${source.name}: ${source.sourceUrl} ;)`
+						);
 					});
 				})
 				.catch(err => console.log(err));
