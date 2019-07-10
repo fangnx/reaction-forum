@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-24 17:58:54
- * @last-modified 2019-07-08 23:05:05
+ * @last-modified 2019-07-09 21:51:15
  */
 
 import React from 'react';
@@ -13,10 +13,8 @@ import './Subforum.css';
 
 const styles = {
 	segment: {
-		width: '400px',
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		height: '300px',
 		borderRadius: '0px'
 	},
 	name: {

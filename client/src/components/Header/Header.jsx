@@ -19,9 +19,16 @@ import { store } from '../../store';
 import UserLabel from './UserLabel';
 
 const styles = {
+	header: {
+		borderRadius: '0px',
+		height: '8vh'
+	},
 	dropdownMenu: {
-		marginTop: '40px',
-		background: 'rgba(245, 245, 245, 96%)'
+		marginTop: '30px',
+		background: 'rgba(245, 245, 245, 1)'
+	},
+	icon: {
+		width: '100%'
 	}
 };
 class Header extends React.Component {
@@ -64,18 +71,19 @@ class Header extends React.Component {
 
 		return (
 			<HashRouter>
-				<Menu inverted borderless className="header-menu">
+				<Menu inverted borderless style={styles.header} className="header-menu">
 					<Menu.Menu position="left">
 						<Menu.Item as={NavLink} to="/forum" name="main">
-							<FontAwesomeIcon icon={['fas', 'water']} size="2x" />
+							{/* <FontAwesomeIcon icon={['fas', 'water']} size="2x" /> */}
+							<Icon name="road" size="large" style={styles.icon} />
 						</Menu.Item>
 
 						<Menu.Item as={NavLink} to="/" exact name="allPosts">
-							BROWSE ALL
+							<Icon name="newspaper outline" size="large" />
 						</Menu.Item>
 
 						<Menu.Item as={NavLink} to="/post/add" name="newPost">
-							NEW POST
+							<Icon name="add circle" size="large" />
 						</Menu.Item>
 					</Menu.Menu>
 
@@ -87,7 +95,7 @@ class Header extends React.Component {
 										userName={this.props.auth.user.name}
 										userAvatar={this.props.auth.user.avatar}
 									/>
-									<Dropdown icon="list layout" className="icon">
+									<Dropdown icon="list layout" pointing>
 										<Dropdown.Menu style={styles.dropdownMenu}>
 											<Dropdown.Header icon="user outline" content="  User  " />
 

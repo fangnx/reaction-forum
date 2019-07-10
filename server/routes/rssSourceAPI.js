@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-04 20:00:48
- * @last-modified 2019-07-08 00:08:11
+ * @last-modified 2019-07-09 01:49:44
  */
 
 import express from 'express';
@@ -39,6 +39,7 @@ router.post('/subscribe', (req, res) => {
 				sourceUrl: req.body.sourceUrl,
 				description: req.body.description,
 				category: req.body.category,
+				subforum: req.body.subforum,
 				// avatar: '',
 				active: true
 			});

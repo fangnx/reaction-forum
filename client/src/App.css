@@ -1,8 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Cairo&display=swap');
 
 .app-background {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
-		url('../src/assets/lucas-davies-507228-unsplash.jpg');
+	/* background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+		url('../src/assets/lucas-davies-507228-unsplash.jpg'); */
+	background-image: linear-gradient(
+		to bottom,
+		#8e6da5,
+		#6968a6,
+		#53609a,
+		#3d588c,
+		#264f7e,
+		#284166,
+		#26344e,
+		#212838,
+		#1a1c23
+	);
 	background-size: cover;
 	filter: brightness(100%);
 
@@ -20,11 +32,30 @@
 	width: 100%;
 	z-index: 10;
 }
-
 .app-content {
 	padding-top: calc(8vh + 30px);
-	max-width: 750px;
-	min-width: 400px;
-	margin-left: auto;
-	margin-right: auto;
+}
+
+@media (min-width: 768px) {
+	.app-content {
+		width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	h1 {
+		font-weight: 600 !important;
+	}
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+	.app-content {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	h1 {
+		font-weight: 500 !important;
+	}
 }

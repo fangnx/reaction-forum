@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-04 19:58:01
- * @last-modified 2019-07-05 00:36:31
+ * @last-modified 2019-07-09 01:39:49
  */
 
 import mongoose from 'mongoose';
@@ -27,6 +27,10 @@ const SourceSchema = new Schema({
 	category: {
 		type: String,
 		default: 'News',
+		required: true
+	},
+	subforum: {
+		type: String,
 		required: true
 	},
 	avatar: {
