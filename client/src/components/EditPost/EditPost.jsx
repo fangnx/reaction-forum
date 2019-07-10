@@ -1,5 +1,5 @@
 import React from 'react';
-import Radium from 'radium';
+import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import {
 	Label,
@@ -15,8 +15,9 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../ManagePost.css';
 import { ManagePostStyles as styles } from '../ManagePostStyles';
+
 import dateFormat from 'dateformat';
-import { addPost } from '../../actions/postActions';
+import { editPost } from '../../actions/postActions';
 import { store } from '../../store';
 import {
 	mergeStyles,
@@ -27,16 +28,16 @@ import {
 	TAG_COLORS
 } from '../../utils/commonUtils';
 
-class AddPost extends React.Component {
+class EditPost extends React.Component {
 	constructor() {
 		super();
 		this.state = {
+			pid: '',
 			title: '',
 			content: '',
 			author: '',
 			authorEmail: '',
 			timeStamp: '',
-			subforum: '',
 			tags: [],
 			currentTag: '',
 			success: false
@@ -85,6 +86,14 @@ class AddPost extends React.Component {
 	};
 
 	componentDidMount() {
+		this.setState({
+			pid: this.props.pid,
+			title: this.props.title,
+			content: this.props.content,
+			timeStamp: this.props.timeStamp,
+			tags: this.props.tags
+		});
+
 		if (!!store.getState().auth.isAuthenticated) {
 			this.setState({
 				author: store.getState().auth.user.name,
@@ -95,19 +104,15 @@ class AddPost extends React.Component {
 
 	onSubmit = async e => {
 		e.preventDefault();
-		const newPost = {
+		const update = {
+			pid: this.state.pid,
 			title: this.state.title,
 			content: this.state.content,
-			author: this.state.author,
-			authorEmail: this.state.authorEmail,
 			timeStamp: dateFormat(new Date(), 'isoDateTime'),
-			tags: this.state.tags,
-			viewCount: 0,
-			likeCount: 0,
-			subforum: this.state.subforum
+			tags: this.state.tags
 		};
 
-		addPost(newPost).then(res => {
+		editPost(update).then(res => {
 			if (res.status === 200) {
 				this.setState({ success: true });
 			}
@@ -121,7 +126,7 @@ class AddPost extends React.Component {
 					<Card.Content style={styles.cardContent}>
 						<Grid padded>
 							<Grid.Row>
-								<Label color="grey" size="large">
+								<Label style={styles.label} size="large">
 									Title
 								</Label>
 
@@ -137,7 +142,7 @@ class AddPost extends React.Component {
 							</Grid.Row>
 
 							<Grid.Row>
-								<Label color="grey" size="large">
+								<Label style={styles.label} size="large">
 									Content
 								</Label>
 
@@ -150,6 +155,7 @@ class AddPost extends React.Component {
 									rows="12"
 									style={mergeStyles([styles.field, styles.content])}
 								/>
+
 								<Segment style={mergeStyles([styles.field, styles.content])}>
 									<ReactMarkdown source={this.state.content} />
 								</Segment>
@@ -157,7 +163,7 @@ class AddPost extends React.Component {
 
 							<Grid.Row>
 								<div>
-									<Label color="grey" size="large">
+									<Label style={styles.label} size="large">
 										Tags
 									</Label>
 								</div>
@@ -166,7 +172,7 @@ class AddPost extends React.Component {
 									id="tags"
 									style={mergeStyles([styles.field, styles.tags])}
 								>
-									<Label.Group size="large" style={styles.tagList}>
+									<Label.Group style={styles.label}>
 										{this.state.tags.map((tag, index) => (
 											<Label color={TAG_COLORS[index % TAG_COLORS.length]}>
 												{capitalizeTag(tag)}
@@ -181,27 +187,9 @@ class AddPost extends React.Component {
 										onChange={this.onChange}
 										onKeyUp={this.onKeyUp}
 										onKeyDown={this.onKeyDown}
-										style={styles.tagInput}
 									/>
 								</Segment>
 							</Grid.Row>
-
-							<Grid.Row>
-								<Label color="grey" size="large">
-									Subforum
-								</Label>
-
-								<Segment
-									as={TextArea}
-									id="subforum"
-									value={this.state.subforum}
-									onChange={this.onChange}
-									placeholder=""
-									rows="1"
-									style={mergeStyles([styles.field, styles.subforum])}
-								/>
-							</Grid.Row>
-
 							{this.state.success ? (
 								<Grid.Row>
 									<Message
@@ -222,6 +210,7 @@ class AddPost extends React.Component {
 									animated="vertical"
 									size="big"
 									primary
+									style={styles.button}
 								>
 									<Button.Content visible>Submit</Button.Content>
 									<Button.Content hidden>
@@ -237,4 +226,14 @@ class AddPost extends React.Component {
 	}
 }
 
-export default Radium(AddPost);
+const mapStateToProps = state => {
+	return {
+		pid: state.editPost.pid,
+		title: state.editPost.title,
+		content: state.editPost.content,
+		timeStamp: state.editPost.timeStamp,
+		tags: state.editPost.tags
+	};
+};
+
+export default connect(mapStateToProps)(EditPost);

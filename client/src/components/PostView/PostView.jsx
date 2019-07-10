@@ -245,6 +245,12 @@ class PostView extends React.Component {
 									</Grid.Row>
 
 									<Grid.Row>
+										<span style={mergeStyles([styles.field, styles.timeStamp])}>
+											Posted at {this.props.timeStamp.split('T')[0]}
+										</span>
+									</Grid.Row>
+
+									<Grid.Row>
 										<Label
 											onClick={this.onShowComments}
 											size="large"

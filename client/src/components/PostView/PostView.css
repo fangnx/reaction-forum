@@ -3,6 +3,11 @@
 	font-size: 1.1em;
 }
 
+.ui.card > .content {
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
 .ui.input > input {
 	font-family: 'Cairo';
 }

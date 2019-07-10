@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Cairo&display=swap');
 
+.app {
+	--monet-navy: #395a92;
+	--monet-blue: #4885a4;
+	--monet-red: #9f4640;
+	--monet-green: #7ea860;
+	--monet-purple: #b985ba;
+}
+
 .app-background {
 	/* background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
 		url('../src/assets/lucas-davies-507228-unsplash.jpg'); */
@@ -34,6 +42,7 @@
 }
 .app-content {
 	padding-top: calc(8vh + 30px);
+	padding-bottom: 30px;
 }
 
 @media (min-width: 768px) {

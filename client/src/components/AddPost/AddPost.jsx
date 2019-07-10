@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import Radium from 'radium';
 import ReactMarkdown from 'react-markdown';
 import {
 	Label,
@@ -7,6 +7,7 @@ import {
 	Grid,
 	TextArea,
 	Input,
+	Select,
 	Button,
 	Segment,
 	Icon,
@@ -15,8 +16,10 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../ManagePost.css';
 import { ManagePostStyles as styles } from '../ManagePostStyles';
+
 import dateFormat from 'dateformat';
-import { editPost } from '../../actions/postActions';
+import { addPost } from '../../actions/postActions';
+import { getAllSubforums } from '../../actions/forumActions';
 import { store } from '../../store';
 import {
 	mergeStyles,
@@ -27,16 +30,17 @@ import {
 	TAG_COLORS
 } from '../../utils/commonUtils';
 
-class EditPost extends React.Component {
+class AddPost extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			pid: '',
 			title: '',
 			content: '',
 			author: '',
 			authorEmail: '',
 			timeStamp: '',
+			subforum: '',
+			subforumOpts: [],
 			tags: [],
 			currentTag: '',
 			success: false
@@ -84,15 +88,20 @@ class EditPost extends React.Component {
 		this.setState({ [data.id]: data.value });
 	};
 
-	componentDidMount() {
-		this.setState({
-			pid: this.props.pid,
-			title: this.props.title,
-			content: this.props.content,
-			timeStamp: this.props.timeStamp,
-			tags: this.props.tags
+	getSubforums = async () => {
+		getAllSubforums().then(async res => {
+			const subforumNames = res.data.map(subforum => subforum.name);
+			await this.setState({
+				subforumOpts: subforumNames.map(name => ({
+					value: name,
+					text: name
+				}))
+			});
 		});
+	};
 
+	async componentDidMount() {
+		await this.getSubforums();
 		if (!!store.getState().auth.isAuthenticated) {
 			this.setState({
 				author: store.getState().auth.user.name,
@@ -103,15 +112,19 @@ class EditPost extends React.Component {
 
 	onSubmit = async e => {
 		e.preventDefault();
-		const update = {
-			pid: this.state.pid,
+		const newPost = {
 			title: this.state.title,
 			content: this.state.content,
+			author: this.state.author,
+			authorEmail: this.state.authorEmail,
 			timeStamp: dateFormat(new Date(), 'isoDateTime'),
-			tags: this.state.tags
+			tags: this.state.tags,
+			viewCount: 0,
+			likeCount: 0,
+			subforum: this.state.subforum
 		};
 
-		editPost(update).then(res => {
+		addPost(newPost).then(res => {
 			if (res.status === 200) {
 				this.setState({ success: true });
 			}
@@ -125,7 +138,7 @@ class EditPost extends React.Component {
 					<Card.Content style={styles.cardContent}>
 						<Grid padded>
 							<Grid.Row>
-								<Label color="grey" size="large">
+								<Label style={styles.label} size="large">
 									Title
 								</Label>
 
@@ -141,7 +154,7 @@ class EditPost extends React.Component {
 							</Grid.Row>
 
 							<Grid.Row>
-								<Label color="grey" size="large">
+								<Label style={styles.label} size="large">
 									Content
 								</Label>
 
@@ -154,7 +167,6 @@ class EditPost extends React.Component {
 									rows="12"
 									style={mergeStyles([styles.field, styles.content])}
 								/>
-
 								<Segment style={mergeStyles([styles.field, styles.content])}>
 									<ReactMarkdown source={this.state.content} />
 								</Segment>
@@ -162,7 +174,7 @@ class EditPost extends React.Component {
 
 							<Grid.Row>
 								<div>
-									<Label color="grey" size="large">
+									<Label style={styles.label} size="large">
 										Tags
 									</Label>
 								</div>
@@ -171,7 +183,7 @@ class EditPost extends React.Component {
 									id="tags"
 									style={mergeStyles([styles.field, styles.tags])}
 								>
-									<Label.Group size="large" className="addPost-tagList">
+									<Label.Group size="large" style={styles.tagList}>
 										{this.state.tags.map((tag, index) => (
 											<Label color={TAG_COLORS[index % TAG_COLORS.length]}>
 												{capitalizeTag(tag)}
@@ -186,9 +198,27 @@ class EditPost extends React.Component {
 										onChange={this.onChange}
 										onKeyUp={this.onKeyUp}
 										onKeyDown={this.onKeyDown}
+										style={styles.tagInput}
 									/>
 								</Segment>
 							</Grid.Row>
+
+							<Grid.Row>
+								<Label style={styles.label} size="large">
+									Subforum
+								</Label>
+
+								<Segment
+									as={Select}
+									options={this.state.subforumOpts}
+									id="subforum"
+									value={this.state.subforum}
+									onChange={this.onChange}
+									rows="1"
+									style={mergeStyles([styles.field, styles.subforum])}
+								/>
+							</Grid.Row>
+
 							{this.state.success ? (
 								<Grid.Row>
 									<Message
@@ -209,7 +239,6 @@ class EditPost extends React.Component {
 									animated="vertical"
 									size="big"
 									primary
-									style={styles.button}
 								>
 									<Button.Content visible>Submit</Button.Content>
 									<Button.Content hidden>
@@ -225,14 +254,4 @@ class EditPost extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-		pid: state.editPost.pid,
-		title: state.editPost.title,
-		content: state.editPost.content,
-		timeStamp: state.editPost.timeStamp,
-		tags: state.editPost.tags
-	};
-};
-
-export default connect(mapStateToProps)(EditPost);
+export default Radium(AddPost);

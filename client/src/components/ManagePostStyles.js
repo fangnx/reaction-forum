@@ -13,9 +13,13 @@ export const ManagePostStyles = {
 	field: {
 		marginTop: '15px',
 		width: '100%',
-		background: 'rgba(240, 240, 240)',
+		background: 'rgba(240, 240, 240, 1)',
 		border: '1px solid #ddd',
 		boxShadow: 'none'
+	},
+	label: {
+		background: '#395a92',
+		color: 'rgba(240, 240, 240, 1)'
 	},
 	title: {
 		fontFamily: 'Cairo',

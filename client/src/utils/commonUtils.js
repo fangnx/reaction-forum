@@ -24,3 +24,13 @@ export const TAG_COLORS = [
 ];
 
 export const TAG_COLORS_SOFT = ['olive', 'green', 'teal', 'blue', 'purple'];
+
+/**
+ * Compare two timestamps: the latest time goes first.
+ */
+export const compareTimestamp = (a, b) => {
+	if (a > b) {
+		return -1;
+	}
+	return 1;
+};

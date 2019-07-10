@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-17 22:29:29
- * @last-modified 2019-07-08 00:11:45
+ * @last-modified 2019-07-09 22:19:19
  */
 
 import React from 'react';
@@ -12,6 +12,7 @@ import { PostBoardStyles as styles } from './PostBoardStyles';
 import { store } from '../../store';
 import { getAllPostsOfUser } from '../../actions/postActions';
 import PostView from '../PostView/PostView';
+import { compareTimestamp } from '../../utils/commonUtils';
 
 class UserPostBoard extends React.Component {
 	_isMounted = false;
@@ -39,36 +40,38 @@ class UserPostBoard extends React.Component {
 
 		return (
 			<div>
-				{posts.map((post, index) => (
-					<React.Fragment>
-						<div
-							style={
-								this.state.doAnimate && index === this.state.clickedIndex
-									? styles.postViewAnimated
-									: {}
-							}
-							key={'postBoard-postView-wrapper-' + index}
-						>
-							<PostView
-								className="postBoard-postView"
-								key={'postBoard-postView-' + index}
-								canManage={true}
-								pid={post._id}
-								title={post.title}
-								author={post.author}
-								authorEmail={post.authorEmail}
-								content={post.content}
-								tags={post.tags}
-								timeStamp={post.timeStamp}
-								viewCount={post.viewCount}
-								likeCount={post.likeCount}
-								showFullCard={true}
-							/>
-						</div>
+				{posts
+					.sort((a, b) => compareTimestamp(a.timeStamp, b.timeStamp))
+					.map((post, index) => (
+						<React.Fragment>
+							<div
+								style={
+									this.state.doAnimate && index === this.state.clickedIndex
+										? styles.postViewAnimated
+										: {}
+								}
+								key={'postBoard-postView-wrapper-' + index}
+							>
+								<PostView
+									className="postBoard-postView"
+									key={'postBoard-postView-' + index}
+									canManage={true}
+									pid={post._id}
+									title={post.title}
+									author={post.author}
+									authorEmail={post.authorEmail}
+									content={post.content}
+									tags={post.tags}
+									timeStamp={post.timeStamp}
+									viewCount={post.viewCount}
+									likeCount={post.likeCount}
+									showFullCard={true}
+								/>
+							</div>
 
-						<div style={styles.postBoardSeparator} />
-					</React.Fragment>
-				))}
+							<div style={styles.postBoardSeparator} />
+						</React.Fragment>
+					))}
 			</div>
 		);
 	}

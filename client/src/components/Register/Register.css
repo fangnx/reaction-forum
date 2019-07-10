@@ -1,37 +1,37 @@
-.login-wrapper {
+.registration-wrapper {
 	width: 100%;
 	margin: 0 auto;
 }
 
-.login-form {
+.registration-form {
 	width: 100%;
 	margin: 0 auto;
 }
 
-.login-card {
+.registration-card {
 	background: rgba(240, 240, 240, 96%) !important;
 }
 
-.login-card-header {
-	width: 90%;
+.registration-card-header {
+	width: 95%;
 	margin: 0 auto;
 	text-align: left;
 	padding: 15px 0 30px 0;
 }
 
-.login-field-text {
+.registration-field-text {
 	font-size: 10pt !important;
 }
 
-.login-card-content .field:hover > .login-field-text {
+.registration-card-content .field:hover > .registration-field-text {
 	font-style: oblique;
 }
 
-.login-button {
+.registration-button {
 	margin: 2% 0 !important;
 }
 
-.login-field-msg {
+.registration-field-msg {
 	display: block;
 	margin-top: 2%;
 	/* margin-left: 3.75%; */

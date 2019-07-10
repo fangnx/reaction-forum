@@ -17,8 +17,8 @@ export const ViewPostStyles = {
 		marginTop: '5px',
 		width: '100%',
 		boxShadow: 'none',
-		marginLeft: '20px',
-		marginRight: '20px'
+		marginLeft: '12px',
+		marginRight: '12px'
 	},
 	top: {
 		paddingTop: '0px'
@@ -40,15 +40,18 @@ export const ViewPostStyles = {
 		fontSize: '1em',
 		fontFamily: 'Cairo',
 		border: 'none',
-		paddingLeft: '0px',
-		paddingRight: '0px',
+		paddingLeft: '2px',
+		paddingRight: '2px',
 		background: 'transparent'
 	},
 	tags: {},
+	timeStamp: {
+		color: 'rgba(100, 100, 100, 1)'
+	},
 	iconGroup: {
 		background: 'transparent',
 		padding: '0px',
-		marginRight: '20px',
+		marginRight: '12px',
 		float: 'right'
 	},
 	icon: { margin: '0' },
@@ -58,14 +61,14 @@ export const ViewPostStyles = {
 		padding: '0px',
 		fontSize: '1.2em',
 		fontWeight: '500',
-		color: 'rgba(0, 0, 0, 0.87)'
+		color: 'rgba(0, 0, 0, 0.9)'
 	},
 	commentsRow: {
 		paddingTop: '0px'
 	},
 	commentInput: {
 		width: '100%',
-		background: 'rgba(236, 236, 236, 1)',
+		background: 'rgba(240, 240, 240, 1)',
 		border: '1px solid #ddd',
 		boxShadow: 'none',
 		borderRadius: '3px',

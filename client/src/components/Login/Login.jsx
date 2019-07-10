@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-02 16:17:26
- * @last-modified 2019-06-30 13:46:34
+ * @last-modified 2019-07-09 22:45:03
  */
 
 import React from 'react';
@@ -19,6 +19,7 @@ import {
 	Transition
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import './Login.css';
 import { loginUser } from '../../actions/userActions';
 

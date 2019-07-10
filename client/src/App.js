@@ -28,10 +28,10 @@ import Forum from './components/Forum/Forum';
 import SubforumBoard from './components/Forum/SubforumBoard';
 import PostBoard from './components/PostBoard/PostBoard';
 import UserPostBoard from './components/PostBoard/UserPostBoard';
-import AddPost from './components/AddPost';
-import EditPost from './components/EditPost';
+import AddPost from './components/AddPost/AddPost';
+import EditPost from './components/EditPost/EditPost';
 import Register from './components/Register/Register';
-import Login from './components/Login';
+import Login from './components/Login/Login';
 import Subscribe from './components/Subscribe/Subscribe';
 import { setCurrentUser, logoutUser } from './actions/userActions';
 
@@ -51,7 +51,7 @@ if (localStorage.jwtToken) {
 		window.location.href = './login';
 	}
 }
-console.log(store.getState());
+// console.log(store.getState());
 
 class App extends React.Component {
 	render() {
