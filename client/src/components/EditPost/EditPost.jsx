@@ -15,6 +15,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../ManagePost.css';
 import { ManagePostStyles as styles } from '../ManagePostStyles';
+import { AnimationStyles } from '../../animations';
+import { StyleRoot } from 'radium';
 
 import dateFormat from 'dateformat';
 import { editPost } from '../../actions/postActions';
@@ -121,107 +123,109 @@ class EditPost extends React.Component {
 
 	render() {
 		return (
-			<div style={styles.wrapper}>
-				<Card style={styles.card} fluid>
-					<Card.Content style={styles.cardContent}>
-						<Grid padded>
-							<Grid.Row>
-								<Label style={styles.label} size="large">
-									Title
-								</Label>
-
-								<Segment
-									as={TextArea}
-									id="title"
-									value={this.state.title}
-									onChange={this.onChange}
-									placeholder=""
-									rows="1"
-									style={mergeStyles([styles.field, styles.title])}
-								/>
-							</Grid.Row>
-
-							<Grid.Row>
-								<Label style={styles.label} size="large">
-									Content
-								</Label>
-
-								<Segment
-									as={TextArea}
-									id="content"
-									value={this.state.content}
-									onChange={this.onChange}
-									placeholder="Write whatever you want ;)"
-									rows="12"
-									style={mergeStyles([styles.field, styles.content])}
-								/>
-
-								<Segment style={mergeStyles([styles.field, styles.content])}>
-									<ReactMarkdown source={this.state.content} />
-								</Segment>
-							</Grid.Row>
-
-							<Grid.Row>
-								<div>
-									<Label style={styles.label} size="large">
-										Tags
-									</Label>
-								</div>
-
-								<Segment
-									id="tags"
-									style={mergeStyles([styles.field, styles.tags])}
-								>
-									<Label.Group style={styles.label}>
-										{this.state.tags.map((tag, index) => (
-											<Label color={TAG_COLORS[index % TAG_COLORS.length]}>
-												{capitalizeTag(tag)}
-												<Icon name="delete" />
-											</Label>
-										))}
-									</Label.Group>
-									<Input
-										id="currentTag"
-										placeholder="Add tags here"
-										value={this.state.currentTag}
-										onChange={this.onChange}
-										onKeyUp={this.onKeyUp}
-										onKeyDown={this.onKeyDown}
-									/>
-								</Segment>
-							</Grid.Row>
-							{this.state.success ? (
+			<StyleRoot>
+				<div style={mergeStyles([AnimationStyles.fadeIn, styles.wrapper])}>
+					<Card style={styles.card} fluid>
+						<Card.Content style={styles.cardContent}>
+							<Grid padded>
 								<Grid.Row>
-									<Message
-										success
-										header="Success"
-										content="Posted!"
-										style={styles.field}
+									<Label style={styles.label} size="large">
+										Title
+									</Label>
+
+									<Segment
+										as={TextArea}
+										id="title"
+										value={this.state.title}
+										onChange={this.onChange}
+										placeholder=""
+										rows="1"
+										style={mergeStyles([styles.field, styles.title])}
 									/>
 								</Grid.Row>
-							) : (
-								''
-							)}
 
-							<Grid.Row>
-								<Button
-									disabled={false}
-									onClick={this.onSubmit}
-									animated="vertical"
-									size="big"
-									primary
-									style={styles.button}
-								>
-									<Button.Content visible>Submit</Button.Content>
-									<Button.Content hidden>
-										<FontAwesomeIcon icon={['fas', 'check']} size="1x" />
-									</Button.Content>
-								</Button>
-							</Grid.Row>
-						</Grid>
-					</Card.Content>
-				</Card>
-			</div>
+								<Grid.Row>
+									<Label style={styles.label} size="large">
+										Content
+									</Label>
+
+									<Segment
+										as={TextArea}
+										id="content"
+										value={this.state.content}
+										onChange={this.onChange}
+										placeholder="Write whatever you want ;)"
+										rows="12"
+										style={mergeStyles([styles.field, styles.content])}
+									/>
+
+									<Segment style={mergeStyles([styles.field, styles.content])}>
+										<ReactMarkdown source={this.state.content} />
+									</Segment>
+								</Grid.Row>
+
+								<Grid.Row>
+									<div>
+										<Label style={styles.label} size="large">
+											Tags
+										</Label>
+									</div>
+
+									<Segment
+										id="tags"
+										style={mergeStyles([styles.field, styles.tags])}
+									>
+										<Label.Group style={styles.label}>
+											{this.state.tags.map((tag, index) => (
+												<Label color={TAG_COLORS[index % TAG_COLORS.length]}>
+													{capitalizeTag(tag)}
+													<Icon name="delete" />
+												</Label>
+											))}
+										</Label.Group>
+										<Input
+											id="currentTag"
+											placeholder="Add tags here"
+											value={this.state.currentTag}
+											onChange={this.onChange}
+											onKeyUp={this.onKeyUp}
+											onKeyDown={this.onKeyDown}
+										/>
+									</Segment>
+								</Grid.Row>
+								{this.state.success ? (
+									<Grid.Row>
+										<Message
+											success
+											header="Success"
+											content="Posted!"
+											style={styles.field}
+										/>
+									</Grid.Row>
+								) : (
+									''
+								)}
+
+								<Grid.Row>
+									<Button
+										disabled={false}
+										onClick={this.onSubmit}
+										animated="vertical"
+										size="big"
+										primary
+										style={styles.button}
+									>
+										<Button.Content visible>Submit</Button.Content>
+										<Button.Content hidden>
+											<FontAwesomeIcon icon={['fas', 'check']} size="1x" />
+										</Button.Content>
+									</Button>
+								</Grid.Row>
+							</Grid>
+						</Card.Content>
+					</Card>
+				</div>
+			</StyleRoot>
 		);
 	}
 }

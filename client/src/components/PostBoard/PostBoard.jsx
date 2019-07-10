@@ -4,16 +4,16 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-13 00:46:23
- * @last-modified 2019-07-09 22:36:29
+ * @last-modified 2019-07-10 00:17:32
  */
 
 import React from 'react';
-import { PostBoardStyles as styles } from './PostBoardStyles';
-import { getAllPosts } from '../../actions/postActions';
+import { PostsStyles as styles } from '../PostsStyles';
 import { AnimationStyles } from '../../animations';
 import { StyleRoot } from 'radium';
 
 import PostView from '../PostView/PostView';
+import { getAllPosts } from '../../actions/postActions';
 import { compareTimestamp } from '../../utils/commonUtils';
 
 class PostBoard extends React.Component {
@@ -74,14 +74,7 @@ class PostBoard extends React.Component {
 						.sort((a, b) => compareTimestamp(a.timeStamp, b.timeStamp))
 						.map((post, index) => (
 							<React.Fragment key={index}>
-								<div
-									style={
-										this.state.doAnimate && index === this.state.clickedIndex
-											? styles.postViewAnimated
-											: {}
-									}
-									key={'postBoard-postView-wrapper-' + index}
-								>
+								<div key={'postBoard-postView-wrapper-' + index}>
 									<PostView
 										key={'postBoard-postView-' + index}
 										canManage={false}
@@ -98,7 +91,7 @@ class PostBoard extends React.Component {
 									/>
 								</div>
 
-								<div style={styles.postBoardSeparator} />
+								<div style={styles.postSeparator} />
 							</React.Fragment>
 						))}
 				</div>

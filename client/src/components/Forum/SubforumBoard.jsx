@@ -4,12 +4,12 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-09 00:16:42
- * @last-modified 2019-07-09 22:34:09
+ * @last-modified 2019-07-10 00:05:02
  */
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { PostBoardStyles as styles } from '../PostBoard/PostBoardStyles';
+import { PostsStyles as styles } from '../PostsStyles';
 import { AnimationStyles } from '../../animations';
 import { StyleRoot } from 'radium';
 
@@ -83,7 +83,7 @@ class SubforumBoard extends React.Component {
 									/>
 								</div>
 
-								<div style={styles.postBoardSeparator} />
+								<div style={styles.postSeparator} />
 							</React.Fragment>
 						))}
 				</div>

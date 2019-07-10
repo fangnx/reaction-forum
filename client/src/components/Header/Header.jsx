@@ -12,8 +12,8 @@ import { HashRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Menu, Dropdown, Icon, Button } from 'semantic-ui-react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
+
 import { logoutUser } from '../../actions/userActions';
 import { store } from '../../store';
 import UserLabel from './UserLabel';
@@ -97,14 +97,14 @@ class Header extends React.Component {
 									/>
 									<Dropdown icon="list layout" pointing>
 										<Dropdown.Menu style={styles.dropdownMenu}>
-											<Dropdown.Header icon="user outline" content="  User  " />
+											<Dropdown.Header icon="user outline" content="	User" />
 
 											<Dropdown.Item>View My User Info</Dropdown.Item>
 											<Menu.Item as={NavLink} to="/myposts" name="myPosts">
-												View My Posts
+												Manage My Posts
 											</Menu.Item>
 
-											<Dropdown.Header icon="computer" content="  Admin  " />
+											<Dropdown.Header icon="computer" content="	Admin" />
 											<Dropdown.Item
 												as={NavLink}
 												to="/subscribe"
