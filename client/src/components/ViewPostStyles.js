@@ -42,6 +42,9 @@ export const ViewPostStyles = {
 		border: 'none',
 		paddingLeft: '2px',
 		paddingRight: '2px',
+		whiteSpace: 'normal',
+		wordBreak: 'keep-all',
+		overflow: 'overlay',
 		background: 'transparent'
 	},
 	tags: {},

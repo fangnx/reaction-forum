@@ -74,3 +74,27 @@ input {
 img {
 	width: 100%;
 }
+
+.markdown p {
+	word-break: break-word;
+}
+
+.markdown h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: serif;
+	word-break: break-word;
+}
+
+.markdown code {
+	color: rgba(80, 80, 120, 1);
+	font-size: 0.9em;
+	white-space: pre-line;
+}
+
+.markdown a {
+	color: rgba(75, 75, 150, 0.9);
+	font-style: oblique;
+}

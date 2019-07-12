@@ -18,7 +18,7 @@ export const ManagePostStyles = {
 		boxShadow: 'none'
 	},
 	label: {
-		background: '#395a92',
+		background: '#4885a4',
 		color: 'rgba(240, 240, 240, 1)'
 	},
 	title: {

@@ -225,7 +225,10 @@ class PostView extends React.Component {
 										<Segment
 											style={mergeStyles([styles.field, styles.content])}
 										>
-											<ReactMarkdown source={this.props.content} />
+											<ReactMarkdown
+												className="markdown"
+												source={this.props.content}
+											/>
 										</Segment>
 									</Grid.Row>
 
