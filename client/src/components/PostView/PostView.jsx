@@ -162,6 +162,7 @@ class PostView extends React.Component {
 								<UserLabel
 									userName={this.props.author}
 									userAvatar={this.state.authorAvatar}
+									isRSS={this.props.isRSS}
 								/>
 							</Grid.Row>
 
@@ -246,7 +247,7 @@ class PostView extends React.Component {
 
 									<Grid.Row>
 										<span style={mergeStyles([styles.field, styles.timeStamp])}>
-											Posted at {this.props.timeStamp.split('T')[0]}
+											Last modified at {this.props.timeStamp.split('T')[0]}
 										</span>
 									</Grid.Row>
 

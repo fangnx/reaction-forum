@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-13 00:46:23
- * @last-modified 2019-07-10 00:17:32
+ * @last-modified 2019-07-12 00:44:57
  */
 
 import React from 'react';
@@ -87,6 +87,7 @@ class PostBoard extends React.Component {
 										timeStamp={post.timeStamp}
 										viewCount={post.viewCount}
 										likeCount={post.likeCount}
+										isRSS={post.isRSS}
 										showFullCard={this.state.showFullCards}
 									/>
 								</div>

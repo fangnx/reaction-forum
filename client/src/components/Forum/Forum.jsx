@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-08 00:17:05
- * @last-modified 2019-07-09 22:37:48
+ * @last-modified 2019-07-12 00:30:51
  */
 
 import React from 'react';
@@ -14,7 +14,10 @@ import { StyleRoot } from 'radium';
 
 import Subforum from './Subforum';
 import { getAllSubforums } from '../../actions/forumActions';
-import { TAG_COLORS_SOFT } from '../../utils/commonUtils';
+import {
+	SHADES_OF_GREEN,
+	mapStringToArbitraryNumber
+} from '../../utils/commonUtils';
 
 class Forum extends React.Component {
 	constructor() {
@@ -67,7 +70,14 @@ class Forum extends React.Component {
 								<div onClick={() => this.enterSubforum(subforum.name)}>
 									<Subforum
 										key={'subforum-' + index}
-										color={TAG_COLORS_SOFT[index % TAG_COLORS_SOFT.length]}
+										color={
+											SHADES_OF_GREEN[
+												mapStringToArbitraryNumber(
+													subforum.name,
+													SHADES_OF_GREEN.length
+												)
+											]
+										}
 										name={subforum.name}
 									/>
 								</div>

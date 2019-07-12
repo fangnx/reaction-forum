@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-17 22:29:29
- * @last-modified 2019-07-10 00:17:15
+ * @last-modified 2019-07-12 00:53:36
  */
 
 import React from 'react';
@@ -62,6 +62,7 @@ class UserPostBoard extends React.Component {
 										timeStamp={post.timeStamp}
 										viewCount={post.viewCount}
 										likeCount={post.likeCount}
+										isRSS={post.isRSS}
 										showFullCard={true}
 									/>
 								</div>

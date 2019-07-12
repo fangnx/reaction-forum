@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-03 17:22:30
- * @last-modified 2019-07-10 01:45:12
+ * @last-modified 2019-07-12 00:42:05
  */
 
 import axios from 'axios';
@@ -50,7 +50,8 @@ const getPostsFromRssSource = (sourceName, sourceUrl, subforum, numOfItems) => {
 						tags: [subforum],
 						viewCount: 0,
 						likeCount: 0,
-						subforum: subforum
+						subforum: subforum,
+						isRss: true
 					};
 					postFieldsArr.push(postFields);
 				});

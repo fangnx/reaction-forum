@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-24 17:58:54
- * @last-modified 2019-07-09 21:51:15
+ * @last-modified 2019-07-12 00:35:06
  */
 
 import React from 'react';
@@ -18,9 +18,8 @@ const styles = {
 		borderRadius: '0px'
 	},
 	name: {
-		width: '90%',
-		margin: '0px auto 0px auto',
-		textAlign: 'center'
+		margin: '0px 75px 0px auto',
+		textAlign: 'left'
 	}
 };
 
@@ -34,9 +33,11 @@ class Subforum extends React.Component {
 			<div className="subforum">
 				<Segment
 					inverted
-					color={this.props.color}
 					className="subforum-segment"
-					style={styles.segment}
+					style={{
+						...styles.segment,
+						background: this.props.color
+					}}
 				>
 					<h1 style={styles.name}>{this.props.name}</h1>
 				</Segment>

@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-09 00:16:42
- * @last-modified 2019-07-10 00:05:02
+ * @last-modified 2019-07-12 00:53:45
  */
 
 import React from 'react';
@@ -79,6 +79,7 @@ class SubforumBoard extends React.Component {
 										timeStamp={post.timeStamp}
 										viewCount={post.viewCount}
 										likeCount={post.likeCount}
+										isRSS={post.isRSS}
 										showFullCard={this.state.showFullCards}
 									/>
 								</div>

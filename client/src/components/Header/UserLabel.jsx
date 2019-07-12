@@ -4,11 +4,11 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-23 14:09:31
- * @last-modified 2019-06-30 13:34:15
+ * @last-modified 2019-07-12 00:53:24
  */
 
 import React from 'react';
-import { Label, Loader } from 'semantic-ui-react';
+import { Label, Loader, Icon } from 'semantic-ui-react';
 
 const defaultUnisexAvatar =
 	'https://firebasestorage.googleapis.com/v0/b/fangnx-rview.appspot.com/o/defaultUnisexAvatar.svg?alt=media&token=7c1142e6-4698-4d20-874e-385a652da894';
@@ -113,7 +113,10 @@ class UserLabel extends React.Component {
 					</div>
 				</div>
 				<Label style={styles.label}>
-					<div style={styles.labelText}>{this.props.userName}</div>
+					<div style={styles.labelText}>
+						{this.props.userName}{' '}
+						{this.props.isRSS && <Icon name="rss square" color="grey" />}
+					</div>
 				</Label>
 			</React.Fragment>
 		);

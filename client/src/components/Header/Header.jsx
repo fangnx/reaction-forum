@@ -81,10 +81,6 @@ class Header extends React.Component {
 							<Icon name="newspaper outline" size="large" />
 						</Menu.Item>
 
-						<Menu.Item as={NavLink} to="/subscribe" name="newPost">
-							<Icon name="rss" size="large" />
-						</Menu.Item>
-
 						<Menu.Item as={NavLink} to="/post/add" name="newPost">
 							<Icon name="file text" size="large" />
 							<Icon corner name="add" />
@@ -101,19 +97,24 @@ class Header extends React.Component {
 									/>
 									<Dropdown icon="dropdown" pointing>
 										<Dropdown.Menu style={styles.dropdownMenu}>
-											<Dropdown.Header icon="user outline" content="	User" />
+											<Dropdown.Header content="User" />
 
-											<Dropdown.Item>View My User Info</Dropdown.Item>
+											<Dropdown.Item>
+												<Icon name="address card outlinecard" />
+												View My User Info
+											</Dropdown.Item>
 											<Menu.Item as={NavLink} to="/myposts" name="myPosts">
+												<Icon name="file alternate outline" />
 												Manage My Posts
 											</Menu.Item>
 
-											<Dropdown.Header icon="computer" content="	Admin" />
+											<Dropdown.Header content="Admin" />
 											<Dropdown.Item
 												as={NavLink}
 												to="/subscribe"
 												name="subscribe"
 											>
+												<Icon name="rss" />
 												Manage Subscriptions
 											</Dropdown.Item>
 											<Dropdown.Item onClick={this.onLogout}>
