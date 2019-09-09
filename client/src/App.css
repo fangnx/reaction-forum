@@ -1,30 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Cairo&display=swap');
-
 .app {
-	--monet-navy: #395a92;
-	--monet-blue: #4885a4;
-	--monet-red: #9f4640;
-	--monet-green: #7ea860;
-	--monet-purple: #b985ba;
 }
 
 .app-background {
-	/* background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
-		url('../src/assets/lucas-davies-507228-unsplash.jpg'); */
-	background-image: linear-gradient(
-		to bottom,
-		#8e6da5,
-		#6968a6,
-		#53609a,
-		#3d588c,
-		#264f7e,
-		#284166,
-		#26344e,
-		#212838,
-		#1a1c23
-	);
+	background-color: var(--theme-navy);
 	background-size: cover;
-	filter: brightness(100%);
+	filter: brightness(80%);
 
 	min-height: 100%;
 	min-width: 1024px;
@@ -61,8 +41,12 @@
 	}
 }
 
-h1 {
-	font-weight: 500 !important;
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: var(--font-text);
 }
 
 input {
@@ -75,6 +59,10 @@ img {
 	width: 100%;
 }
 
+.ui.card {
+	font-family: var(--font-text);
+}
+
 .markdown p {
 	word-break: break-word;
 }
@@ -84,17 +72,23 @@ h2,
 h3,
 h4,
 h5 {
-	font-family: serif;
+	font-family: var(--font-title);
 	word-break: break-word;
 }
 
+.markdown img {
+	width: 80%;
+	margin: 1rem 10% 1rem 10%;
+}
+
 .markdown code {
-	color: rgba(80, 80, 120, 1);
-	font-size: 0.9em;
+	color: var(--theme-bluegrey-1);
+	padding-left: 2px;
+	padding-right: 2px;
 	white-space: pre-line;
 }
 
 .markdown a {
-	color: rgba(75, 75, 150, 0.9);
-	font-style: oblique;
+	color: var(--theme-indigo-1);
+	font-weight: bold;
 }

@@ -88,7 +88,7 @@ passport.use(strategy);
 // Cron Job for posting daily RSS subscriptions.
 postDailySubscriptions().start();
 
-// API Routes.
+// API routes.
 app.use('/api/users', users);
 app.use('/api/posts', posts);
 app.use('/api/subforums', subforums);

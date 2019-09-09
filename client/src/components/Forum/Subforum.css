@@ -4,7 +4,7 @@
 * @author nxxinf
 * @github https://github.com/fangnx
 * @created 2019-07-08 22:48:07
-* @last-modified 2019-07-12 00:06:31
+* @last-modified 2019-07-12 01:38:22
 */
 
 @media (min-width: 768px) {
@@ -20,13 +20,13 @@
 
 @media (min-width: 320px) and (max-width: 767px) {
 	.subforum-segment {
-		width: 100%;
+		width: 75%;
 	}
 
 	.subforum-segment:after {
 		content: '';
 		display: block;
-		padding-bottom: 33.33%;
+		padding-bottom: 25%;
 	}
 
 	.subforum-segment h1 {

@@ -82,8 +82,8 @@ class Header extends React.Component {
 						</Menu.Item>
 
 						<Menu.Item as={NavLink} to="/post/add" name="newPost">
-							<Icon name="file text" size="large" />
-							<Icon corner name="add" />
+							<Icon name="add" size="large" />
+							{/* <Icon corner name="file text" /> */}
 						</Menu.Item>
 					</Menu.Menu>
 

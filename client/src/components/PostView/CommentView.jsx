@@ -18,9 +18,7 @@ const styles = {
 	commentContent: {
 		marginTop: '0px'
 	},
-	commentText: {
-		fontFamily: 'Cairo'
-	},
+	commentText: {},
 	avatarWrapper: {
 		display: 'inline-block',
 		width: '35px',

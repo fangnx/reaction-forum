@@ -1,10 +1,19 @@
+/**
+ * ViewPostStyles.js
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-07-03 23:42:41
+ * @last-modified 2019-09-09 11:42:02
+ */
+
 export const ViewPostStyles = {
 	wrapper: {
 		width: '100%',
 		margin: '0 auto'
 	},
 	card: {
-		background: 'rgba(240, 240, 240, 96%)',
+		background: 'rgba(240, 240, 240, 90%)',
 		borderRadius: '3px'
 	},
 	cardContent: {
@@ -28,17 +37,14 @@ export const ViewPostStyles = {
 		paddingRight: '0px'
 	},
 	title: {
-		fontFamily: 'Cairo',
 		paddingTop: '0px'
 	},
 	titleTight: {
-		fontFamily: 'Cairo',
 		paddingTop: '0px'
 	},
 	content: {
 		minHeight: '200px',
 		fontSize: '1em',
-		fontFamily: 'Cairo',
 		border: 'none',
 		paddingLeft: '2px',
 		paddingRight: '2px',
@@ -79,8 +85,7 @@ export const ViewPostStyles = {
 		marginBottom: '15px',
 		marginLeft: '12px',
 		marginRight: '12px',
-		padding: '0px',
-		fontFamily: 'Cairo'
+		padding: '0px'
 	},
 	commentSubmitButton: {
 		background: 'transparent'
@@ -92,6 +97,6 @@ export const ViewPostStyles = {
 	},
 	grey: {
 		width: '100%',
-		background: 'rgba(226, 226, 226, 96%)'
+		background: 'rgba(220, 220, 226, 90%)'
 	}
 };

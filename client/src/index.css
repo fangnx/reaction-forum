@@ -1,3 +1,36 @@
-/* body > #root > div {
-	height: 120vh;
-} */
+/**
+* index.css
+*
+* @author nxxinf
+* @github https://github.com/fangnx
+* @created 2019-05-02 15:59:50
+* @last-modified 2019-09-09 11:53:22
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Cairo|Noto+Serif|Crimson+Pro|Muli|Alegreya+Sans:500,500i&display=swap');
+
+:root {
+	--font-text: 'Muli', sans-serif;
+	--font-style: 'Alegraya Sans', sans-serif;
+	--font-title: 'Crimson Pro', serif;
+
+	--theme-navy: #395a92;
+	--theme-blue: #4885a4;
+	--theme-red: #9f4640;
+	--theme-green: #7ea860;
+	--theme-purple: #b985ba;
+
+	--theme-bluegrey: #263238;
+	--theme-bluegrey-1: #37474f;
+	--theme-bluegrey-2: #455a64;
+	--theme-indigo: #1a237e;
+	--theme-indigo-1: #283593;
+	--theme-indigo-2: #303f9f;
+}
+
+body {
+	font-family: var(--font-text) !important;
+	font-size: 14px !important;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-24 17:58:54
- * @last-modified 2019-07-12 00:35:06
+ * @last-modified 2019-07-12 01:39:27
  */
 
 import React from 'react';
@@ -18,7 +18,7 @@ const styles = {
 		borderRadius: '0px'
 	},
 	name: {
-		margin: '0px 75px 0px auto',
+		margin: '0px auto 0px auto',
 		textAlign: 'left'
 	}
 };

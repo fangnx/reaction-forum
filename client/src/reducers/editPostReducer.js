@@ -1,3 +1,12 @@
+/**
+ * editPostReducer.js
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-06-21 00:39:14
+ * @last-modified 2019-07-14 17:08:14
+ */
+
 import { EDIT_POST } from '../actions/actionTypes';
 
 const initialState = {};

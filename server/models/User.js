@@ -1,5 +1,6 @@
 /**
  * User.js
+ *
  * @author fangnx
  * @description
  * @created 2019-05-20T15:06:59.606Z-04:00

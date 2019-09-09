@@ -11,8 +11,7 @@ import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { store } from './store';
-import { persistor } from './store';
+import { store, persistor } from './store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 
@@ -51,7 +50,6 @@ if (localStorage.jwtToken) {
 		window.location.href = './login';
 	}
 }
-// console.log(store.getState());
 
 class App extends React.Component {
 	render() {

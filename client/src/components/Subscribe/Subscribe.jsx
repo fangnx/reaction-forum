@@ -23,7 +23,7 @@ const styles = {
 		margin: '0 auto'
 	},
 	card: {
-		background: 'rgba(240, 240, 240, 96%)',
+		background: 'rgba(240, 240, 240, 90%)',
 		borderRadius: '3px'
 	},
 	cardContent: {

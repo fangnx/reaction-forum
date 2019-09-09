@@ -10,7 +10,7 @@
 @mondrian-yellow: #F0D32D;
 @mondrian-red: #AB3A2C;
 @monet-navy: #395A92;
-@monet-blue: #4885A4;
+@monet-blue: var(--theme-navy);
 @monet-red: #9F4640;
 @monet-green: #7EA860;
 @monet-purple: #B985BA;

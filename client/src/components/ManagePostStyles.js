@@ -1,10 +1,19 @@
+/**
+ * ManagePostStyles.js
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-06-22 21:15:17
+ * @last-modified 2019-09-09 11:44:10
+ */
+
 export const ManagePostStyles = {
 	wrapper: {
 		width: '100%',
 		margin: '0 auto'
 	},
 	card: {
-		background: 'rgba(240, 240, 240, 96%)'
+		background: 'rgba(240, 240, 240, 90%)'
 	},
 	cardContent: {
 		width: '97.5%',
@@ -18,18 +27,17 @@ export const ManagePostStyles = {
 		boxShadow: 'none'
 	},
 	label: {
-		background: '#4885a4',
+		background: 'var(--theme-navy)',
 		color: 'rgba(240, 240, 240, 1)'
 	},
 	title: {
-		fontFamily: 'Cairo',
 		fontSize: '1.5em',
 		fontWeight: '600',
 		background: 'rgba(236, 236, 236, 1)'
 	},
 	content: {
 		fontSize: '1em',
-		minHeight: '236px', // Equal to 12 rows in TextArea
+		minHeight: '236px', // Set equal to 12 rows in TextArea.
 		background: 'rgba(236, 236, 236, 1)'
 	},
 	tags: {

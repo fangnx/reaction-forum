@@ -1,3 +1,12 @@
+/**
+ * store.js
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-06-01 10:44:04
+ * @last-modified 2019-07-14 17:05:42
+ */
+
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -17,7 +26,6 @@ const store = createStore(
 	initialState,
 	compose(applyMiddleware(...middleware))
 );
-
 const persistor = persistStore(store);
 
 export { store, persistor };

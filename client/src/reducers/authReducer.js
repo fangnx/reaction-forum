@@ -1,3 +1,12 @@
+/**
+ * authReducer.js
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-06-01 11:22:34
+ * @last-modified 2019-07-14 17:08:06
+ */
+
 import { SET_CURRENT_USER } from '../actions/actionTypes';
 import isEmpty from 'is-empty';
 
