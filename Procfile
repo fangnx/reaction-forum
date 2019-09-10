@@ -1,0 +1,1 @@
+web: NODE_ENV=heroku && npm run server
