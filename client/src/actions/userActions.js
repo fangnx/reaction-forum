@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-02 16:22:08
- * @last-modified 2019-07-02 00:51:18
+ * @last-modified 2019-09-09 20:54:13
  */
 
 import axios from 'axios';
@@ -42,12 +42,12 @@ export const loginUser = data => dispatch => {
 	axios
 		.post('/api/users/login', data)
 		.then(res => {
-			// Set token to localStorage
+			// Set token to localStorage.
 			let { token } = res.data;
 			localStorage.setItem('jwtToken', token);
 			setAuthToken(token);
 			const decoded = jwtDecode(token);
-			// Set current user
+			// Set current user.
 			dispatch(setCurrentUser(decoded));
 			dispatch({ type: AUTH_ERRORS, payload: { loginSuccess: 1 } });
 		})
@@ -60,10 +60,10 @@ export const loginUser = data => dispatch => {
 };
 
 export const logoutUser = () => dispatch => {
-	// Remove token from localSorage
+	// Remove token from localStorage.
 	localStorage.removeItem('jwtToken');
 	setAuthToken(false);
-	// Remove current user
+	// Remove current user.
 	dispatch(setCurrentUser({}));
 	dispatch({
 		type: AUTH_ERRORS,

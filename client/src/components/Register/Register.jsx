@@ -1,15 +1,14 @@
 /**
- * index.jsx
+ * Register.jsx
  *
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-23 00:52:32
- * @last-modified 2019-07-09 22:44:58
+ * @last-modified 2019-09-09 23:27:45
  */
 
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import {
 	Button,
 	Checkbox,
@@ -266,12 +265,6 @@ class Register extends React.Component {
 		);
 	}
 }
-
-Register.propTypes = {
-	registerUser: PropTypes.func.isRequired,
-	auth: PropTypes.object.isRequired,
-	errors: PropTypes.object.isRequired
-};
 
 const mapStateToProps = state => ({
 	auth: state.auth,

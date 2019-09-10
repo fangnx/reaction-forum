@@ -4,10 +4,10 @@
 * @author nxxinf
 * @github https://github.com/fangnx
 * @created 2019-05-02 15:59:50
-* @last-modified 2019-09-09 11:53:22
+* @last-modified 2019-09-09 14:06:37
 */
 
-@import url('https://fonts.googleapis.com/css?family=Cairo|Noto+Serif|Crimson+Pro|Muli|Alegreya+Sans:500,500i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif|Crimson+Pro|Muli|Alegreya+Sans:500,500i&display=swap');
 
 :root {
 	--font-text: 'Muli', sans-serif;
@@ -15,6 +15,8 @@
 	--font-title: 'Crimson Pro', serif;
 
 	--theme-navy: #395a92;
+	--theme-navy-1: #2d4874;
+	--theme-navy-2: #223657;
 	--theme-blue: #4885a4;
 	--theme-red: #9f4640;
 	--theme-green: #7ea860;
@@ -23,6 +25,7 @@
 	--theme-bluegrey: #263238;
 	--theme-bluegrey-1: #37474f;
 	--theme-bluegrey-2: #455a64;
+	--theme-bluegrey-light: #ced7db;
 	--theme-indigo: #1a237e;
 	--theme-indigo-1: #283593;
 	--theme-indigo-2: #303f9f;

@@ -1,5 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { store } from '../../store';
+import { editPost } from '../../actions/postActions';
+import {
+	mergeStyles,
+	capitalizeTag,
+	SPACE_KEY,
+	COMMA_KEY,
+	BACKSPACE_KEY,
+	TAG_COLORS
+} from '../../utils/commonUtils';
+import dateFormat from 'dateformat';
 import ReactMarkdown from 'react-markdown';
 import {
 	Label,
@@ -13,21 +24,9 @@ import {
 	Message
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { StyleRoot } from 'radium';
 import { ManagePostStyles as styles } from '../ManagePostStyles';
 import { AnimationStyles } from '../../animations';
-import { StyleRoot } from 'radium';
-
-import dateFormat from 'dateformat';
-import { editPost } from '../../actions/postActions';
-import { store } from '../../store';
-import {
-	mergeStyles,
-	capitalizeTag,
-	SPACE_KEY,
-	COMMA_KEY,
-	BACKSPACE_KEY,
-	TAG_COLORS
-} from '../../utils/commonUtils';
 
 class EditPost extends React.Component {
 	constructor() {
@@ -41,6 +40,7 @@ class EditPost extends React.Component {
 			timeStamp: '',
 			tags: [],
 			currentTag: '',
+			errors: {},
 			success: false
 		};
 
@@ -71,7 +71,7 @@ class EditPost extends React.Component {
 		if (rawTag) {
 			this.setState({
 				tags: [...tags, rawTag],
-				currentTag: '' // Empties the tag currently selected
+				currentTag: '' // Empty the tag currently selected.
 			});
 		}
 	}
@@ -95,11 +95,25 @@ class EditPost extends React.Component {
 			tags: this.props.tags
 		});
 
+		// Get the author's info by reading the user's authentication info.
 		if (!!store.getState().auth.isAuthenticated) {
 			this.setState({
 				author: store.getState().auth.user.name,
 				authorEmail: store.getState().auth.user.email
 			});
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		// Check and display errors thrown by addPost validator.
+		if (
+			nextProps.errors &&
+			Object.keys(nextProps.errors).length > 0 &&
+			!nextProps.errors.success
+		) {
+			this.setState({ errors: nextProps.errors, success: false });
+		} else if (nextProps.errors.success) {
+			this.setState({ errors: {}, success: true });
 		}
 	}
 
@@ -112,15 +126,12 @@ class EditPost extends React.Component {
 			timeStamp: dateFormat(new Date(), 'isoDateTime'),
 			tags: this.state.tags
 		};
-
-		editPost(update).then(res => {
-			if (res.status === 200) {
-				this.setState({ success: true });
-			}
-		});
+		this.props.editPost(update);
 	};
 
 	render() {
+		const { errors } = this.state;
+
 		return (
 			<StyleRoot>
 				<div style={mergeStyles([AnimationStyles.fadeIn, styles.wrapper])}>
@@ -141,6 +152,7 @@ class EditPost extends React.Component {
 										rows="1"
 										style={mergeStyles([styles.field, styles.title])}
 									/>
+									<span style={styles.errorMessage}>{errors.title}</span>
 								</Grid.Row>
 
 								<Grid.Row>
@@ -161,6 +173,7 @@ class EditPost extends React.Component {
 									<Segment style={mergeStyles([styles.field, styles.content])}>
 										<ReactMarkdown source={this.state.content} />
 									</Segment>
+									<span style={styles.errorMessage}>{errors.content}</span>
 								</Grid.Row>
 
 								<Grid.Row>
@@ -176,7 +189,12 @@ class EditPost extends React.Component {
 									>
 										<Label.Group>
 											{this.state.tags.map((tag, index) => (
-												<Label color={TAG_COLORS[index % TAG_COLORS.length]}>
+												<Label
+													style={{
+														backgroundColor:
+															TAG_COLORS[index % TAG_COLORS.length]
+													}}
+												>
 													{capitalizeTag(tag)}
 													<Icon name="delete" />
 												</Label>
@@ -235,8 +253,16 @@ const mapStateToProps = state => {
 		title: state.editPost.title,
 		content: state.editPost.content,
 		timeStamp: state.editPost.timeStamp,
-		tags: state.editPost.tags
+		tags: state.editPost.tags,
+		errors: state.postErrors
 	};
 };
 
-export default connect(mapStateToProps)(EditPost);
+const mapDispatchToProps = dispatch => ({
+	editPost: data => dispatch(editPost(data))
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(EditPost);

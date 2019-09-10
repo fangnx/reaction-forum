@@ -1,5 +1,6 @@
 /**
- * userApi.js
+ * userAPI.js
+ *
  * @author fangnx
  * @description
  * @created 2019-05-21T22:11:28.067Z-04:00
@@ -12,18 +13,18 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import keys from '../../config/config';
 import User from '../models/User';
-import { validateRegisterInputs } from '../validators/register';
-import { validateLoginInputs } from '../validators/login';
+import { validateRegisterInputs } from '../validators/registerValidator';
+import { validateLoginInputs } from '../validators/loginValidator';
 
 const router = express.Router();
 
-// Register endpoint
+// Register a new user.
 router.post('/register', (req, res) => {
 	const { errors, isValid } = validateRegisterInputs(req.body);
 	if (!isValid) {
 		return res.status(400).json(errors);
 	} else {
-		// Check if email already registered
+		// Check if email is already registered.
 		User.findOne({ email: req.body.email }).then(user => {
 			if (user) {
 				return res.status(400).json({ email: 'Email already registered.' });
@@ -36,7 +37,7 @@ router.post('/register', (req, res) => {
 					avatar: req.body.avatar
 				});
 
-				// Encrpyt password
+				// Encrypt password.
 				bcrypt.genSalt(10, (err, salt) => {
 					bcrypt.hash(newUser.password, salt, (err, hash) => {
 						if (err) throw err;
@@ -52,7 +53,7 @@ router.post('/register', (req, res) => {
 	}
 });
 
-// Login endpoint
+// Log in an existing user.
 router.post('/login', (req, res) => {
 	const { errors, isValid } = validateLoginInputs(req.body);
 	if (!isValid) {
@@ -61,7 +62,7 @@ router.post('/login', (req, res) => {
 		const email = req.body.email;
 		const password = req.body.password;
 
-		// Check if user exists
+		// Check if user exists.
 		User.findOne({ email }).then(user => {
 			if (!user) {
 				return res.status(400).json({ email: 'Email not found' });
@@ -71,14 +72,14 @@ router.post('/login', (req, res) => {
 				.compare(password, user.password)
 				.then(isMatch => {
 					if (isMatch) {
-						// Include useful User attributes
+						// Include useful User attributes.
 						const payload = {
 							id: user.id,
 							name: user.name,
 							email: user.email,
 							avatar: user.avatar
 						};
-						// Sign token
+						// Sign token.
 						jwt.sign(
 							payload,
 							keys.secretOrKey,
@@ -101,11 +102,7 @@ router.post('/login', (req, res) => {
 	}
 });
 
-/**
- * Get Avatar of a User
- * @param email
- * @returns avatar
- */
+// Get the avatar of a user.
 router.post('/avatarimagedata', (req, res) => {
 	User.findOne({ email: req.body.email })
 		.then(value => {

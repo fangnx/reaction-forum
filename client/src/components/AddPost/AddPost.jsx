@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import {
 	Label,
@@ -43,6 +44,7 @@ class AddPost extends React.Component {
 			subforumOpts: [],
 			tags: [],
 			currentTag: '',
+			errors: {},
 			success: false
 		};
 
@@ -101,12 +103,27 @@ class AddPost extends React.Component {
 	};
 
 	async componentDidMount() {
+		// Get all existing subforums.
 		await this.getSubforums();
+		// Get the author's info by reading the user's authentication info.
 		if (!!store.getState().auth.isAuthenticated) {
 			this.setState({
 				author: store.getState().auth.user.name,
 				authorEmail: store.getState().auth.user.email
 			});
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		// Check and display errors thrown by addPost validator.
+		if (
+			nextProps.errors &&
+			Object.keys(nextProps.errors).length > 0 &&
+			!nextProps.errors.success
+		) {
+			this.setState({ errors: nextProps.errors, success: false });
+		} else if (nextProps.errors.success) {
+			this.setState({ errors: {}, success: true });
 		}
 	}
 
@@ -123,15 +140,12 @@ class AddPost extends React.Component {
 			likeCount: 0,
 			subforum: this.state.subforum
 		};
-
-		addPost(newPost).then(res => {
-			if (res.status === 200) {
-				this.setState({ success: true });
-			}
-		});
+		this.props.addPost(newPost);
 	};
 
 	render() {
+		const { errors } = this.state;
+
 		return (
 			<StyleRoot>
 				<div style={mergeStyles([AnimationStyles.fadeIn, styles.wrapper])}>
@@ -152,6 +166,7 @@ class AddPost extends React.Component {
 										rows="1"
 										style={mergeStyles([styles.field, styles.title])}
 									/>
+									<span style={styles.errorMessage}>{errors.title}</span>
 								</Grid.Row>
 
 								<Grid.Row>
@@ -171,6 +186,7 @@ class AddPost extends React.Component {
 									<Segment style={mergeStyles([styles.field, styles.content])}>
 										<ReactMarkdown source={this.state.content} />
 									</Segment>
+									<span style={styles.errorMessage}>{errors.content}</span>
 								</Grid.Row>
 
 								<Grid.Row>
@@ -186,7 +202,12 @@ class AddPost extends React.Component {
 									>
 										<Label.Group size="large" style={styles.tagList}>
 											{this.state.tags.map((tag, index) => (
-												<Label color={TAG_COLORS[index % TAG_COLORS.length]}>
+												<Label
+													style={{
+														backgroundColor:
+															TAG_COLORS[index % TAG_COLORS.length]
+													}}
+												>
 													{capitalizeTag(tag)}
 													<Icon name="delete" />
 												</Label>
@@ -256,4 +277,15 @@ class AddPost extends React.Component {
 	}
 }
 
-export default AddPost;
+const mapStateToProps = state => ({
+	errors: state.postErrors
+});
+
+const mapDispatchToProps = dispatch => ({
+	addPost: data => dispatch(addPost(data))
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(AddPost);

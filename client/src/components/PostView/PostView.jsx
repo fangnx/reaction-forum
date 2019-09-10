@@ -240,7 +240,10 @@ class PostView extends React.Component {
 											{this.props.tags.map((tag, index) => (
 												<Label
 													key={'postView-tag-' + index}
-													color={TAG_COLORS[index % TAG_COLORS.length]}
+													style={{
+														backgroundColor:
+															TAG_COLORS[index % TAG_COLORS.length]
+													}}
 												>
 													{this.capitalizeTag(tag)}
 												</Label>

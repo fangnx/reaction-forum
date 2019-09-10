@@ -1,22 +1,27 @@
 /**
- * postApi.js
+ * postAPI.js
  *
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-23 00:52:32
- * @last-modified 2019-07-09 00:11:39
+ * @last-modified 2019-09-09 23:52:46
  */
 
 import express from 'express';
 import Post from '../models/Post';
 import User from '../models/User';
 import Comment from '../models/Comment';
+import { validatePostInputs } from '../validators/postValidator';
 
 const router = express.Router();
 
-// Adds a Post.
+// Add a post.
 router.post('/add', (req, res) => {
-	// TODO: validation
+	const { errors, isValid } = validatePostInputs(req.body);
+	if (!isValid) {
+		return res.status(400).json(errors);
+	}
+
 	const newPost = new Post({
 		title: req.body.title,
 		content: req.body.content,
@@ -35,15 +40,20 @@ router.post('/add', (req, res) => {
 		.catch(err => console.log(err));
 });
 
-// Deletes a Post.
+// Delete a post.
 router.post('/delete', (req, res) => {
 	Post.deleteOne({ _id: req.body.pid })
 		.then(value => res.json(value))
 		.catch(err => console.log(err));
 });
 
-// Edits a Post.
+// Edit a post.
 router.post('/edit', (req, res) => {
+	const { errors, isValid } = validatePostInputs(req.body);
+	if (!isValid) {
+		return res.status(400).json(errors);
+	}
+
 	const update = {
 		title: req.body.title,
 		content: req.body.content,
@@ -54,19 +64,19 @@ router.post('/edit', (req, res) => {
 	Post.update({ _id: req.body.pid }, update).then(value => res.json(value));
 });
 
-// Gets all Posts.
+// Get all posts.
 router.post('/findall', (req, res) => {
 	Post.find().then(v => res.json(v));
 });
 
-// Gets all Posts of a User.
+// Get all posts of a user.
 router.post('/userposts', (req, res) => {
 	Post.find({
 		authorEmail: req.body.userEmail
 	}).then(v => res.json(v));
 });
 
-// Adds a Comment to a Post.
+// Add a comment to a post.
 router.post('/addcomment', (req, res) => {
 	Post.findOne({ _id: req.body.pid }).then(post => {
 		if (!post) {
@@ -88,9 +98,9 @@ router.post('/addcomment', (req, res) => {
 	});
 });
 
-// Gets all Comments of a Post.
+// Get all comments of a post.
 router.post('/postcomments', (req, res) => {
-	// Checks if Post of the given pid exists
+	// Check if the post of the given pid exists.
 	Post.findOne({ _id: req.body.pid }).then(post => {
 		if (!post) {
 			return res.status(404).json({ postnotfound: 'Post not found' });
@@ -101,13 +111,13 @@ router.post('/postcomments', (req, res) => {
 			.then(async comments => {
 				avatarComments = await comments.map(comment =>
 					User.findOne({ email: comment.authorEmail }).then(value => {
-						// Add authorAvatar attribute to Comment
+						// Add authorAvatar attribute to comment.
 						comment = comment.toObject();
 						comment['authorAvatar'] = value.avatar;
 						return comment;
 					})
 				);
-				// Resolve when all promises in avatarComments have resolved
+				// Resolve when all promises in avatarComments have resolved.
 				Promise.all(avatarComments).then(values => {
 					res.json(values);
 				});

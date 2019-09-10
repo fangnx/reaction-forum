@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-22 21:15:17
- * @last-modified 2019-09-09 11:44:10
+ * @last-modified 2019-09-09 23:41:02
  */
 
 export const ManagePostStyles = {
@@ -52,5 +52,13 @@ export const ManagePostStyles = {
 		padding: 'none',
 		float: 'right'
 	},
-	icon: { margin: '0' }
+	icon: { margin: '0' },
+	errorMessage: {
+		display: 'block',
+		marginTop1: '2%',
+		fontFamily: 'monospace',
+		fontSize: '0.9em',
+		fontStyle: 'normal',
+		color: 'red'
+	}
 };

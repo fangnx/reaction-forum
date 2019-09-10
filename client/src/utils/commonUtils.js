@@ -1,5 +1,6 @@
 /**
- * Workaround since Radium.merge does not work
+ * Merge array of style.
+ * A temporary workaround since Radium.merge does not work.
  */
 export const mergeStyles = styles => {
 	return Object.assign({}, ...styles);
@@ -15,9 +16,33 @@ export const mapStringToArbitraryNumber = (str, maxNumber) => {
 		: 0;
 };
 
+/**
+ * Compare two timestamps: the latest time goes first.
+ */
+export const compareTimestamp = (a, b) => {
+	if (a > b) {
+		return -1;
+	}
+	return 1;
+};
+
 export const SPACE_KEY = 32;
 export const COMMA_KEY = 188;
 export const BACKSPACE_KEY = 8;
+
+/**
+ * Colors used to render tags.
+ */
+export const TAG_COLORS = [
+	'#FF8F00',
+	'#FFA000',
+	'#FFC107',
+	'#FBC02D',
+	'#7CB342',
+	'#8BC34A',
+	'#9CCC65',
+	'#AED581'
+];
 
 export const SHADES_OF_GREEN = [
 	'rgba(72, 133, 164, 0.5)',
@@ -29,27 +54,3 @@ export const SHADES_OF_GREEN = [
 	'rgba(19, 132, 118, 0.5)',
 	'rgba(29, 134, 115, 0.5)'
 ];
-
-export const TAG_COLORS = [
-	'orange',
-	'yellow',
-	'olive',
-	'green',
-	'teal',
-	'blue',
-	'purple',
-	'brown',
-	'grey'
-];
-
-export const TAG_COLORS_SOFT = ['olive', 'green', 'teal', 'blue', 'purple'];
-
-/**
- * Compare two timestamps: the latest time goes first.
- */
-export const compareTimestamp = (a, b) => {
-	if (a > b) {
-		return -1;
-	}
-	return 1;
-};
