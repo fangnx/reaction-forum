@@ -198,9 +198,7 @@ class PostView extends React.Component {
 										<Icon
 											size="large"
 											name={
-												this.state.showFullCard
-													? 'window maximize'
-													: 'window maximize outline'
+												this.state.showFullCard ? 'minus circle' : 'plus circle'
 											}
 											onClick={this.toggleShowFullCard}
 											style={styles.icon}
@@ -233,6 +231,16 @@ class PostView extends React.Component {
 									</Grid.Row>
 
 									<Grid.Row>
+										<Label
+											size="large"
+											style={mergeStyles([styles.field, styles.sectionLabel])}
+										>
+											Tags &nbsp;
+											<Icon name="tags" />
+										</Label>
+									</Grid.Row>
+
+									<Grid.Row>
 										<Label.Group
 											size="medium"
 											style={mergeStyles([styles.field, styles.tags])}
@@ -251,20 +259,20 @@ class PostView extends React.Component {
 										</Label.Group>
 									</Grid.Row>
 
-									<Grid.Row>
+									{/* <Grid.Row>
 										<span style={mergeStyles([styles.field, styles.timeStamp])}>
 											Last modified at {this.props.timeStamp.split('T')[0]}
 										</span>
-									</Grid.Row>
+									</Grid.Row> */}
 
 									<Grid.Row>
 										<Label
 											onClick={this.onShowComments}
 											size="large"
-											style={mergeStyles([styles.field, styles.commentLabel])}
+											style={mergeStyles([styles.field, styles.sectionLabel])}
 										>
 											Comments &nbsp;
-											<Icon name="comments outline" />
+											<Icon name="comments" />
 										</Label>
 									</Grid.Row>
 

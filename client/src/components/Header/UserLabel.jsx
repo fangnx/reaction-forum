@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-23 14:09:31
- * @last-modified 2019-07-12 00:53:24
+ * @last-modified 2019-09-10 02:29:34
  */
 
 import React from 'react';
@@ -25,34 +25,31 @@ const styles = {
 		height: '35px'
 	},
 	avatarCrop: {
-		// position: 'relative',
 		overflow: 'hidden',
 		height: '100%',
-		borderRadius: '3px'
+		borderRadius: '2px'
 	},
 	avatarImg: {
 		display: 'inline-block',
 		width: '35px',
-		// height: '35px',
 		top: '-100%',
 		right: '-100%',
 		bottom: '-100%',
 		left: '-100%'
 	},
 	label: {
-		minWidth: '70px',
-		maxWidth: '120px',
+		minWidth: '60px',
+		maxWidth: '180px',
 		height: '35px',
 		borderRadius: '0%',
 		margin: '0',
 		paddingTop: '0',
 		paddingBottom: '0',
 		borderTopRightRadius: '3px',
-		borderBottomRightRadius: '3px',
-		background: 'transparent'
+		borderBottomRightRadius: '3px'
 	},
 	labelText: {
-		fontSize: '1.25em',
+		color: 'var(--theme-white-1)',
 		paddingTop: '10px'
 	}
 };
@@ -67,32 +64,13 @@ class UserLabel extends React.Component {
 	onLoad = () => {
 		this.setState({ loaded: true });
 	};
-	// getColor = async () => {
-	// 	const img = document.createElement('img');
-	// 	img.crossOrigin = 'anonymous';
-
-	// 	img.addEventListener('load', async () => {
-	// 		const canvas = document.createElement('canvas');
-	// 		canvas.width = img.width;
-	// 		canvas.height = img.height;
-
-	// 		const ctx = canvas.getContext('2d');
-	// 		ctx.drawImage(img, 0, 0);
-	// 		const canvasUrl = canvas.toDataURL('image/jpg');
-
-	// 		const themeColor = await getColorFromURL(canvasUrl);
-	// 		console.log(themeColor);
-	// 		await this.setState({ color: themeColor });
-	// 	});
-
-	// 	img.src = this.props.userAvatar
-	// 		? this.props.userAvatar
-	// 		: defaultUnisexAvatar;
-	// 	console.log('x');
-	// };
 
 	render() {
 		const avatar = this.props.userAvatar || defaultUnisexAvatar;
+		const background = this.props.transparent
+			? 'transparent'
+			: 'var(--theme-blue)';
+		const fontSize = this.props.largeText ? '1.1rem' : '1rem';
 
 		return (
 			<React.Fragment>
@@ -112,10 +90,10 @@ class UserLabel extends React.Component {
 						/>
 					</div>
 				</div>
-				<Label style={styles.label}>
-					<div style={styles.labelText}>
+				<Label style={{ ...styles.label, background }}>
+					<div style={{ ...styles.labelText, fontSize }}>
 						{this.props.userName}{' '}
-						{this.props.isRSS && <Icon name="rss square" color="grey" />}
+						{this.props.isRSS && <Icon name="rss square" color="white" />}
 					</div>
 				</Label>
 			</React.Fragment>

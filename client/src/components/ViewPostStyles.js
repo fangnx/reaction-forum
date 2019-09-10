@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-03 23:42:41
- * @last-modified 2019-09-09 11:42:02
+ * @last-modified 2019-09-10 02:23:28
  */
 
 export const ViewPostStyles = {
@@ -13,8 +13,7 @@ export const ViewPostStyles = {
 		margin: '0 auto'
 	},
 	card: {
-		background: 'rgba(240, 240, 240, 90%)',
-		borderRadius: '3px'
+		background: 'var(--theme-white-t)'
 	},
 	cardContent: {
 		width: '100%',
@@ -23,24 +22,24 @@ export const ViewPostStyles = {
 		paddingRight: '0px'
 	},
 	field: {
-		marginTop: '5px',
+		marginTop: 0,
 		width: '100%',
 		boxShadow: 'none',
 		marginLeft: '12px',
 		marginRight: '12px'
 	},
 	top: {
-		paddingTop: '0px'
+		paddingTop: '5px'
 	},
 	column: {
 		paddingLeft: '0px',
 		paddingRight: '0px'
 	},
 	title: {
-		paddingTop: '0px'
+		paddingTop: '5px'
 	},
 	titleTight: {
-		paddingTop: '0px'
+		paddingTop: '5px'
 	},
 	content: {
 		minHeight: '200px',
@@ -64,23 +63,23 @@ export const ViewPostStyles = {
 		float: 'right'
 	},
 	icon: { margin: '0' },
-	commentLabel: {
-		background: 'transparent',
+	sectionLabel: {
+		background: 'var(--theme-blue)',
+		color: 'var(--theme-white-1)',
 		width: '100%',
-		padding: '0px',
-		fontSize: '1.2em',
-		fontWeight: '500',
-		color: 'rgba(0, 0, 0, 0.9)'
+		padding: '5px 5px 5px 5px',
+		fontSize: '1rem',
+		fontWeight: 'bold'
 	},
 	commentsRow: {
 		paddingTop: '0px'
 	},
 	commentInput: {
 		width: '100%',
-		background: 'rgba(240, 240, 240, 1)',
+		background: 'var(--theme-white-1)',
 		border: '1px solid #ddd',
 		boxShadow: 'none',
-		borderRadius: '3px',
+		borderRadius: '2px',
 		marginTop: '5px',
 		marginBottom: '15px',
 		marginLeft: '12px',

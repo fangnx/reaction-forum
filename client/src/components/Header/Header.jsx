@@ -94,6 +94,8 @@ class Header extends React.Component {
 									<UserLabel
 										userName={this.props.auth.user.name}
 										userAvatar={this.props.auth.user.avatar}
+										transparent
+										largeText
 									/>
 									<Dropdown icon="dropdown" pointing>
 										<Dropdown.Menu style={styles.dropdownMenu}>

@@ -45,13 +45,13 @@ h2,
 h3,
 h4,
 h5 {
-	font-family: var(--font-style);
-	font-weight: 500;
+	font-family: var(--font-title);
+	font-weight: bold;
 }
 
 input {
 	border: none !important;
-	background: rgba(236, 236, 236, 1) !important;
+	background: var(--theme-white-1) !important;
 	display: inline !important;
 }
 
@@ -60,7 +60,14 @@ img {
 }
 
 .ui.card {
+	border-radius: 2px;
 	font-family: var(--font-text);
+}
+
+.ui.label {
+	border-radius: 2px;
+	font-family: var(--font-style);
+	font-size: 0.9rem;
 }
 
 .markdown p {

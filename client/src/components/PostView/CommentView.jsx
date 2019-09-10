@@ -8,14 +8,21 @@
  */
 
 import React from 'react';
-import { Feed } from 'semantic-ui-react';
+import { Feed, Label } from 'semantic-ui-react';
 
 const styles = {
 	commentFeed: {
+		fontFamily: 'var(--font-style)',
 		width: '100%',
 		margin: '0.5em 0'
 	},
+	commentUserLabel: {
+		backgroundColor: 'var(--theme-blue)',
+		color: 'var(--theme-white-1)',
+		fontWeight: 'bold'
+	},
 	commentContent: {
+		fontWeight: '500',
 		marginTop: '0px'
 	},
 	commentText: {},
@@ -25,15 +32,13 @@ const styles = {
 		height: '35px'
 	},
 	avatarCrop: {
-		// position: 'relative',
 		overflow: 'hidden',
 		height: '100%',
-		borderRadius: '3px'
+		borderRadius: '2px'
 	},
 	avatarImg: {
 		display: 'inline-block',
 		width: '35px',
-		// height: '35px',
 		top: '-100%',
 		right: '-100%',
 		bottom: '-100%',
@@ -60,7 +65,9 @@ class CommentView extends React.Component {
 					</Feed.Label>
 					<Feed.Content style={styles.commentContent}>
 						<Feed.Summary>
-							{this.props.author}
+							<Label size="small" style={styles.commentUserLabel}>
+								<div style={styles.commentUser}>{this.props.author}</div>
+							</Label>
 							{/* <Feed.Date>{this.props.timeStamp}</Feed.Date> */}
 						</Feed.Summary>
 						<Feed.Extra text style={styles.commentText}>

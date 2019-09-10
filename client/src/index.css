@@ -4,10 +4,10 @@
 * @author nxxinf
 * @github https://github.com/fangnx
 * @created 2019-05-02 15:59:50
-* @last-modified 2019-09-09 14:06:37
+* @last-modified 2019-09-10 02:28:42
 */
 
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif|Crimson+Pro|Muli|Alegreya+Sans:500,500i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif|Crimson+Pro|Muli:600,600i|Alegreya+Sans:600,600i&display=swap');
 
 :root {
 	--font-text: 'Muli', sans-serif;
@@ -29,6 +29,15 @@
 	--theme-indigo: #1a237e;
 	--theme-indigo-1: #283593;
 	--theme-indigo-2: #303f9f;
+
+	--theme-white: rgba(240, 240, 240, 1);
+	--theme-white-t: rgba(240, 240, 240, 0.9);
+	--theme-white-1: rgba(236, 236, 236, 1);
+	--theme-white-1t: rgba(236, 236, 236, 0.9);
+	--theme-white-2: rgba(220, 220, 220, 1);
+	--theme-white-2t: rgba(220, 220, 220, 0.9);
+	--theme-white-3: rgba(212, 212, 212, 1);
+	--theme-white-3t: rgba(212, 212, 212, 0.9);
 }
 
 body {

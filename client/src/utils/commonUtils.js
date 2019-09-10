@@ -34,10 +34,10 @@ export const BACKSPACE_KEY = 8;
  * Colors used to render tags.
  */
 export const TAG_COLORS = [
-	'#FF8F00',
-	'#FFA000',
-	'#FFC107',
-	'#FBC02D',
+	// '#FF8F00',
+	// '#FFA000',
+	// '#FFC107',
+	// '#FBC02D',
 	'#7CB342',
 	'#8BC34A',
 	'#9CCC65',

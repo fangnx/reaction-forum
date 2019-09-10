@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-04 19:49:48
- * @last-modified 2019-07-10 01:08:57
+ * @last-modified 2019-09-10 02:19:54
  */
 
 import React from 'react';
@@ -23,8 +23,7 @@ const styles = {
 		margin: '0 auto'
 	},
 	card: {
-		background: 'rgba(240, 240, 240, 90%)',
-		borderRadius: '3px'
+		background: 'var(--theme-white-t)'
 	},
 	cardContent: {
 		width: '100%',
@@ -33,13 +32,13 @@ const styles = {
 	field: {
 		marginTop: '15px',
 		width: '100%',
-		background: 'rgba(240, 240, 240, 1)',
+		background: 'var(--theme-white)',
 		border: '1px solid #ddd',
 		boxShadow: 'none'
 	},
 	label: {
 		background: '#7ea860',
-		color: 'rgba(240, 240, 240, 1)'
+		color: 'var(--theme-white)'
 	}
 };
 

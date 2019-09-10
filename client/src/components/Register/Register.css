@@ -9,7 +9,7 @@
 }
 
 .registration-card {
-	background: rgba(240, 240, 240, 90%) !important;
+	background: var(--theme-white-t) !important;
 }
 
 .registration-card-header {

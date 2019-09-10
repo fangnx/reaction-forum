@@ -9,7 +9,7 @@
 }
 
 .login-card {
-	background: rgba(240, 240, 240, 90%) !important;
+	background: var(--theme-white-t) !important;
 }
 
 .login-card-header {

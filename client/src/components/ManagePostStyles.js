@@ -13,7 +13,7 @@ export const ManagePostStyles = {
 		margin: '0 auto'
 	},
 	card: {
-		background: 'rgba(240, 240, 240, 90%)'
+		background: 'var(--theme-white-t)'
 	},
 	cardContent: {
 		width: '97.5%',
@@ -22,26 +22,26 @@ export const ManagePostStyles = {
 	field: {
 		marginTop: '15px',
 		width: '100%',
-		background: 'rgba(240, 240, 240, 1)',
+		background: 'var(--theme-white)',
 		border: '1px solid #ddd',
 		boxShadow: 'none'
 	},
 	label: {
 		background: 'var(--theme-navy)',
-		color: 'rgba(240, 240, 240, 1)'
+		color: 'var(--theme-white)'
 	},
 	title: {
 		fontSize: '1.5em',
 		fontWeight: '600',
-		background: 'rgba(236, 236, 236, 1)'
+		background: 'var(--theme-white-1)'
 	},
 	content: {
 		fontSize: '1em',
 		minHeight: '236px', // Set equal to 12 rows in TextArea.
-		background: 'rgba(236, 236, 236, 1)'
+		background: 'var(--theme-white-1)'
 	},
 	tags: {
-		background: 'rgba(236, 236, 236, 1)'
+		background: 'var(--theme-white-1)'
 	},
 	tagInput: {},
 	subforum: {},

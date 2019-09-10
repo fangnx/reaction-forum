@@ -1,5 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { store } from '../../store';
+import { addPost } from '../../actions/postActions';
+import { getAllSubforums } from '../../actions/forumActions';
+import {
+	mergeStyles,
+	capitalizeTag,
+	SPACE_KEY,
+	COMMA_KEY,
+	BACKSPACE_KEY,
+	TAG_COLORS
+} from '../../utils/commonUtils';
+import dateFormat from 'dateformat';
 import ReactMarkdown from 'react-markdown';
 import {
 	Label,
@@ -14,22 +26,9 @@ import {
 	Message
 } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { StyleRoot } from 'radium';
 import { ManagePostStyles as styles } from '../ManagePostStyles';
 import { AnimationStyles } from '../../animations';
-import { StyleRoot } from 'radium';
-
-import dateFormat from 'dateformat';
-import { addPost } from '../../actions/postActions';
-import { getAllSubforums } from '../../actions/forumActions';
-import { store } from '../../store';
-import {
-	mergeStyles,
-	capitalizeTag,
-	SPACE_KEY,
-	COMMA_KEY,
-	BACKSPACE_KEY,
-	TAG_COLORS
-} from '../../utils/commonUtils';
 
 class AddPost extends React.Component {
 	constructor() {
