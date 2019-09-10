@@ -23,6 +23,7 @@
 		"cors": "^2.8.5",
 		"cron": "^1.7.1",
 		"dateformat": "^3.0.3",
+		"dotenv": "^8.1.0",
 		"express": "^4.16.4",
 		"express-formidable": "^1.2.0",
 		"express-session": "^1.16.1",
@@ -48,9 +49,11 @@
 		"validator": "^10.11.0"
 	},
 	"scripts": {
+		"postinstall": "npm run build-client",
 		"server-nodemon": "nodemon --config \"./nodemon.json\" server/index.js",
 		"server": "babel-node server/main.js",
 		"client": "cd client && npm start",
+		"build-client": "cd ./client/ && npm install && npm run build && cd ..",
 		"dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
 		"prod": "cd ./client && npm run build && cd .. && concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
 		"test": "react-scripts test",

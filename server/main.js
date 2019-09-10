@@ -16,6 +16,8 @@ import { images } from './routes/imageAPI';
 import { sources } from './routes/rssSourceAPI';
 import { postDailySubscriptions } from './rssService';
 
+require('dotenv').config();
+
 const app = new express();
 
 app.use(
@@ -25,9 +27,9 @@ app.use(
 );
 app.use(bodyParser.json());
 
-const db = config.mongodb;
+const db = process.env.MONGODB_URI || config.mongodb;
 const MongoStore = connectMongo(session);
-const port = config.port;
+const port = process.env.PORT || config.port;
 
 // Connects to Mongoose.
 mongoose
@@ -46,7 +48,7 @@ app.use(
 			maxAge: config.session.maxAge // session expiry time
 		},
 		store: new MongoStore({
-			url: config.mongodb // stores session into mongodb
+			url: db // stores session into mongodb
 		})
 	})
 );
@@ -96,8 +98,3 @@ app.use('/api/images', images);
 app.use('/api/sources', sources);
 
 app.listen(port, () => console.log(`App listening on port ${port} !`));
-
-// process.on('SIGINT', () => {
-// 	console.log('Should exit now!');
-// 	process.exit();
-// });
