@@ -10,7 +10,17 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {
+	addComment,
+	getAllCommentsOfPost,
+	deletePost
+} from '../../actions/postActions';
+import { getAvatarData } from '../../actions/userActions';
+import UserLabel from '../Header/UserLabel';
+import CommentSection from './CommentSection';
 import ReactMarkdown from 'react-markdown';
+import dateFormat from 'dateformat';
+import { TAG_COLORS, mergeStyles } from '../../utils/commonUtils';
 import {
 	Label,
 	Card,
@@ -22,20 +32,7 @@ import {
 	Button,
 	Segment
 } from 'semantic-ui-react';
-import '../../App.css';
 import { ViewPostStyles as styles } from '../ViewPostStyles';
-import './PostView.css';
-
-import {
-	addComment,
-	getAllCommentsOfPost,
-	deletePost
-} from '../../actions/postActions';
-import { getAvatarData } from '../../actions/userActions';
-import UserLabel from '../Header/UserLabel';
-import CommentSection from './CommentSection';
-import dateFormat from 'dateformat';
-import { TAG_COLORS, mergeStyles } from '../../utils/commonUtils';
 
 class PostView extends React.Component {
 	_isMounted = false;
@@ -214,7 +211,11 @@ class PostView extends React.Component {
 										: mergeStyles([styles.field, styles.titleTight])
 								}
 							>
-								<h1>{this.props.title}</h1>
+								{this.state.showFullCard ? (
+									<h1>{this.props.title}</h1>
+								) : (
+									<h2>{this.props.title}</h2>
+								)}
 							</Grid.Row>
 
 							{this.state.showFullCard ? (

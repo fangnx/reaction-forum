@@ -49,6 +49,16 @@ h5 {
 	font-weight: bold;
 }
 
+h1 {
+	font-size: 2.75rem;
+	line-height: 2.75rem;
+}
+
+h2 {
+	font-size: 2.25rem;
+	line-height: 2.25rem;
+}
+
 input {
 	border: none !important;
 	background: var(--theme-white-1) !important;
@@ -61,7 +71,13 @@ img {
 
 .ui.card {
 	border-radius: 2px;
+	font-size: 1.1rem;
 	font-family: var(--font-text);
+}
+
+.ui.card > .content {
+	padding-top: 6px;
+	padding-bottom: 6px;
 }
 
 .ui.label {
@@ -98,6 +114,6 @@ h5 {
 }
 
 .markdown a {
-	color: var(--theme-indigo-1);
+	color: var(--theme-navy-1);
 	font-weight: bold;
 }

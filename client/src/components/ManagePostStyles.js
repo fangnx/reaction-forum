@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-22 21:15:17
- * @last-modified 2019-09-09 23:41:02
+ * @last-modified 2019-09-10 02:44:57
  */
 
 export const ManagePostStyles = {
@@ -27,7 +27,7 @@ export const ManagePostStyles = {
 		boxShadow: 'none'
 	},
 	label: {
-		background: 'var(--theme-navy)',
+		background: 'var(--theme-blue)',
 		color: 'var(--theme-white)'
 	},
 	title: {
