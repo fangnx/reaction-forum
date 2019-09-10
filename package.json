@@ -3,6 +3,10 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@babel/cli": "^7.6.0",
+		"@babel/core": "^7.6.0",
+		"@babel/node": "^7.6.1",
+		"@babel/preset-env": "^7.6.0",
 		"@fortawesome/fontawesome-svg-core": "^1.2.17",
 		"@fortawesome/free-brands-svg-icons": "^5.8.1",
 		"@fortawesome/free-regular-svg-icons": "^5.8.1",
@@ -19,7 +23,6 @@
 		"cors": "^2.8.5",
 		"cron": "^1.7.1",
 		"dateformat": "^3.0.3",
-		"esm": "^3.2.24",
 		"express": "^4.16.4",
 		"express-formidable": "^1.2.0",
 		"express-session": "^1.16.1",
@@ -45,7 +48,7 @@
 	},
 	"scripts": {
 		"server-nodemon": "nodemon --config \"./nodemon.json\" server/index.js",
-		"server": "kill-port 5000 && node server/index.js",
+		"server": "kill-port 5000 && babel-node server/index.js",
 		"client": "cd client && npm start",
 		"dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
 		"prod": "cd ./client && npm run build && cd .. && concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
