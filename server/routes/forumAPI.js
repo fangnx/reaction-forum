@@ -8,8 +8,9 @@
  */
 
 import express from 'express';
-import Subforum from '../models/Subforum';
 import Post from '../models/Post';
+import Subforum from '../models/Subforum';
+
 
 const router = express.Router();
 
