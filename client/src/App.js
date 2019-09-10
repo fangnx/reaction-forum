@@ -15,7 +15,7 @@ import { store, persistor } from './store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 
-import './semantic/dist/semantic.min.css';
+import 'semantic-ui-css/semantic.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
