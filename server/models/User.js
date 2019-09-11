@@ -30,6 +30,10 @@ const UserSchema = new Schema({
 		enum: ['m', 'f', 'o'],
 		required: true
 	},
+	isAdmin: {
+		type: Boolean,
+		required: false
+	},
 	avatar: {
 		type: String,
 		default:

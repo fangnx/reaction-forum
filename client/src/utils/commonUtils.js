@@ -1,6 +1,15 @@
 /**
- * Merge array of style.
- * A temporary workaround since Radium.merge does not work.
+ * commonUtils.js
+ *
+ * @author nxxinf
+ * @github https://github.com/fangnx
+ * @created 2019-09-10 13:10:06
+ * @last-modified 2019-09-10 16:18:52
+ */
+
+/**
+ * Merge array of styles.
+ * This is a temporary workaround since Radium.merge does not work.
  */
 export const mergeStyles = styles => {
 	return Object.assign({}, ...styles);
@@ -33,16 +42,7 @@ export const BACKSPACE_KEY = 8;
 /**
  * Colors used to render tags.
  */
-export const TAG_COLORS = [
-	// '#FF8F00',
-	// '#FFA000',
-	// '#FFC107',
-	// '#FBC02D',
-	'#7CB342',
-	'#8BC34A',
-	'#9CCC65',
-	'#AED581'
-];
+export const TAG_COLORS = ['#7CB342', '#8BC34A', '#9CCC65', '#AED581'];
 
 export const SHADES_OF_GREEN = [
 	'rgba(72, 133, 164, 0.5)',

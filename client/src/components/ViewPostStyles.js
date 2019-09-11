@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-03 23:42:41
- * @last-modified 2019-09-10 02:40:39
+ * @last-modified 2019-09-10 17:21:42
  */
 
 export const ViewPostStyles = {
@@ -52,7 +52,7 @@ export const ViewPostStyles = {
 		overflow: 'overlay',
 		background: 'transparent'
 	},
-	tags: {},
+	tags: { padding: '0 10px 0 10px' },
 	timeStamp: {
 		color: 'rgba(100, 100, 100, 1)'
 	},
@@ -72,7 +72,7 @@ export const ViewPostStyles = {
 		fontWeight: 'bold'
 	},
 	commentsRow: {
-		paddingTop: '0px'
+		padding: '5px 10px 0 10px'
 	},
 	commentInput: {
 		width: '100%',

@@ -166,13 +166,13 @@ class PostView extends React.Component {
 							<Grid.Row
 								columns="2"
 								id="postview-icons-row"
-								style={{ marginTop: '-55px' }}
+								style={{ marginTop: '-45px' }}
 							>
 								<Grid.Column style={styles.column} />
 								<Grid.Column style={styles.column}>
 									<div style={styles.iconGroup}>
 										{this.props.canManage ? (
-											<React.Fragment>
+											<>
 												<Icon
 													size="large"
 													name="pencil"
@@ -187,7 +187,7 @@ class PostView extends React.Component {
 													color="red"
 													style={styles.icon}
 												/>
-											</React.Fragment>
+											</>
 										) : (
 											''
 										)}
@@ -219,7 +219,7 @@ class PostView extends React.Component {
 							</Grid.Row>
 
 							{this.state.showFullCard ? (
-								<React.Fragment>
+								<>
 									<Grid.Row style={styles.grey}>
 										<Segment
 											style={mergeStyles([styles.field, styles.content])}
@@ -272,42 +272,44 @@ class PostView extends React.Component {
 											size="large"
 											style={mergeStyles([styles.field, styles.sectionLabel])}
 										>
-											Comments &nbsp;
+											Reactions &nbsp;
 											<Icon name="comments" />
 										</Label>
 									</Grid.Row>
 
-									{this.state.showComments && this.state.comments.length ? (
-										<Grid.Row
-											style={mergeStyles([styles.field, styles.commentsRow])}
-										>
-											<CommentSection comments={this.state.comments} />
-										</Grid.Row>
+									{this.state.showComments ? (
+										<>
+											<Grid.Row
+												style={mergeStyles([styles.field, styles.commentsRow])}
+											>
+												<CommentSection comments={this.state.comments} />
+											</Grid.Row>
+											<TextArea
+												as={Input}
+												id="newCommentContent"
+												value={this.state.newCommentContent}
+												onChange={this.onChange}
+												placeholder="Express your reactions: "
+												rows="2"
+												icon={
+													<Button icon style={styles.commentSubmitButton}>
+														<Icon
+															name="check"
+															onClick={this.onAddComment}
+															size="large"
+															color="black"
+														/>
+													</Button>
+												}
+												style={styles.commentInput}
+											/>
+										</>
 									) : (
-										''
+										<></>
 									)}
-									<TextArea
-										as={Input}
-										id="newCommentContent"
-										value={this.state.newCommentContent}
-										onChange={this.onChange}
-										placeholder="Write your comment: "
-										rows="2"
-										icon={
-											<Button icon style={styles.commentSubmitButton}>
-												<Icon
-													name="check"
-													onClick={this.onAddComment}
-													size="large"
-													color="black"
-												/>
-											</Button>
-										}
-										style={styles.commentInput}
-									/>
-								</React.Fragment>
+								</>
 							) : (
-								<React.Fragment />
+								<></>
 							)}
 						</Grid>
 

@@ -1,10 +1,15 @@
-.app {
-}
+/**
+* App.css
+*
+* @author nxxinf
+* @github https://github.com/fangnx
+* @created 2019-09-10 13:10:06
+* @last-modified 2019-09-10 17:12:40
+*/
 
 .app-background {
 	background-color: var(--theme-navy-2);
 	background-size: cover;
-
 	min-height: 100%;
 	min-width: 1024px;
 	width: 100%;
@@ -19,6 +24,9 @@
 	width: 100%;
 	z-index: 10;
 }
+
+/* Responsive UI: content would adjust its width based on the device */
+
 .app-content {
 	padding-top: calc(8vh + 30px);
 	padding-bottom: 30px;
@@ -69,6 +77,8 @@ img {
 	width: 100%;
 }
 
+/* Override default attributes of Semantic UI components */
+
 .ui.card {
 	border-radius: 2px;
 	font-size: 1.1rem;
@@ -80,11 +90,26 @@ img {
 	padding-bottom: 6px;
 }
 
+.ui.grid > .row {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
 .ui.label {
 	border-radius: 2px;
 	font-family: var(--font-style);
 	font-size: 0.9rem;
 }
+
+.ui.primary.button {
+	background-color: var(--theme-navy) !important;
+}
+
+.ui.primary.button:focus {
+	background-color: var(--theme-navy) !important;
+}
+
+/* Override default attributes of react-markdown */
 
 .markdown p {
 	word-break: break-word;

@@ -27,11 +27,12 @@ app.use(
 );
 app.use(bodyParser.json());
 
+const host = process.env.HOST || config.HOST;
+const port = process.env.PORT || config.port;
 const db = process.env.MONGODB_URI || config.mongodb;
 const MongoStore = connectMongo(session);
-const port = process.env.PORT || config.port;
 
-// Connects to Mongoose.
+// Database setup with Mongoose.
 mongoose
 	.connect(db, { useNewUrlParser: true })
 	.then(() => console.log('Successfully connected to MongoDB ;)'))
@@ -43,12 +44,12 @@ app.use(
 		name: config.session.key,
 		secret: config.session.secret,
 		resave: true,
-		saveUninitialized: false, // creates a session even not logged in
+		saveUninitialized: false, // Create a session even not logged in.
 		cookie: {
-			maxAge: config.session.maxAge // session expiry time
+			maxAge: config.session.maxAge // Session expiry time.
 		},
 		store: new MongoStore({
-			url: db // stores session into mongodb
+			url: db // Store session into mongodb.
 		})
 	})
 );
@@ -60,7 +61,7 @@ app.use(
 	})
 );
 
-// Passport.js auth setup.
+// Passport.js authentication setup.
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -87,7 +88,7 @@ const strategy = new JwtStrategy(opts, (jwt_payload, done) => {
 
 passport.use(strategy);
 
-// Cron Job for posting daily RSS subscriptions.
+// Cron Job to post content from daily RSS subscriptions.
 postDailySubscriptions().start();
 
 // API routes.
@@ -97,4 +98,6 @@ app.use('/api/subforums', subforums);
 app.use('/api/images', images);
 app.use('/api/sources', sources);
 
-app.listen(port, () => console.log(`App listening on port ${port} !`));
+app.listen(port, () =>
+	console.log(`Reaction Forum is running on http://${host}:${port}/ :)`)
+);

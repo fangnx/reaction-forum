@@ -1,7 +1,13 @@
 {
-	"name": "hggstagram",
-	"version": "0.1.0",
+	"name": "reaction-forum",
+	"version": "1.0.0",
 	"private": true,
+	"private": true,
+	"author": "Naxin Fang",
+	"license": "MIT",
+	"engine": {
+		"node": "10.x"
+	},
 	"dependencies": {
 		"@babel/cli": "^7.0.0",
 		"@babel/core": "^7.0.0",
@@ -55,9 +61,7 @@
 		"client": "cd client && npm start",
 		"build-client": "cd ./client/ && npm install && npm run build && cd ..",
 		"dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-		"prod": "cd ./client && npm run build && cd .. && concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"prod": "npm run build-client && concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
 	},
 	"eslintConfig": {
 		"extends": "react-app"

@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-23 00:52:32
- * @last-modified 2019-09-09 23:27:45
+ * @last-modified 2019-09-10 15:42:54
  */
 
 import React from 'react';
@@ -25,7 +25,7 @@ import './Register.css';
 
 import { registerUser } from '../../actions/userActions';
 import axios from 'axios';
-import { storage } from '../../firebase-config';
+import { storage } from '../../configureFirebase';
 
 const genderOptions = [
 	{ key: 'm', text: 'Male', value: 'm' },
