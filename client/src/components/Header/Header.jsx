@@ -10,13 +10,12 @@
 import React from 'react';
 import { HashRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { store } from '../../store';
+import { logoutUser, checkAdmin } from '../../actions/userActions';
+import UserLabel from './UserLabel';
 import PropTypes from 'prop-types';
 import { Menu, Dropdown, Icon, Button } from 'semantic-ui-react';
 import './Header.css';
-
-import { logoutUser } from '../../actions/userActions';
-import { store } from '../../store';
-import UserLabel from './UserLabel';
 
 const styles = {
 	header: {
@@ -24,8 +23,8 @@ const styles = {
 		height: '8vh'
 	},
 	dropdownMenu: {
-		marginTop: '30px',
-		background: 'rgba(245, 245, 245, 1)'
+		background: 'var(--theme-white-1)',
+		marginTop: '2rem'
 	},
 	icon: {
 		width: '100%'
@@ -37,7 +36,8 @@ class Header extends React.Component {
 		this.state = {
 			isLoggedIn: false,
 			userName: '',
-			userAvatar: ''
+			userAvatar: '',
+			isAdmin: false
 		};
 	}
 
@@ -46,10 +46,21 @@ class Header extends React.Component {
 		this.props.logoutUser();
 	};
 
-	componentDidMount() {
-		if (store.getState().auth.isAuthenticated) {
-			this.setState({
-				isLoggedIn: true
+	async componentDidMount() {
+		const authState = store.getState().auth;
+		if (authState.isAuthenticated) {
+			await checkAdmin({ email: authState.user.email }).then(async res => {
+				if (res && res.data.isAdmin) {
+					this.setState({
+						isLoggedIn: true,
+						isAdmin: true
+					});
+				} else {
+					this.setState({
+						isLoggedIn: true,
+						isAdmin: false
+					});
+				}
 			});
 		}
 	}
@@ -61,7 +72,8 @@ class Header extends React.Component {
 			});
 		} else {
 			this.setState({
-				isLoggedIn: false
+				isLoggedIn: false,
+				isAdmin: false
 			});
 		}
 	}
@@ -82,8 +94,7 @@ class Header extends React.Component {
 						</Menu.Item>
 
 						<Menu.Item as={NavLink} to="/post/add" name="newPost">
-							<Icon name="add" size="large" />
-							{/* <Icon corner name="file text" /> */}
+							<Icon name="write" size="large" />
 						</Menu.Item>
 					</Menu.Menu>
 
@@ -91,18 +102,24 @@ class Header extends React.Component {
 						{isLoggedIn ? (
 							<React.Fragment>
 								<Menu.Item>
-									<UserLabel
-										userName={this.props.auth.user.name}
-										userAvatar={this.props.auth.user.avatar}
-										transparent
-										largeText
-									/>
-									<Dropdown icon="dropdown" pointing>
+									<Dropdown
+										icon="null"
+										pointing
+										style={{ height: '35px' }}
+										trigger={
+											<UserLabel
+												userName={this.props.auth.user.name}
+												userAvatar={this.props.auth.user.avatar}
+												transparent
+												header
+											/>
+										}
+									>
 										<Dropdown.Menu style={styles.dropdownMenu}>
 											<Dropdown.Header content="User" />
 
 											<Dropdown.Item>
-												<Icon name="address card outlinecard" />
+												<Icon name="address card outline" />
 												View My User Info
 											</Dropdown.Item>
 											<Menu.Item as={NavLink} to="/myposts" name="myPosts">
@@ -113,14 +130,19 @@ class Header extends React.Component {
 											<Dropdown.Header content="Admin" />
 											<Dropdown.Item
 												as={NavLink}
+												disabled={!this.state.isAdmin}
 												to="/subscribe"
 												name="subscribe"
 											>
-												<Icon name="rss" />
-												Manage Subscriptions
+												<Icon name="rss square" />
+												Manage RSS Subscriptions
 											</Dropdown.Item>
 											<Dropdown.Item onClick={this.onLogout}>
-												<Button size="tiny" secondary style={{ width: '100%' }}>
+												<Button
+													size="tiny"
+													secondary
+													style={{ width: '100%', margin: '2px 0 2px 0' }}
+												>
 													Log Out
 												</Button>
 											</Dropdown.Item>

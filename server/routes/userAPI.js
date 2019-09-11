@@ -45,7 +45,7 @@ router.post('/register', (req, res) => {
 						newUser
 							.save()
 							.then(user => res.json(user))
-							.catch(err => console.log(err));
+							.catch(err => err);
 					});
 				});
 			}
@@ -97,7 +97,7 @@ router.post('/login', (req, res) => {
 						return res.status(400).json({ password: 'Password incorrect' });
 					}
 				})
-				.catch(err => console.log(err));
+				.catch(err => err);
 		});
 	}
 });
@@ -112,7 +112,18 @@ router.post('/avatarimagedata', (req, res) => {
 				res.json({ avatar: '' });
 			}
 		})
-		.catch(err => console.log(err));
+		.catch(err => err);
+});
+
+// Check if the user is an admin.
+router.post('/isadmin', (req, res) => {
+	User.findOne({ email: req.body.email, isadmin: true })
+		.then(value => {
+			if (value) {
+				res.json({ isAdmin: true });
+			}
+		})
+		.catch(err => err);
 });
 
 export { router as users };

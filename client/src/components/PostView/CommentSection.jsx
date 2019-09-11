@@ -15,19 +15,21 @@ class CommentSection extends React.Component {
 		const comments = this.props.comments;
 
 		return (
-			<React.Fragment>
+			<>
 				{comments.map((comment, index) => (
-					<CommentView
-						key={'commentView-' + index}
-						content={comment.content}
-						pid={comment.pid}
-						author={comment.author}
-						authorEmail={comment.authorEmail}
-						authorAvatar={comment.authorAvatar}
-						timeStamp={comment.timeStamp}
-					/>
+					<>
+						<CommentView
+							key={'commentView-' + index}
+							content={comment.content}
+							pid={comment.pid}
+							author={comment.author}
+							authorEmail={comment.authorEmail}
+							authorAvatar={comment.authorAvatar}
+							timeStamp={comment.timeStamp}
+						/>
+					</>
 				))}
-			</React.Fragment>
+			</>
 		);
 	}
 }

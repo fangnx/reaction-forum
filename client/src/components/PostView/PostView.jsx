@@ -166,7 +166,7 @@ class PostView extends React.Component {
 							<Grid.Row
 								columns="2"
 								id="postview-icons-row"
-								style={{ marginTop: '-45px' }}
+								style={{ marginTop: '-45px' }} // TODO: remove the magic number.
 							>
 								<Grid.Column style={styles.column} />
 								<Grid.Column style={styles.column}>
@@ -175,7 +175,7 @@ class PostView extends React.Component {
 											<>
 												<Icon
 													size="large"
-													name="pencil"
+													name="file alternate outline"
 													onClick={this.directToEditPost}
 													style={styles.icon}
 												/>
@@ -183,8 +183,8 @@ class PostView extends React.Component {
 												<Icon
 													size="large"
 													name="close"
-													onClick={this.onDeleteClicked}
 													color="red"
+													onClick={this.onDeleteClicked}
 													style={styles.icon}
 												/>
 											</>
@@ -195,7 +195,7 @@ class PostView extends React.Component {
 										<Icon
 											size="large"
 											name={
-												this.state.showFullCard ? 'minus circle' : 'plus circle'
+												this.state.showFullCard ? 'minus square' : 'plus square'
 											}
 											onClick={this.toggleShowFullCard}
 											style={styles.icon}
@@ -220,7 +220,7 @@ class PostView extends React.Component {
 
 							{this.state.showFullCard ? (
 								<>
-									<Grid.Row style={styles.grey}>
+									<Grid.Row>
 										<Segment
 											style={mergeStyles([styles.field, styles.content])}
 										>

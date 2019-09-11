@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-03 23:42:41
- * @last-modified 2019-09-10 17:21:42
+ * @last-modified 2019-09-11 10:59:04
  */
 
 export const ViewPostStyles = {
@@ -29,7 +29,8 @@ export const ViewPostStyles = {
 		marginRight: '12px'
 	},
 	top: {
-		paddingTop: '5px'
+		paddingTop: '5px',
+		paddingBottom: '10px'
 	},
 	column: {
 		paddingLeft: '0px',
@@ -93,9 +94,5 @@ export const ViewPostStyles = {
 		marginLeft: '0px',
 		marginRight: '0px',
 		width: '100%'
-	},
-	grey: {
-		width: '100%',
-		background: 'rgba(220, 220, 226, 90%)'
 	}
 };

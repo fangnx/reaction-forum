@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-23 14:09:31
- * @last-modified 2019-09-10 02:29:34
+ * @last-modified 2019-09-11 01:50:11
  */
 
 import React from 'react';
@@ -27,7 +27,7 @@ const styles = {
 	avatarCrop: {
 		overflow: 'hidden',
 		height: '100%',
-		borderRadius: '2px'
+		borderRadius: '2px 0 0 2px'
 	},
 	avatarImg: {
 		display: 'inline-block',
@@ -38,6 +38,7 @@ const styles = {
 		left: '-100%'
 	},
 	label: {
+		position: 'relative',
 		minWidth: '60px',
 		maxWidth: '180px',
 		height: '35px',
@@ -45,8 +46,8 @@ const styles = {
 		margin: '0',
 		paddingTop: '0',
 		paddingBottom: '0',
-		borderTopRightRadius: '3px',
-		borderBottomRightRadius: '3px'
+		borderTopRightRadius: '2px',
+		borderBottomRightRadius: '2px'
 	},
 	labelText: {
 		color: 'var(--theme-white-1)',
@@ -70,7 +71,9 @@ class UserLabel extends React.Component {
 		const background = this.props.transparent
 			? 'transparent'
 			: 'var(--theme-blue)';
-		const fontSize = this.props.largeText ? '1.1rem' : '1rem';
+		const fontSize = this.props.header ? '1.1rem' : '1rem';
+		// TODO: remove the magic number for userLabel in header UI.
+		const bottom = this.props.header ? '13px' : '';
 
 		return (
 			<React.Fragment>
@@ -90,7 +93,7 @@ class UserLabel extends React.Component {
 						/>
 					</div>
 				</div>
-				<Label style={{ ...styles.label, background }}>
+				<Label style={{ ...styles.label, background, bottom }}>
 					<div style={{ ...styles.labelText, fontSize }}>
 						{this.props.userName}{' '}
 						{this.props.isRSS && <Icon name="rss square" color="white" />}

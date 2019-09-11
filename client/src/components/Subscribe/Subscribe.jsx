@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-07-04 19:49:48
- * @last-modified 2019-09-10 02:19:54
+ * @last-modified 2019-09-11 12:00:34
  */
 
 import React from 'react';
@@ -37,7 +37,7 @@ const styles = {
 		boxShadow: 'none'
 	},
 	label: {
-		background: '#7ea860',
+		background: 'var(--theme-blue)',
 		color: 'var(--theme-white)'
 	}
 };

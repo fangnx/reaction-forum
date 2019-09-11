@@ -4,7 +4,7 @@
  * @author nxxinf
  * @github https://github.com/fangnx
  * @created 2019-06-02 16:22:08
- * @last-modified 2019-09-09 20:54:13
+ * @last-modified 2019-09-11 11:11:24
  */
 
 import axios from 'axios';
@@ -74,6 +74,13 @@ export const logoutUser = () => dispatch => {
 export const getAvatarData = async data => {
 	return axios
 		.post('/api/users/avatarimagedata', data)
+		.then(res => res)
+		.catch(err => console.log(err));
+};
+
+export const checkAdmin = async data => {
+	return axios
+		.post('/api/users/isadmin', data)
 		.then(res => res)
 		.catch(err => console.log(err));
 };

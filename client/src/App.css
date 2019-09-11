@@ -4,7 +4,7 @@
 * @author nxxinf
 * @github https://github.com/fangnx
 * @created 2019-09-10 13:10:06
-* @last-modified 2019-09-10 17:12:40
+* @last-modified 2019-09-11 11:03:42
 */
 
 .app-background {
@@ -58,13 +58,13 @@ h5 {
 }
 
 h1 {
-	font-size: 2.75rem;
-	line-height: 2.75rem;
+	font-size: 3rem;
+	line-height: 3rem;
 }
 
 h2 {
-	font-size: 2.25rem;
-	line-height: 2.25rem;
+	font-size: 2.5rem;
+	line-height: 2.5rem;
 }
 
 input {
@@ -109,9 +109,18 @@ img {
 	background-color: var(--theme-navy) !important;
 }
 
+.ui.secondary.button {
+	background-color: var(--theme-red) !important;
+}
+
+.ui.secondary.button:focus {
+	background-color: var(--theme-red) !important;
+}
+
 /* Override default attributes of react-markdown */
 
 .markdown p {
+	font-size: 1.05em;
 	word-break: break-word;
 }
 
@@ -126,8 +135,7 @@ h5 {
 }
 
 .markdown img {
-	width: 80%;
-	margin: 1rem 10% 1rem 10%;
+	width: 100%;
 }
 
 .markdown code {

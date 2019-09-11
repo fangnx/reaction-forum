@@ -44,6 +44,14 @@ const styles = {
 		bottom: '-100%',
 		left: '-100%',
 		borderRadius: '0'
+	},
+	userName: {
+		color: 'var(--theme-navy-1)',
+		display: 'inline-block',
+		marginRight: '0.25em'
+	},
+	userAction: {
+		display: 'inline-block'
 	}
 };
 
@@ -65,9 +73,8 @@ class CommentView extends React.Component {
 					</Feed.Label>
 					<Feed.Content style={styles.commentContent}>
 						<Feed.Summary>
-							<Label size="small" style={styles.commentUserLabel}>
-								<div style={styles.commentUser}>{this.props.author}</div>
-							</Label>
+							<div style={styles.userName}>{this.props.author}</div>
+							<div style={styles.userAction}>reacted</div>
 							{/* <Feed.Date>{this.props.timeStamp}</Feed.Date> */}
 						</Feed.Summary>
 						<Feed.Extra text style={styles.commentText}>
