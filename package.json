@@ -42,7 +42,7 @@
 		"jwt-decode": "^2.2.0",
 		"kill-port": "^1.5.1",
 		"mongodb": "^3.2.4",
-		"mongoose": "^5.5.9",
+		"mongoose": "^5.7.5",
 		"nodemon": "^1.19.0",
 		"passport": "^0.4.0",
 		"passport-jwt": "^4.0.0",
