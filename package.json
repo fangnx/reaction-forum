@@ -52,7 +52,7 @@
 		"rimraf": "^2.6.3",
 		"styled-components": "^4.2.0",
 		"turndown": "^5.0.3",
-		"validator": "^10.11.0"
+		"validator": "^13.7.0"
 	},
 	"scripts": {
 		"postinstall": "npm run build-client",
