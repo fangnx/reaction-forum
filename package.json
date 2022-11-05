@@ -35,7 +35,7 @@
 		"express-session": "^1.16.1",
 		"firebase": "^6.2.2",
 		"fs": "0.0.1-security",
-		"gulp": "^3.9.1",
+		"gulp": "^4.0.2",
 		"install": "^0.13.0",
 		"is-empty": "^1.2.0",
 		"jsonwebtoken": "^8.3.0",
