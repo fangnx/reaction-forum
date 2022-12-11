@@ -30,7 +30,7 @@
 		"cron": "^1.7.1",
 		"dateformat": "^3.0.3",
 		"dotenv": "^8.1.0",
-		"express": "^4.16.4",
+		"express": "^4.17.3",
 		"express-formidable": "^1.2.0",
 		"express-session": "^1.16.1",
 		"firebase": "^6.2.2",
