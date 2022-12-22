@@ -38,7 +38,7 @@
 		"gulp": "^3.9.1",
 		"install": "^0.13.0",
 		"is-empty": "^1.2.0",
-		"jsonwebtoken": "^8.3.0",
+		"jsonwebtoken": "^9.0.0",
 		"jwt-decode": "^2.2.0",
 		"kill-port": "^1.5.1",
 		"mongodb": "^3.2.4",
